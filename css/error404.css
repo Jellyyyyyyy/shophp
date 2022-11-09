@@ -1,0 +1,85 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, "Lucida Grande", sans-serif;
+  font-weight: 400;
+}
+
+.error-main {
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+section {
+  padding: 10px;
+  max-width: 30rem;
+}
+
+section > h4 {
+  margin-top: 11rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.main-search-container {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  width: 28rem;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  margin: 2rem 0;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  margin-left: 1.2rem;
+  font-size: 1.2rem;
+  height: 4rem;
+  width: 22rem;
+  padding-top: 0.7rem;
+  background: transparent;
+}
+
+.search-icon {
+  color: #999;
+  margin-left: 1.3rem;
+  scale: 1.5;
+  z-index: -10;
+}
+
+.search-text {
+  color: #999;
+  margin-left: 3.6rem;
+  position: absolute;
+  transition: font-size 0.3s, margin-bottom 0.3s;
+  z-index: -10;
+}
+
+@media (max-width: 538px) {
+  section > h4 {
+    font-size: 1.7rem;
+  }
+  .main-search-container {
+    width: 20rem;
+  }
+  .search-input {
+    width: 15.5rem;
+  }
+}
+.move-up,
+.search-input:focus + .search-text {
+  margin-bottom: 1.4rem;
+  font-size: 0.8rem;
+}

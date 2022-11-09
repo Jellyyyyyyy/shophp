@@ -1,0 +1,45 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, "Lucida Grande", sans-serif;
+  font-weight: 400;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+div.message {
+  height: 4rem;
+  width: 100%;
+  margin-top: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.3rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.message span a {
+  text-decoration: none;
+  color: #46acce;
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+}
+
+.message span a:hover {
+  opacity: 1;
+}
+
+@media (max-width: 786px) {
+  div.message {
+    font-size: 1.3rem;
+  }
+}

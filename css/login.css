@@ -1,0 +1,166 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, "Lucida Grande", sans-serif;
+  font-weight: 400;
+  overflow-y: auto;
+  z-index: 1;
+  margin-bottom: 100px;
+}
+
+.login-container {
+  z-index: 2;
+}
+
+.bg-image-vertical {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+}
+
+#login-email-field:focus + label.login-email-label,
+#login-password-field:focus + label.login-password-label {
+  color: #666;
+}
+
+.login-field,
+button.submit-button {
+  border-radius: 0.5rem;
+}
+
+.fail-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  transition: all 1s ease;
+}
+
+.fail-text {
+  color: #ff4e4e;
+  text-align: center;
+  padding: 8px;
+  background: #eaeaea;
+  border-radius: 0.5rem;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 11px solid #eaeaea;
+}
+
+.login-img-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(50, 50, 50, 0.5);
+}
+
+/* Register modal */
+.register-container.hide {
+  opacity: 0;
+  scale: 0.3;
+  z-index: -999;
+  transition: scale 1s linear;
+}
+
+.register-container {
+  position: absolute;
+  inset: 7vh 0 0 0;
+  margin: 20px auto;
+  height: auto;
+  width: 50rem;
+  background: white;
+  box-shadow: 0 0 50px 5px #333;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  scale: 1;
+  opacity: 1;
+  transition: scale 0.4s cubic-bezier(0.67, 0.24, 0.25, 1.5);
+}
+
+.register-container > form {
+  width: 100%;
+  padding: 3rem 1rem;
+}
+
+.register-container .error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-container .error-text {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  text-align: center;
+  background: #eaeaea;
+}
+
+.error-container .arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 11px solid #eaeaea;
+}
+
+.field-required {
+  font-size: 1rem;
+}
+
+.register-overlay.active {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 3;
+}
+
+@media (min-width: 1025px) {
+  .h-custom-2 {
+    height: 100%;
+  }
+  body {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 950px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .register-container {
+    overflow: hidden;
+    inset: 0;
+    margin: 4rem 0 0 0;
+    height: 60rem;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .register-container > form {
+    height: 100%;
+    padding: 1.5rem 0;
+  }
+}
