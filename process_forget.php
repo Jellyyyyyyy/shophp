@@ -3,7 +3,7 @@ require_once 'include/functions.inc.php';
 turnOnErrorReport();
 
 $email = $errorMsg = $username = "";
-$success = "trueeeeeeee";
+$success = "true";
 
 // Check email/username and password
 function checkUser() {
