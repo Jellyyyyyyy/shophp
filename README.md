@@ -30,8 +30,10 @@ Also contains `icons` directory to hold favicon for the page
 ### include
 
 - dbcon.inc.php<br>
-  Contains php code to connect to database. To use, add `include_once include/dbcon.inc.php` at where connection is supposed to take place. Remember to close connection with `$conn->close()`
+  Contains php code to connect to database. To use, add `include_once "include/dbcon.inc.php"` at where connection is supposed to take place. Remember to close connection with `$conn->close()`
 - functions.inc.php<br>
-  Contains all the functions that are needed across multiple files like `sendMail()`. Add more functions as more pages are created
+  Contains all the functions that are needed across multiple files like `sendMail()`. Add more functions as more pages are created. To use, add `require_once "include/functions.inc.php"` at the start of php portion
 - head.inc.php<br>
-  Update this as the project goes, if CSS/JS files are required in all pages, add them here for easy access. In all pages, the head should contain `include_once include/head.inc.php`
+  Update this as the project goes, if CSS/JS files are required in all pages, add them here for easy access. In all pages, the head should contain `include_once "include/head.inc.php"`
+- nav/footer.inc.php<br>
+  Code for navbar and footer. Add `include_once "include/nav.inc.php"` at the top of `<body>` in all pages that require nav bar. Same for footer
