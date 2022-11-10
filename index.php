@@ -11,11 +11,7 @@
 </head>
 
 <body>
-  <header class="head">
-    <a href="/login">Login</a>
-    <a>|</a>
-    <a href="/register">Register</a>
-  </header>
+  <?php include_once "include/nav.inc.php" ?>
   <main>
     <p>Welcome to shoPHP</p>
   </main>
