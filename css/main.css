@@ -1,6 +1,19 @@
-* {
+/* * {
   font-family: "Lucida Console", "Courier New", monospace;
   overflow: hidden;
+} */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, "Lucida Grande", sans-serif;
+  font-weight: 400;
 }
 
 header {
