@@ -1,7 +1,3 @@
-/* * {
-  font-family: "Lucida Console", "Courier New", monospace;
-  overflow: hidden;
-} */
 *,
 *::after,
 *::before {
@@ -28,6 +24,7 @@ main {
 }
 
 p {
+  font-family: "Lucida Console", "Courier New", monospace;
   text-align: center;
   width: 1300px;
   font-size: 7rem;
