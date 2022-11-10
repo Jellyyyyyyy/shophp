@@ -1,0 +1,31 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, "Lucida Grande", sans-serif;
+  font-weight: 400;
+}
+
+footer {
+  background-color: black;
+  color: white;
+}
+
+.word-style {
+  color: white;
+  text-decoration: none;
+}
+
+.word-style:hover {
+  color: aqua;
+}
+
+.social li {
+  display: inline;
+}
