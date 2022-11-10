@@ -23,6 +23,7 @@
       <label class="search-text" id="search-text" for="search">Search shoPHP products...</label>
     </form>
   </main>
+  <?php include_once "include/footer.inc.php" ?>
 </body>
 
 </html>

@@ -44,10 +44,15 @@
                   <label class="form-label login-email-label" for="login-email-field">Email/Username</label>
                 </div>
 
-                <div class="form-outline mb-4 login-field">
+                <div class="form-outline mb-3 login-field">
                   <input type="password" id="login-password-field" class="form-control form-control-lg"
                     name="login-password-field" required />
                   <label class="form-label login-password-label" for="login-password-field">Password</label>
+                </div>
+
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" value="" id="rememberme" />
+                  <label class="form-check-label" for="rememberme">Remember me</label>
                 </div>
 
                 <div class="pt-1 mb-4">

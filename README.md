@@ -22,18 +22,18 @@ Ensure that all JavaScript files go into js directory. JavaScript for nav and fo
 
 ### images
 
-To be further worked on. Currently put all the images here for easy access. Will add more folders inside. <br>
+To be further worked on. Currently put all the images here for easy access. Will add more folders inside.  
 Also contains `icons` directory to hold favicon for the page
 
 ---
 
 ### include
 
-- dbcon.inc.php<br>
+- dbcon.inc.php  
   Contains php code to connect to database. To use, add `include_once "include/dbcon.inc.php"` at where connection is supposed to take place. Remember to close connection with `$conn->close()`
-- functions.inc.php<br>
+- functions.inc.php  
   Contains all the functions that are needed across multiple files like `sendMail()`. Add more functions as more pages are created. To use, add `require_once "include/functions.inc.php"` at the start of php portion
-- head.inc.php<br>
+- head.inc.php  
   Update this as the project goes, if CSS/JS files are required in all pages, add them here for easy access. In all pages, the head should contain `include_once "include/head.inc.php"`
-- nav/footer.inc.php<br>
+- nav/footer.inc.php  
   Code for navbar and footer. Add `include_once "include/nav.inc.php"` at the top of `<body>` in all pages that require nav bar. Same for footer
