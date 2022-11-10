@@ -33,11 +33,13 @@
         <a href="#" class="nav-search-icon"><i class="bx bx-search-alt-2 nav-toggle-menu nav-search-icon"></i></a>
       </li>
       <li>
-        <a href="#" class="nav-user"><i class="bx bx-user nav-user"></i></a>
+        <a href="#" id="nav-user" class="nav-user">
+          <i class="bx bx-user main-nav-user-icon"></i>
+        </a>
       </li>
     </ul>
   </nav>
-  <div class="search-container hide">
+  <div class=" search-container hide">
     <i class="bx bx-search-alt-2"></i>
     <div class="seach-bar">
       <form action="">

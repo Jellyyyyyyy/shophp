@@ -71,6 +71,51 @@ img {
   width: 7rem;
 }
 
+.user-card-container .user-card-header {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.user-card-container .user-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  width: 15rem;
+  list-style: none;
+}
+
+.user-card-container .user-card-body > li {
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid #aaa;
+}
+
+.user-card-container .user-card-body li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-card-container .user-card-body li a:hover span {
+  text-decoration: underline;
+}
+
+.user-card-container .user-card-body li a i {
+  margin-right: 10px;
+}
+
+.popover {
+  border-radius: 1rem;
+  box-shadow: 0 0 15px 2px #888;
+}
+
 /* Search bar */
 .search-container.hide {
   opacity: 0;
@@ -153,43 +198,48 @@ img {
 }
 
 .nav-menu li:nth-child(1),
-.nav-menu.hide li:nth-child(8) {
+.nav-menu.hide li:nth-child(9) {
   transition-delay: 0s;
 }
 
 .nav-menu li:nth-child(2),
-.nav-menu.hide li:nth-child(7) {
+.nav-menu.hide li:nth-child(8) {
   transition-delay: 0.05s;
 }
 
 .nav-menu li:nth-child(3),
-.nav-menu.hide li:nth-child(6) {
+.nav-menu.hide li:nth-child(7) {
   transition-delay: 0.1s;
 }
 
 .nav-menu li:nth-child(4),
-.nav-menu.hide li:nth-child(5) {
+.nav-menu.hide li:nth-child(6) {
   transition-delay: 0.15s;
 }
 
 .nav-menu li:nth-child(5),
-.nav-menu.hide li:nth-child(4) {
+.nav-menu.hide li:nth-child(5) {
   transition-delay: 0.2s;
 }
 
 .nav-menu li:nth-child(6),
-.nav-menu.hide li:nth-child(3) {
+.nav-menu.hide li:nth-child(4) {
   transition-delay: 0.25s;
 }
 
 .nav-menu li:nth-child(7),
-.nav-menu.hide li:nth-child(2) {
+.nav-menu.hide li:nth-child(3) {
   transition-delay: 0.3s;
 }
 
 .nav-menu li:nth-child(8),
-.nav-menu.hide li:nth-child(1) {
+.nav-menu.hide li:nth-child(2) {
   transition-delay: 0.35s;
+}
+
+.nav-menu li:nth-child(9),
+.nav-menu.hide li:nth-child(1) {
+  transition-delay: 0.4s;
 }
 
 .search-container form,
