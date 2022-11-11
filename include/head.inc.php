@@ -18,3 +18,5 @@
 <link rel="manifest" href="images/icons/site.webmanifest">
 <!-- SCROLLBAR -->
 <link rel="stylesheet" href="css/scrollbar.css">
+<!-- SWIPE LISTNER -->
+<script src="https://unpkg.com/swipe-event-listener@1.2.1/dist/swipe-event-listener.js" defer></script>
