@@ -35,7 +35,7 @@
         <a href="#" class="nav-search-icon"><i class="bx bx-search-alt-2 nav-toggle-menu nav-search-icon"></i></a>
       </li>
       <li>
-        <a id="nav-user" class="nav-user">
+        <a id="nav-user" class="nav-user" style="cursor: pointer;">
           <i class="bx bx-user main-nav-user-icon"></i>
         </a>
       </li>
