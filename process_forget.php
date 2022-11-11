@@ -76,4 +76,4 @@ if ($success == "true") {
       sendEmail();
   }
 }
-header('Location: /forget?success=' . $success . '&errorMsg=' . $errorMsg . '&email=' . $email);
+header('Location: /forget?forgetsuccess=' . $success . '&errorMsg=' . $errorMsg . '&email=' . $email);

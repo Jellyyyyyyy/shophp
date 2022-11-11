@@ -17,18 +17,19 @@
     include 'nav.inc.php'
   ?>
   <section class="container-fluid register-container">
-      <form action="process_register" method="post" target="_self">
+      <form action="process_reset" method="post" target="_self">
         <h3 class="fw-bold mb-3 form-header" style="letter-spacing: 1px">Reset Password</h3>
         <?php
-        if (isset($_GET['registerSuccess'])) {
-          $registerSuccess = $_GET['registerSuccess'];
-          $registerMsg = $_GET['registerMsg'];
+        if (isset($_GET['resetsuccess'])) {
+          $resetSuccess = $_GET['resetsuccess'];
           if ($registerSuccess == 'true') {
+            $resetMsg = $_GET['successMsg'];
             echo '<div class="error-container mt-0 mb-1">';
             echo '<span class="error-text w-100">' . $registerMsg . "</span>";
             echo '<div class="arrow-down"></div>';
             echo '</div>';
           } else {
+            $resetMsg = $_GET['errorMsg'];
             echo '<div class="error-container mt-0 mb-1">';
             echo '<span class="error-text w-100" style="color:red;">' . $registerMsg . "</span>";
             echo '<div class="arrow-down"></div>';
