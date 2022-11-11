@@ -1,5 +1,3 @@
-"use strict";
-
 const navMain = document.querySelector(".nav-main");
 const toggleMenu = document.getElementsByClassName("nav-toggle-menu");
 const searchContainer = document.querySelector(".search-container");
@@ -28,18 +26,34 @@ mobileMenuIconContainer.addEventListener("click", () => {
 });
 
 // Generating Popover for bag
+const loginState = document.querySelector("[data-state]");
+let loginClass;
+let loginText;
+let loginHref;
+
+if (loginState.getAttribute("data-state") === "true") {
+  loginClass = "bx-log-out";
+  loginText = "Log out";
+  loginHref = "process_logout";
+} else {
+  loginClass = "bx-user-circle";
+  loginText = "Sign in";
+  loginHref = "login";
+}
+
 const popoverContent = `
-<div class='pop-content user-card-container'>
-  <h6 class='pop-content user-card-header'>Your bag is empty.</h6>
-  <ul class='pop-content user-card-body'>
-    <li><a href='#'><i class='bx bx-shopping-bag'></i><span>Bag</span></a></li>
-    <li><a href='#'><i class='bx bx-bookmark'></i><span>Wishlist</span></a></li>
-    <li><a href='#'><i class='bx bx-package'></i><span>Orders</span></a></li>
-    <li><a href='#'><i class='bx bx-cog'></i><span>Account</span></a></li>
-    <li><a href='login'><i class='bx bx-user-circle'></i><span>Sign in</span></a></li>
-  </ul>
-</div>
-`;
+  <div class='pop-content user-card-container'>
+    <h6 class='pop-content user-card-header'>Your bag is empty.</h6>
+    <ul class='pop-content user-card-body'>
+      <li><a href='#'><i class='bx bx-shopping-bag'></i><span>Bag</span></a></li>
+      <li><a href='#'><i class='bx bx-bookmark'></i><span>Wishlist</span></a></li>
+      <li><a href='#'><i class='bx bx-package'></i><span>Orders</span></a></li>
+      <li><a href='#'><i class='bx bx-cog'></i><span>Account</span></a></li>
+      <li><a href='${loginHref}'><i class='bx ${loginClass}'></i><span>${loginText}</span></a></li>
+    </ul>
+  </div>
+  `;
+
 const navUserPopup = document.getElementById("nav-user");
 const navUserIcon = document.querySelector(".main-nav-user-icon");
 const popover = new mdb.Popover(navUserPopup, {
