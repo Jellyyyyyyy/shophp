@@ -13,7 +13,7 @@
   function checkEmpty() {
     global $email, $pwd, $errorMsg, $success;
 
-    $email = sanitize_input($_GET["email"]);
+    $email = sanitize_input($_POST["email"]);
     $pwd = password_hash($_POST["pwd"], PASSWORD_DEFAULT);
     
   if (empty($_POST["pwd"])) {
