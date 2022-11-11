@@ -16,55 +16,62 @@
   <?php 
     include 'nav.inc.php'
   ?>
-  <div class="message">
-    <?php
-    function sanitize_input($data) {
-      $data = trim($data);
-      $data = stripslashes($data);
-      $data = htmlspecialchars($data);
-      return $data;
-    }
-
-    // Variables
-    $email = $token = $titleMsg = '';
-    $loginLink = '<a href="/login">Login</a>';
-    $registerLink = '<a href="/register">Register</a>';
-
-    // Start connection
-    $config = parse_ini_file('../private/db-config.ini');
-    $conn = mysqli_connect($config['servername'], $config['username'], $config['password'], $config['dbname']);
-
-    // Getting data from link
-    if ((isset($_GET['email']) && !empty($_GET['email'])) || (isset($_GET['token']) && !empty($_GET['token']))) {
-      $email = sanitize_input($_GET['email']);
-      $token = sanitize_input($_GET['token']);
-      $query = $conn -> prepare("SELECT user_email, user_token, verified FROM shophp_users WHERE user_email=? AND user_token=? AND verified='0';");
-
-      // Binding and executing query
-      $query -> bind_param("ss", $email, $token);
-      $query -> execute();
-      $result = $query -> get_result();
-      
-      if ($result -> num_rows > 0) {
-        $row = $result -> fetch_assoc();
-        $userToken = $row['user_token'];
-        $query -> close();
-
-        if ($token == $userToken) {
-          $updateQuery = $conn -> prepare("UPDATE shophp_users SET verified='1' WHERE user_email=?;");
-          $updateQuery -> bind_param("s", $email);
-          $updateQuery -> execute();
-          echo "<span class='message-text'>Account verified!<br>Click here to " . $loginLink . "</span>";
+  <section class="container-fluid register-container">
+      <form action="process_register" method="post" target="_self">
+        <h3 class="fw-bold mb-3 form-header" style="letter-spacing: 1px">Create an account</h3>
+        <?php
+        if (isset($_GET['registerSuccess'])) {
+          $registerSuccess = $_GET['registerSuccess'];
+          $registerMsg = $_GET['registerMsg'];
+          if ($registerSuccess == 'true') {
+            echo '<div class="error-container mt-0 mb-1">';
+            echo '<span class="error-text w-100">' . $registerMsg . "</span>";
+            echo '<div class="arrow-down"></div>';
+            echo '</div>';
+          } else {
+            echo '<div class="error-container mt-0 mb-1">';
+            echo '<span class="error-text w-100" style="color:red;">' . $registerMsg . "</span>";
+            echo '<div class="arrow-down"></div>';
+            echo '</div>';
+          }
         }
-      } else {
-        echo "<span class='message-text'>Account not found or already verified.<br>Click here to " . $loginLink . " or " . $registerLink . "</span>";
-      }
-      $updateQuery -> close();
-    } else {
-      echo "<span class='message-text'>Account not found or already verified.<br>Click here to " . $loginLink . " or " . $registerLink . "</span>";
-    } $conn -> close();
-  ?>
-  </div>
+        ?>
+        <div class="form-outline mb-4">
+          <input type="text" id="username" name="username" class="form-control form-control-lg" autocomplete="off" value="<?php echo $_GET["username"] ?? ''; ?>" required />
+          <label class="form-label" for="username">Username</label>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3 pb-2">
+            <div class="form-outline">
+              <input type="text" id="fname" name="fname" class="form-control form-control-lg" value="<?php echo $_GET["fname"] ?? ''; ?>" required />
+              <label class="form-label" for="fname">First
+                name</label>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3 pb-2">
+            <div class="form-outline">
+              <input type="text" id="lname" name="lname" class="form-control form-control-lg" value="<?php echo $_GET["lname"] ?? ''; ?>" />
+              <label class="form-label" for="lname">Last
+                name</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-outline mb-4">
+          <input type="password" id="pwd" name="pwd" class="form-control form-control-lg" required />
+          <label class="form-label" for="pwd">Password</label>
+        </div>
+        <div class="form-outline mb-4">
+          <input type="password" id="confirm-pwd" name="confirm-pwd" class="form-control form-control-lg" minlength="8" required />
+          <label class="form-label" for="confirm-pwd">Confirm Password</label>
+        </div>
+        <div class="pt-1 mb-4">
+          <button class="btn btn-dark btn-lg btn-block submit-button" type="submit">
+            Reset
+          </button>
+        </div>
+      </form>
+    </section>
 </body>
 
 </html>

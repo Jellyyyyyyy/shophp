@@ -1,15 +1,5 @@
 <?php
 
-  require '/usr/share/php/libphp-phpmailer/autoload.php';
-
-  use PHPMailer\PHPMailer\PHPMailer;
-  use PHPMailer\PHPMailer\Exception;
-    
-
-  error_reporting(-1);
-  ini_set('display_errors', 'On');
-  set_error_handler("var_dump");
-
   $username = $fname = $lname = $email = $pwd = $confirmPwd = $errorMsg = $token = $successMsg = "";
   $success = "true";
 
@@ -23,10 +13,6 @@
   function checkEmpty() {
     global $username, $fname, $lname, $email, $pwd, $errorMsg, $success, $token;
 
-    $username = sanitize_input($_POST["username"]);
-    $fname = sanitize_input($_POST["fname"]);
-    $lname = sanitize_input($_POST["lname"]) ?? NULL;
-    $email = sanitize_input($_POST["email"]);
     $pwd = password_hash($_POST["pwd"], PASSWORD_DEFAULT);
     $token = bin2hex(random_bytes(32));
     
@@ -86,35 +72,47 @@
     }
     $conn -> close();
   }
+  
+function createNewPassword() {
 
-  function sendEmail(){
-    global $username, $email, $errorMsg, $success, $token, $successMsg;
+  // Variables
+  $email = $pwd = $titleMsg = '';
+  $loginLink = '<a href="/login">Login</a>';
+  $registerLink = '<a href="/register">Register</a>';
 
-    $mail = new PHPMailer(true);
-    try {
-      $mail -> SMTPDebug = false;                                       
-      $mail -> isSMTP();                                            
-      $mail -> Host       = 'smtp.ionos.com;';                    
-      $mail -> SMTPAuth   = true;                             
-      $mail -> Username   = 'no-reply@shophp.shop';                 
-      $mail -> Password   = 'sdOpF1$k123';                        
-      $mail -> SMTPSecure = 'tls';                              
-      $mail -> Port       = 587;  
+  // Start connection
+  $config = parse_ini_file('../private/db-config.ini');
+  $conn = mysqli_connect($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+  // Getting data from link
+  if ((isset($_GET['email']) && !empty($_GET['email']))) {
+    $email = sanitize_input($_GET['email']);
+    $query = $conn -> prepare("SELECT user_email, verified FROM shophp_users WHERE user_email=? AND verified='1';");
+
+    // Binding and executing query
+    $query -> bind_param("ss", $email, $token);
+    $query -> execute();
+    $result = $query -> get_result();
     
-      $mail -> setFrom('no-reply@shophp.shop', 'shoPHP');           
-      $mail -> addAddress($email);
-         
-      $mail -> isHTML(true);                                  
-      $mail -> Subject = 'shoPHP Account Verification';
-      $mail -> Body    = 'Hi ' . $username . ',<br><br>Thank you for signing up with shoPHP. For your account security, please <a href="shophp.shop/verify?email=' . $email . '&token=' . $token . '">verify your email address</a>.';
-      $mail -> AltBody = 'Hi ' . $username . ',<br><br>Thank you for signing up with shoPHP. For your account security, please <a href="shophp.shop/verify?email=' . $email . '&token=' . $token . '">verify your email address</a>.';
-      $mail -> send();
-      $successMsg =  "Verification email sent to " . $email . ". Please verify to log in.";
-  } catch (Exception $e) {
-      $errorMsg = "Verification email could not be sent. Please contact customer support to verify your account.";
-      $success = "false";
-  }
-  }
+    if ($result -> num_rows > 0) {
+      $row = $result -> fetch_assoc();
+      $userToken = $row['user_token'];
+      $query -> close();
+
+      if ($token == $userToken) {
+        $updateQuery = $conn -> prepare("UPDATE shophp_users SET verified='1' WHERE user_email=?;");
+        $updateQuery -> bind_param("s", $email);
+        $updateQuery -> execute();
+        echo "<span class='message-text'>Account verified!<br>Click here to " . $loginLink . "</span>";
+      }
+    } else {
+      echo "<span class='message-text'>Account not found or already verified.<br>Click here to " . $loginLink . " or " . $registerLink . "</span>";
+    }
+    $updateQuery -> close();
+  } else {
+    echo "<span class='message-text'>Account not found or already verified.<br>Click here to " . $loginLink . " or " . $registerLink . "</span>";
+  } $conn -> close();
+}
   
   checkEmpty();
   if ($success == "true") {
