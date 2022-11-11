@@ -52,6 +52,10 @@
         $updateQuery -> bind_param("ss", $pwd, $email);
         $updateQuery -> execute();
       }
+      else {
+        $errorMsg = "Failed to reset";
+        $success = "false";
+      }
     }
     $conn -> close();
   }

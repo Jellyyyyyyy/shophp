@@ -16,7 +16,7 @@
   <?php 
     include_once 'include/nav.inc.php'
   ?>
-  <section class="container-fluid register-container">
+  <section class="container">
       <form action="process_reset" method="post" target="_self">
         <h3 class="fw-bold mb-3 form-header" style="letter-spacing: 1px">Reset Password</h3>
         <?php
