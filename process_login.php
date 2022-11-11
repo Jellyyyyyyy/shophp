@@ -6,7 +6,8 @@ $emailOrUser = $pwd = $loginMsg = "";
 $loginSuccess = "true";
 
 // Check email/username and password
-function checkUser() {
+function checkUser()
+{
   global $emailOrUser, $loginMsg, $loginSuccess;
   if (empty($_POST["login-email-field"])) {
     $loginMsg = "Please enter a valid email/username";
@@ -24,24 +25,25 @@ function checkUser() {
 }
 
 // Check if user in database
-function authenticateUser() {
+function authenticateUser()
+{
   global $emailOrUser, $pwd, $loginMsg, $loginSuccess;
   // Connect to database
   include_once "include/dbcon.inc.php";
 
   // Check connection
-  if ($conn -> connect_error) {
+  if ($conn->connect_error) {
     $loginMsg = "Connection to server failed. Please try again later.";
     $loginSuccess = "false";
   } else {
     // Prepares and executes query
-    $query = $conn -> prepare("SELECT * FROM users WHERE email=? OR username=?;");
-    $query -> bind_param("ss", $emailOrUser, $emailOrUser);
-    $query -> execute();
-    $result = $query -> get_result();
+    $query = $conn->prepare("SELECT * FROM users WHERE email=? OR username=?;");
+    $query->bind_param("ss", $emailOrUser, $emailOrUser);
+    $query->execute();
+    $result = $query->get_result();
 
-    if ($result -> num_rows > 0) {
-      $row = $result -> fetch_assoc(); // Get row
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc(); // Get row
       $verified = $row["verified"]; // Get verified bool from row
       $pwd = $row["password"]; // Get password from row
 
@@ -60,9 +62,25 @@ function authenticateUser() {
       $loginMsg = "Your login credentials don't match an account in our system.";
       $loginSuccess = "false";
     }
-    $query -> close();
+    if ($loginSuccess == "true") {
+      $currentTime = time();
+      if (isset($_POST['rememberme']) && $_POST['rememberme'] == '1') {
+        session_id(md5($emailOrUser . $currentTime));
+        session_start();
+        $_SESSION["user"] = $emailOrUser;
+        session_write_close();
+      } else {
+        session_set_cookie_params(0);
+        session_id(md5($emailOrUser . $currentTime));
+        session_start();
+        $_SESSION["user"] = $emailOrUser;
+        session_write_close();
+      }
+    }
+
+    $query->close();
   }
-  $conn -> close();
+  $conn->close();
 }
 
 checkUser();
