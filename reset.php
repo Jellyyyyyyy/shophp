@@ -18,7 +18,7 @@
   ?>
   <section class="container-fluid register-container">
       <form action="process_register" method="post" target="_self">
-        <h3 class="fw-bold mb-3 form-header" style="letter-spacing: 1px">Create an account</h3>
+        <h3 class="fw-bold mb-3 form-header" style="letter-spacing: 1px">Reset Password</h3>
         <?php
         if (isset($_GET['registerSuccess'])) {
           $registerSuccess = $_GET['registerSuccess'];
@@ -36,27 +36,6 @@
           }
         }
         ?>
-        <div class="form-outline mb-4">
-          <input type="text" id="username" name="username" class="form-control form-control-lg" autocomplete="off" value="<?php echo $_GET["username"] ?? ''; ?>" required />
-          <label class="form-label" for="username">Username</label>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 mb-3 pb-2">
-            <div class="form-outline">
-              <input type="text" id="fname" name="fname" class="form-control form-control-lg" value="<?php echo $_GET["fname"] ?? ''; ?>" required />
-              <label class="form-label" for="fname">First
-                name</label>
-            </div>
-          </div>
-          <div class="col-md-6 mb-3 pb-2">
-            <div class="form-outline">
-              <input type="text" id="lname" name="lname" class="form-control form-control-lg" value="<?php echo $_GET["lname"] ?? ''; ?>" />
-              <label class="form-label" for="lname">Last
-                name</label>
-            </div>
-          </div>
-        </div>
         <div class="form-outline mb-4">
           <input type="password" id="pwd" name="pwd" class="form-control form-control-lg" required />
           <label class="form-label" for="pwd">Password</label>
