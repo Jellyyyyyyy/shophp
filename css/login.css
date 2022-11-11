@@ -12,7 +12,6 @@ body {
   font-weight: 400;
   overflow-y: auto;
   z-index: 1;
-  margin-bottom: 100px;
 }
 
 .login-container {
@@ -80,9 +79,11 @@ button.submit-button {
 .register-container {
   position: absolute;
   inset: 7vh 0 0 0;
-  margin: 20px auto;
-  height: auto;
-  width: 50rem;
+  padding-right: 0;
+  margin: auto auto;
+  height: 35rem;
+  width: 40rem;
+  overflow-y: hidden;
   background: white;
   box-shadow: 0 0 50px 5px #333;
   border-radius: 1rem;
@@ -97,8 +98,15 @@ button.submit-button {
 }
 
 .register-container > form {
+  overflow: auto;
+  height: 100%;
   width: 100%;
   padding: 3rem 1rem;
+  margin: 5rem 0;
+}
+
+.select-bday {
+  font-size: smaller;
 }
 
 .register-container .error-container {
@@ -157,10 +165,12 @@ button.submit-button {
     height: 60rem;
     width: 100%;
     border-radius: 0;
+    padding-right: var(--mdb-gutter-x,.75rem);
   }
 
   .register-container > form {
     height: 100%;
     padding: 1.5rem 0;
+    margin: 0;
   }
 }

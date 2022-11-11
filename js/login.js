@@ -42,12 +42,15 @@ for (let i = Number(currentYear); i > Number(currentYear) - 80; i--) {
 noAccBtn.addEventListener("click", () => {
   registerModal.classList.remove("hide");
   registerOverlay.classList.add("active");
+  document.body.style.marginBottom = "100px";
 });
 
 // Hide register modal
 function hideRegisterModal() {
   registerModal.classList.add("hide");
   registerOverlay.classList.remove("active");
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
+  document.body.style.marginBottom = "0";
 }
 
 registerOverlay.addEventListener("click", hideRegisterModal);
