@@ -40,10 +40,18 @@
       $success = "false";
     } else {
       // Prepare query
-      $query = $conn -> prepare("INSERT INTO shophp_users (user_pwd WHERE email=$email) VALUES (?);");
+      $query = $conn -> prepare("SELECT email, password, verified FROM users WHERE email=? AND verified='1';");
       
       // Bind and execute query
-      $query -> bind_param("s", $pwd);
+      $query -> bind_param("s", $email);
+      $result = $query -> get_result();
+      if ($result -> num_rows > 0) {
+        $row = $result -> fetch_assoc();
+        $query -> close();
+        $updateQuery = $conn -> prepare("UPDATE users SET password=? WHERE email=?");
+        $updateQuery -> bind_param("ss", $pwd, $email);
+        $updateQuery -> execute();
+      }
     }
     $conn -> close();
   }
