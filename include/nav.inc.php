@@ -1,4 +1,7 @@
 <!-- Start of nav bar -->
+<?php session_start();
+var_dump($_SESSION['user']) ?>
+<aside class="logged-in-state" style="display: none" data-state="<?php echo isset($_SESSION['user']) ? 'true' : 'false' ?>"></aside>
 <header class="nav-main">
   <nav>
     <!-- For mobile part -->
@@ -43,8 +46,7 @@
     <i class="bx bx-search-alt-2"></i>
     <div class="seach-bar">
       <form action="">
-        <input autofocus type="text" placeholder="Search shoPHP.shop..." spellcheck="false" autocomplete="off"
-          id="search-field" />
+        <input autofocus type="text" placeholder="Search shoPHP.shop..." spellcheck="false" autocomplete="off" id="search-field" />
       </form>
     </div>
     <i class="bx bx-x nav-toggle-menu"></i>

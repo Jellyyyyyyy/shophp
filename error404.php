@@ -1,3 +1,5 @@
+<?php include_once "include/session.inc.php" ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
