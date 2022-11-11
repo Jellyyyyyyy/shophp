@@ -123,7 +123,7 @@ img {
 }
 
 .search-container {
-  width: 40%; /* Change this width to change size of search bar */
+  width: 55%; /* Change this width to change size of search bar */
   margin: 0 auto;
   padding: 0 1rem;
   position: fixed;
