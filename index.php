@@ -13,7 +13,7 @@
 <body>
   <?php include_once "include/nav.inc.php" ?>
   <main>
-    <p>Welcome to shoPHP</p>
+    <p>Welcome to </p>
   </main>
 </body>
 
