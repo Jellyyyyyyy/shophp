@@ -1,4 +1,6 @@
 <!-- Start of nav bar -->
+<?php session_start(); ?>
+<aside class="logged-in-state" style="display: none" data-state="<?php echo isset($_SESSION['user']) ? 'true' : 'false' ?>"></aside>
 <header class="nav-main">
   <nav>
     <!-- For mobile part -->
@@ -33,7 +35,7 @@
         <a href="#" class="nav-search-icon"><i class="bx bx-search-alt-2 nav-toggle-menu nav-search-icon"></i></a>
       </li>
       <li>
-        <a href="#" id="nav-user" class="nav-user">
+        <a id="nav-user" class="nav-user" style="cursor: pointer;">
           <i class="bx bx-user main-nav-user-icon"></i>
         </a>
       </li>
@@ -43,8 +45,7 @@
     <i class="bx bx-search-alt-2"></i>
     <div class="seach-bar">
       <form action="">
-        <input autofocus type="text" placeholder="Search shoPHP.shop..." spellcheck="false" autocomplete="off"
-          id="search-field" />
+        <input autofocus type="text" placeholder="Search shoPHP.shop..." spellcheck="false" autocomplete="off" id="search-field" />
       </form>
     </div>
     <i class="bx bx-x nav-toggle-menu"></i>
