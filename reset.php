@@ -34,7 +34,7 @@
         }
         ?>
         <div class="form-outline mb-4" style="display: none">
-          <input type="email" id="email" name="email" class="form-control form-control-lg" value = "<?php $_GET["email"] ?>"/>
+          <input type="email" id="email" name="email" class="form-control form-control-lg" value = "<?php echo($_GET["email"]) ?>"/>
         </div>
         <div class="form-outline mb-4">
           <input type="password" id="pwd" name="pwd" class="form-control form-control-lg" required />
