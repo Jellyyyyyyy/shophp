@@ -21,7 +21,7 @@
           if ($resetSuccess == 'true') {
             $resetMsg = $_GET['successMsg'];
             echo '<div class="error-container mt-0 mb-1">';
-            echo '<span class="error-text w-100">' . $resetMsg . "</span>";
+            echo '<span class="error-text w-100">' . $resetMsg . "<a href=login>Login here</a></span>";
             echo '<div class="arrow-down"></div>';
             echo '</div>';
           } else {
@@ -35,6 +35,9 @@
         ?>
         <div class="form-outline mb-4" style="display: none">
           <input type="email" id="email" name="email" class="form-control form-control-lg" value = "<?php echo($_GET["email"]) ?>"/>
+        </div>
+        <div class="form-outline mb-4" style="display: none">
+          <input type="name" id="resetToken" name="resetToken" class="form-control form-control-lg" value = "<?php echo($_GET["resetToken"]) ?>"/>
         </div>
         <div class="form-outline mb-4">
           <input type="password" id="pwd" name="pwd" class="form-control form-control-lg" required />
