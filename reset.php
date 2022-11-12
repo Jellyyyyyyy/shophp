@@ -21,7 +21,7 @@
           if ($resetSuccess == 'true') {
             $resetMsg = $_GET['successMsg'];
             echo '<div class="error-container mt-0 mb-1">';
-            echo '<span class="error-text w-100">' . $resetMsg . "</span>";
+            echo '<span class="error-text w-100">' . $resetMsg . "<a href=login>Login here</a></span>";
             echo '<div class="arrow-down"></div>';
             echo '</div>';
           } else {

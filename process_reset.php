@@ -49,6 +49,7 @@ function resetPass()
     // Prepare query and execute query
     $query = $conn -> prepare("SELECT * FROM users WHERE email=?");
     $query -> bind_param("s", $email);
+    $query -> execute();
     $result = $query -> get_result();
 
     // Prepare query to update password
@@ -67,6 +68,7 @@ function resetPass()
 checkEmpty();
 if ($success == "true") {
   resetPass();
+  $successMsg = "Your password has been successfully reset. Please click to login.";
 }
 
 header('Location: /reset?resetsuccess=' . $success . '&errorMsg=' . $errorMsg . '&email=' . $email . '&successMsg=' . $successMsg);
