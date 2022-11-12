@@ -65,8 +65,9 @@ function authenticateUser()
     if ($loginSuccess == "true") {
       $currentTime = time();
       if (isset($_POST['rememberme']) && $_POST['rememberme'] == '1') {
-        session_set_cookie_params(3600, "/");
-        ini_set('session.gc_maxlifetime', 3600);
+        session_set_cookie_params(2592000, "/");
+        ini_set('session.gc_maxlifetime', 2592000);
+        ini_set('session.cookie_lifetime', 2592000);
         session_id(md5($emailOrUser . $currentTime));
         session_start();
         $_SESSION["user"] = $emailOrUser;
