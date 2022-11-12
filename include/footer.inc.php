@@ -3,7 +3,7 @@
   <div class="container py-4">
     <div class="row gy-4 gx-5">
       <div class="col-lg-4 col-md-6">
-        <h5 class="h1 text-white">shoPHP</h5>
+        <h5 class="h1 text-white" style="font-weight: 700;">shophp</h5>
         <p class="small text-white">leryl loi made me do this <br></p>
         <p style="font-size:.1rem;">
           ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣴⣆⣠⣤<br>
@@ -46,9 +46,9 @@
       <div class="col-lg-2 col-md-6">
         <h5 class="text-white mb-3">Follow our Socials</h5>
         <ul class="list-unstyled social">
-          <li><a href="#"><i class='footer-icon bx bxl-facebook-square bx-lg word-style'></i></a></li>
-          <li><a href="#"><i class='footer-icon bx bxl-youtube bx-lg word-style'></i></a></li>
-          <li><a href="#"><i class='footer-icon bx bxl-instagram bx-lg word-style'></i></a></li>
+          <li><a href="#"><i class='footer-icon bx bxl-facebook-square bx-md word-style'></i></a></li>
+          <li><a href="#"><i class='footer-icon bx bxl-youtube bx-md word-style'></i></a></li>
+          <li><a href="#"><i class='footer-icon bx bxl-instagram bx-md word-style'></i></a></li>
         </ul>
       </div>
       <div class="col-lg-4 col-md-6">
