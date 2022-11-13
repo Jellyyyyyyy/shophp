@@ -76,7 +76,34 @@
               <p>We know it can be hard to get into streetwear without inspiration. Here are some of our favourites to keep your outfit ideas fresh!</p>
             </div>
             <div class="col-md-6" id="inspoPics">
-              <img src="/images/index/handong.jpeg"></img>
+              <div id="carouselExampleInterval" class="carousel slide" data-mdb-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-mdb-interval="3000">
+                    <a href="https://instagram.com/handdongs?igshid=YmMyMTA2M2Y=">
+                      <img src="/images/index/handong.jpeg" class="d-block w-100" alt="handong"></img>
+                    </a>
+                  </div>
+                  <div class="carousel-item" data-mdb-interval="3000">
+                    <a href="https://instagram.com/vansatthemetgala?igshid=YmMyMTA2M2Y=">
+                      <img src="/images/index/christianvui.jpeg" class="d-block w-100" alt="christianvui"></img>
+                    </a>
+                  </div>
+                  <div class="carousel-item" data-mdb-interval="3000">
+                    <a href="https://instagram.com/timdessaint?igshid=YmMyMTA2M2Y=">
+                      <img src="/images/index/timdessaint.jpeg" class="d-block w-100" alt="timdessaint"></img>
+                    </a>
+                  </div>
+                </div>
+                <!--<button class="carousel-control-prev" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>-->
+              </div>
+              <!--<img src="/images/index/handong.jpeg"></img>-->
             </div>
           </div>
         </div>
@@ -116,6 +143,10 @@
       </div>
     </div>
   </template>
+
+  <section id="carou">
+    
+  </section>
 </body>
 
 <?php include_once "include/footer.inc.php" ?>

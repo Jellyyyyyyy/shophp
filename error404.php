@@ -17,7 +17,7 @@
     <section>
       <h4>The page you're looking for can't be found.</h4>
     </section>
-    <form class="main-search-container">
+    <form class="main-search-container"> 
       <i class='bx bx-search-alt-2 search-icon'></i>
       <input class="search-input" id="search-input" type="text" onchange="move_up()" autocomplete="off">
       <label class="search-text" id="search-text" for="search">Search shoPHP products...</label>
