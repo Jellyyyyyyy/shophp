@@ -26,7 +26,7 @@ function checkUser()
 }
 
 // Check if user in database
-function authenticateUser()
+function authenticateAdmin()
 {
   global $adminCode, $dbAdminPassword, $loginMsg, $loginSuccess;
   // Connect to database
@@ -77,7 +77,7 @@ function authenticateUser()
 
 checkUser();
 if ($loginSuccess == "true") {
-  authenticateUser();
+  authenticateAdmin();
 }
 
 header('Location: /adlogin?loginSuccess=' . $loginSuccess . '&loginMsg=' . $loginMsg);
