@@ -1,10 +1,10 @@
 <?php
-if (empty($_POST)) header("Location /login");
+if (empty($_POST)) header("Location /login"); // users should not be able to access this file
 require_once 'include/functions.inc.php';
 turnOnErrorReport();
 
 $adminCode = $dbAdminPassword = $loginMsg = "";
-$loginSuccess = "false";
+$loginSuccess = "true";
 
 // Check email/username and password
 function checkUser()
@@ -15,7 +15,7 @@ function checkUser()
     $loginSuccess = "false";
     return;
   } else {
-    $username = sanitize_input($_POST["admin-code"]);
+    $adminCode = sanitize_input($_POST["admin-code"]);
   }
 
   if (empty($_POST["admin-password"])) {
