@@ -23,7 +23,7 @@
                   Forget Password
                 </h3>
                 <?php
-                if (isset($_GET['success'])) {
+                if (isset($_GET['forgetsuccess'])) {
                   $success = $_GET['success'];
                   $errorMsg = $_GET['errorMsg'];
                   if ($success == 'true') {
