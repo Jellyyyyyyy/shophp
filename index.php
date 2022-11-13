@@ -146,10 +146,6 @@
       </div>
     </div>
   </template>
-
-  <section id="carou">
-
-  </section>
 </body>
 
 <?php include_once "include/footer.inc.php" ?>
