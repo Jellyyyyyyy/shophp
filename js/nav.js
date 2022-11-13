@@ -45,10 +45,10 @@ const popoverContent = `
   <div class='pop-content user-card-container'>
     <h6 class='pop-content user-card-header'>Your bag is empty.</h6>
     <ul class='pop-content user-card-body'>
-      <li><a href='#'><i class='bx bx-shopping-bag'></i><span>Bag</span></a></li>
-      <li><a href='#'><i class='bx bx-bookmark'></i><span>Wishlist</span></a></li>
-      <li><a href='#'><i class='bx bx-package'></i><span>Orders</span></a></li>
-      <li><a href='#'><i class='bx bx-cog'></i><span>Account</span></a></li>
+      <li><a href='cart'><i class='bx bx-shopping-bag'></i><span>Bag</span></a></li>
+      <li><a href='wishlist'><i class='bx bx-bookmark'></i><span>Wishlist</span></a></li>
+      <li><a href='orders'><i class='bx bx-package'></i><span>Orders</span></a></li>
+      <li><a href='profile'><i class='bx bx-cog'></i><span>Account</span></a></li>
       <li><a href='${loginHref}'><i class='bx ${loginClass}'></i><span>${loginText}</span></a></li>
     </ul>
   </div>

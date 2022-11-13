@@ -1,4 +1,5 @@
 <?php
+if (empty($_POST)) header("Location /login");
 require_once 'include/functions.inc.php';
 turnOnErrorReport();
 
