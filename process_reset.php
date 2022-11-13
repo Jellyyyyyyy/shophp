@@ -1,5 +1,4 @@
 <?php
-
 $email = $pwd = $errorMsg = $successMsg = "";
 $success = "true";
 
