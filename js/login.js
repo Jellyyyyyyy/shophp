@@ -26,14 +26,14 @@ function addOptions(
   form.appendChild(optionEl);
 }
 
-addOptions(formDay, "Day", "", true, true);
+addOptions(formDay, "Day", "Day", true, true);
 for (let i = 1; i < 32; i++) {
   addOptions(formDay, i, i);
 }
 
 const date = new Date();
 let currentYear = date.getFullYear();
-addOptions(formYear, "Year", "", true, true);
+addOptions(formYear, "Year", "Year", true, true);
 for (let i = Number(currentYear); i > Number(currentYear) - 80; i--) {
   addOptions(formYear, i, i);
 }

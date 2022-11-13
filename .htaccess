@@ -93,6 +93,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^process_adminlogin$ process_adminlogin.php [NC]
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^process_adminregister$ process_adminregister.php [NC]
+
 # Redirects .php to without .php
 #RewriteEngine On
 #RewriteBase /
