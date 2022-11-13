@@ -1,0 +1,34 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, "Lucida Grande", sans-serif;
+  font-weight: 400;
+  height: 100vh;
+  width: 100vw;
+}
+
+.admin-form-container .error-container {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  border: 1px solid red;
+  border-radius: 0.4rem;
+  background: rgba(255, 43, 43, 0.707);
+}
+
+.admin-form-container .error-container h6 {
+  color: rgb(110, 1, 1);
+  padding-left: 8px;
+  margin: 0;
+}
+
+.admin-form-container a:hover {
+  text-decoration: underline;
+}

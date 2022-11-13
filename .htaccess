@@ -89,6 +89,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^wishlist$ wishlist.php [NC]
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^process_adminlogin$ process_adminlogin.php [NC]
+
 # Redirects .php to without .php
 #RewriteEngine On
 #RewriteBase /
