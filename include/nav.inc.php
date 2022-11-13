@@ -23,12 +23,12 @@
       <li class="logo">
         <a href="home"><img class="nav-logo" src="images/shophp.jpeg" alt="shophp logo" /></a>
       </li>
-      <li><a href="#">Trending</a></li>
-      <li><a href="#">New</a></li>
-      <li><a href="#">Clothing</a></li>
-      <li><a href="#">Bags</a></li>
-      <li><a href="#">Accessories</a></li>
-      <li><a href="#">Sale</a></li>
+      <li><a href="trending.php">Trending</a></li>
+      <li><a href="new.php">New</a></li>
+      <li><a href="clothing.php">Clothing</a></li>
+      <li><a href="bags.php">Bags</a></li>
+      <li><a href="accessories.php">Accessories</a></li>
+      <li><a href="sale.php">Sale</a></li>
       <li>
         <a href="#" class="nav-search-icon"><i class="bx bx-search-alt-2 nav-toggle-menu nav-search-icon"></i></a>
       </li>

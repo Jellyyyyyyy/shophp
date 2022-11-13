@@ -1,0 +1,24 @@
+#displayJumbo {
+    background-color: black;
+    padding-top: 5%;
+    padding-left: 10%;
+    padding-right: 8%;
+    padding-bottom: 10%;
+    position: relative;
+    z-index: 0;
+    height: 25rem;
+  }
+  
+  #description {
+    color: white;
+  }
+  
+  .hugeText {
+    font-weight: 700;
+    font-size: 5em;
+    padding-right: 10%;
+  }
+  
+  .paraText {
+    padding-right: 10%;
+  }
