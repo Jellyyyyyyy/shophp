@@ -60,7 +60,9 @@
     <section id="recentProducts">
       <div class="descriptionBar">
         <h2 class="sectionHeader">NEW RELEASES</h2>
-        <a id="viewAll" href="#"><h2 class="sectionHeader">VIEW ALL</h2></a>
+        <a id="viewAll" href="newitems">
+          <h2 class="sectionHeader">VIEW ALL</h2>
+        </a>
       </div>
       <div class="main-container">
         <div class="grid-container">
@@ -73,7 +75,8 @@
           <div class="row">
             <div class="col-md-6" id="swTitle">
               <h1 class="hugeText">STREETWEAR LOOKBOOKS</h1>
-              <p>We know it can be hard to get into streetwear without inspiration. Here are some of our favourites to keep your outfit ideas fresh!</p>
+              <p>We know it can be hard to get into streetwear without inspiration. Here are some of our favourites to
+                keep your outfit ideas fresh!</p>
             </div>
             <div class="col-md-6" id="inspoPics">
               <div id="carouselExampleInterval" class="carousel slide" data-mdb-ride="carousel">
@@ -107,18 +110,18 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </section>
     <section id="trendingItems">
-        <div class="descriptionBar">
-          <h2 class="sectionHeader">TRENDING ITEMS</h2>
-          <h2 class="sectionHeader"><a id="viewAll" href="#">VIEW ALL</a></h2>
+      <div class="descriptionBar">
+        <h2 class="sectionHeader">TRENDING ITEMS</h2>
+        <h2 class="sectionHeader"><a id="viewAll" href="trending">VIEW ALL</a></h2>
+      </div>
+      <div class="main-container">
+        <div class="grid-container2">
         </div>
-        <div class="main-container">
-          <div class="grid-container2">
-          </div>
-        </div>
+      </div>
     </section>
   </main>
 
@@ -145,9 +148,10 @@
   </template>
 
   <section id="carou">
-    
+
   </section>
 </body>
 
 <?php include_once "include/footer.inc.php" ?>
+
 </html>
