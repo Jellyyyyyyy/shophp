@@ -30,7 +30,7 @@ body {
   display: flex;
   align-items: center;
   height: 3rem;
-  border: 1px solid red;
+  border: 1px solid rgb(255, 0, 0);
   border-radius: 0.4rem;
   background: rgba(255, 43, 43, 0.707);
 }
