@@ -68,7 +68,7 @@ function authenticateAdmin()
       session_set_cookie_params(0);
       session_id(md5($adminCode . $currentTime));
       session_start();
-      $_SESSION["admin_token"] = $adminCode;
+      $_SESSION["admin_token"] = $token;
       session_write_close();
       }
   }
