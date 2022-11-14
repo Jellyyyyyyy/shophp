@@ -2,6 +2,7 @@
 if (empty($_POST)) header("Location /login"); // users should not be able to access this file
 require_once 'include/functions.inc.php';
 turnOnErrorReport();
+session_start();
 
 $adminCode = $dbAdminPassword = $loginMsg = "";
 $loginSuccess = "true";
@@ -65,10 +66,8 @@ function authenticateAdmin()
     }
     if ($loginSuccess == "true") {
       $currentTime = time();
-      session_set_cookie_params(0);
       session_id(md5($adminCode . $currentTime));
-      session_start();
-      $_SESSION["admin_token"] = $token;
+      $_SESSION["admin-token"] = $token;
       session_write_close();
       }
   }
@@ -79,6 +78,16 @@ checkUser();
 if ($loginSuccess == "true") {
   authenticateAdmin();
 }
-
-header('Location: /adlogin?loginSuccess=' . $loginSuccess . '&loginMsg=' . $loginMsg);
-exit();
+if ($loginSuccess == "true") {
+  if (isset($_SESSION["loginCode"])) {
+    unset($_SESSION["loginCode"]);
+    unset($_SESSION["loginPassword"]);
+  }
+  header("Location: /admin");
+  exit();
+} else {
+  $_SESSION["loginCode"] = $_POST["admin-code"];
+  $_SESSION["loginPassword"] = $_POST["admin-password"];
+  header("Location: /adlogin?loginSuccess=" . $loginSuccess . "&loginMsg=" . $loginMsg);
+  exit();
+}

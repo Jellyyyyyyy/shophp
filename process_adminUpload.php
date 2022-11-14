@@ -98,7 +98,7 @@ function uploadItem() {
     $query -> bind_param("sssss", $itemName, $itemDesc, $targetPath, $itemCat, $itemStock);
     if (!$query -> execute()) {
       $query -> close();
-      $uploadMsg = "Execution failed: $query->error Please try again later.";
+      $uploadMsg = "Execution failed: Please try again later.";
       $uploadSuccess = "false";
     } else {
       if(!move_uploaded_file($_FILES["item-img"]["tmp_name"], $targetPath)) {
