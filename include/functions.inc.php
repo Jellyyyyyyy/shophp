@@ -46,3 +46,25 @@ function sendMail($emailToUse, $emailToSend, $subject, $body) {
     }
   return true;
 }
+
+function getItems($category) {
+  include_once "dbcon.inc.php";
+  if ($conn->connect_error) {
+    $getItemMsg = "Could not connect to server. Please try again later";
+    return;
+  } else {
+    $query = $conn->prepare("SELECT * FROM items WHERE category=?");
+    $query->bind_param("s", $category);
+    $query->execute();
+    $result = $query->get_result();
+    $resultArr = array();
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $resultArr[] = $row;
+      }
+      return $resultArr;
+    } else {
+      return "No results found.";
+    }
+  }
+}
