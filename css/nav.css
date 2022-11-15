@@ -260,6 +260,7 @@ img {
   display: none; /* Hide mobile nav default */
 }
 
+
 @media (max-width: 768px) {
   /* Change main nav styles */
   .nav-main {
@@ -402,4 +403,15 @@ img {
     top: 0;
     transform: rotateZ(-45deg);
   }
+
+  #mobileShophp {
+    height: 80%;
+    width: 90%;
+    margin-top: 5%;
+  }
+
+  .nav-menu-mobile {
+    position: relative;
+  }
+
 }

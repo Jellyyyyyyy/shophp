@@ -29,21 +29,21 @@
           <label for="radio2" class="radio-label"></label>
           <label for="radio3" class="radio-label"></label>
         </div>
-        <div class="banner first">
+        <div class="banner first" id="banner1">
           <h3 class="banner-text-top">DISCOVER YOUR STYLE.</h3>
           <h1 class="banner-text-main">STREETWEAR</h1>
           <a href="#" id="link">
             <h3 class="banner-text-bottom">CHECK OUT STREETWEAR ITEMS HERE</h3>
           </a>
         </div>
-        <div class="banner" style="background-image: url('/images/index/streetwearcoup.jpg');">
+        <div class="banner" style="background-image: url('/images/index/streetwearcoup.jpg');" id="banner2">
           <h3 class="banner-text-top">DISCOVER YOUR STYLE.</h3>
           <h1 class="banner-text-main">STREETWEAR</h1>
           <a href="#" id="link">
             <h3 class="banner-text-bottom">CHECK OUT STREETWEAR ITEMS HERE</h3>
           </a>
         </div>
-        <div class="banner" style="background-image: url('/images/index/streetwearkids.jpg');">
+        <div class="banner" style="background-image: url('/images/index/streetwearkids.jpg');" id="banner3">
           <h3 class="banner-text-top">DISCOVER YOUR STYLE.</h3>
           <h1 class="banner-text-main">STREETWEAR</h1>
           <a href="#" id="link">
@@ -75,7 +75,7 @@
           <div class="row">
             <div class="col-md-6" id="swTitle">
               <h1 class="hugeText">STREETWEAR LOOKBOOKS</h1>
-              <p>We know it can be hard to get into streetwear without inspiration. Here are some of our favourites to
+              <p class="lookbookDesc">We know it can be hard to get into streetwear without inspiration. Here are some of our favourites to
                 keep your outfit ideas fresh!</p>
             </div>
             <div class="col-md-6" id="inspoPics">
@@ -127,7 +127,7 @@
 
 
   <template class="card-template">
-    <div class="card col-md-3">
+    <div class="card col-md-4">
       <div class="arrow-previous arrow">
         <i class='bx bxs-left-arrow'></i>
       </div>
