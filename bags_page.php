@@ -29,7 +29,7 @@
 
   <div class="container" style="height: 10em;">
     <template class="card-template">
-      <div class="card col-md-3">
+      <div class="card col-md-4">
         <div class="arrow-previous arrow">
           <i class='bx bxs-left-arrow'></i>
         </div>
