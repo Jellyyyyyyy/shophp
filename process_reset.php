@@ -3,13 +3,7 @@
 $email = $pwd = $errorMsg = $successMsg = $resetToken = "";
 $success = "true";
 
-function sanitize_input($data)
-{
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
+require_once "include/functions.inc.php";
 
 function checkEmpty()
 {
@@ -44,8 +38,7 @@ function resetPass()
   global $email, $pwd, $errorMsg, $success, $resetToken;
 
   // Create DB connection
-  $config = parse_ini_file('../private/db-config.ini');
-  $conn = mysqli_connect($config['servername'], $config['username'], $config['password'], $config['dbname']);
+  require_once "include/dbcon.inc.php";
 
   // Check connection
   if ($conn->connect_error) {
