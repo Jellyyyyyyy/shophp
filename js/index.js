@@ -192,3 +192,6 @@ addCard2(
 addArrowEvents();
 const allCards = document.querySelectorAll(".grid-container .card");
 [...allCards][0].style.opacity = "1";
+
+const allCards2 = document.querySelectorAll(".grid-container2 .card");
+[...allCards2][0].style.opacity = "1";

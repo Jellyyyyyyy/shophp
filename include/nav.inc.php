@@ -12,9 +12,9 @@
           <span class="line-2"></span>
         </div>
       </li>
-      <li>
+      <li id="mobileLogo">
         <a href="home">
-          <img src="images/shophp.jpeg" alt="shophp logo" />
+          <img src="images/shophp.jpeg" alt="shophp logo" id="mobileShophp"/>
         </a>
       </li>
       <li class="mobile-user-icon d-flex align-items-center justify-content-center">

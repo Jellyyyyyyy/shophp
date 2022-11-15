@@ -4,7 +4,7 @@
     <div class="row gy-4 gx-5">
       <div class="col-lg-4 col-md-6">
         <h5 class="h1 text-white" style="font-weight: 700;">shophp</h5>
-        <p class="small text-white">leryl loi made me do this <br></p>
+        <p class="small text-white">shop your style.<br></p>
         <p style="font-size:.1rem;">
           ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣴⣆⣠⣤<br>
           ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣻⣿⣯⣘⠹⣧⣤⡀<br>
@@ -53,7 +53,7 @@
       </div>
       <div class="col-lg-4 col-md-6">
         <h5 class="text-white mb-3">Newsletter</h5>
-        <p class="small text-white">Leryl's Promotions</p>
+        <p class="small text-white">Stay connected for updates on promotions!</p>
         <form action="#">
           <div class="input-group mb-3">
             <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Email"
@@ -69,7 +69,7 @@
         </form>
       </div>
     </div>
-    <p class="small text-muted mb-0 text-center">Copyright &copy; Leryl Loi 2022 <a class="text-primary"
+    <p class="small text-muted mb-0 text-center">Copyright &copy; shophp 2022 <a class="text-primary"
         href="#">inf1005.com</a></p>
   </div>
 </footer>

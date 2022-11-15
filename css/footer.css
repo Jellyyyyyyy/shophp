@@ -32,3 +32,14 @@ footer {
   padding: 0.5em;
 }
 
+@media screen and (max-width: 768px) {
+  footer {
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    width: 60%!important;
+    margin-left: 20%!important;
+  }
+}
