@@ -18,14 +18,17 @@
       <div class="col-3">
         <!-- Tab navs -->
         <div class="nav flex-column nav-tabs text-center" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link" id="v-tabs-FAQ-tab" data-mdb-toggle="tab" href="#v-tabs-FAQ" role="tab"
-            aria-controls="v-tabs-FAQ" aria-selected="false">FAQ</a>
+          <a class="nav-link active" id="v-tabs-FAQ-tab" data-mdb-toggle="tab" href="#v-tabs-FAQ" role="tab"
+            aria-controls="v-tabs-FAQ" aria-selected="true">FAQ</a>
+
           <a class="nav-link" id="v-tabs-return-policy-tab" data-mdb-toggle="tab" href="#v-tabs-return-policy"
             role="tab" aria-controls="v-tabs-return-policy" aria-selected="false">Return Policy</a>
+
           <a class="nav-link" id="v-tabs-privacy-policy-tab" data-mdb-toggle="tab" href="#v-tabs-privacy-policy" role="tab"
             aria-controls="v-tabs-privacy-policy" aria-selected="false">Privacy policy</a>
-          <a class="nav-link active" id="v-tabs-eula4lyf3-tab" data-mdb-toggle="tab" href="#v-tabs-eula4lyf3"
-            role="tab" aria-controls="v-tabs-eula4lyf3" aria-selected="true">EULA</a>
+
+          <a class="nav-link" id="v-tabs-eula4lyf3-tab" data-mdb-toggle="tab" href="#v-tabs-eula4lyf3"
+            role="tab" aria-controls="v-tabs-eula4lyf3" aria-selected="false">EULA</a>
 
         </div>
         <!-- Tab navs -->
@@ -72,6 +75,7 @@
             </li>
             </ul>
           </div>
+
           <div class="tab-pane fade" id="v-tabs-return-policy" role="tabpanel"
             aria-labelledby="v-tabs-return-policy-tab">
               <h1>Return and Refund Policy</h1>
@@ -140,7 +144,7 @@
               <li>By email: admin@shophp.shop</li>
               </ul>
           </div>
-          <div class="tab-content" id="v-tabs-tabContent">
+
           <div class="tab-pane fade show active" id="v-tabs-privacy-policy" role="tabpanel"
             aria-labelledby="v-tabs-privacy-policy-tab">
             <h1>Privacy Policy</h1>
@@ -320,8 +324,8 @@
             <li>By email: admin@shophp.shop</li>
             </ul>
           </div>
-          </div>
-          <div class="tab-content" id="v-tabs-tabContent">
+
+          
           <div class="tab-pane fade show active" id="v-tabs-eula4lyf3" role="tabpanel"
             aria-labelledby="v-tabs-eula4lyf3-tab">
             <h1>End-User License Agreement (&quot;Agreement&quot;)</h1>
