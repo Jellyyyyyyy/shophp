@@ -5,7 +5,7 @@ require_once 'include/functions.inc.php';
 turnOnErrorReport();
 
 $itemName = $itemDesc = $itemCat = $itemStock = $targetPath = $adminKey = "";
-$uploadMsg = "Item has been uploaded successfully";
+$uploadMsg = " has been uploaded successfully";
 $uploadSuccess = "true";
 
 function checkEmptyAndValidate()
@@ -128,5 +128,7 @@ $_SESSION["s"] = $_POST["item-size-S"];
 $_SESSION["m"] = $_POST["item-size-M"];
 $_SESSION["l"] = $_POST["item-size-L"];
 $_SESSION["xl"] = $_POST["item-size-XL"];
+
+if ($uploadSuccess === "true") $uploadMsg = $itemName . $uploadMsg;
 
 header("Location: /admin?uploadSuccess=" . $uploadSuccess . "&uploadMsg=" . $uploadMsg);

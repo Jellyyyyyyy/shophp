@@ -152,7 +152,8 @@
             }
             ?>
 
-            <form action="process_adminItemEdit" method="post" target="_self" style="width: 60%;">
+            <form action="process_adminItemEdit" method="post" target="_self" enctype="multipart/form-data"
+              style="width: 60%;">
               <h2>Manage Listing</h2>
               <?php
               if (isset($_GET['manageSuccess'])) {
@@ -181,7 +182,7 @@
                   $clothings = putItemInSelect("clothing");
                   if (gettype($clothings) == "array") {
                     foreach ($clothings as $item) {
-                      echo "<option value={$item}>{$item}</option>";
+                      echo "<option value='{$item}'>{$item}</option>";
                     }
                   }
                   ?>
@@ -191,7 +192,7 @@
                   $bags = putItemInSelect("bags");
                   if (gettype($bags) == "array") {
                     foreach ($bags as $item) {
-                      echo "<option value={$item}>{$item}</option>";
+                      echo "<option value='{$item}'>{$item}</option>";
                     }
                   }
                   ?>
@@ -201,7 +202,7 @@
                   $accessories = putItemInSelect("accessories");
                   if (gettype($accessories) == "array") {
                     foreach ($accessories as $item) {
-                      echo "<option value={$item}>{$item}</option>";
+                      echo "<option value='{$item}'>{$item}</option>";
                     }
                   }
                   ?>
@@ -213,17 +214,17 @@
                 <h6>Leave fields empty to make no changes</h6>
                 <div class="form-outline mb-4">
                   <input type="text" class="form-control form-control-lg" id="manage-item-name" name="manage-item-name"
-                    value="<?php echo $_SESSION["manageItemName"] ?? '' ?>" required>
+                    value="<?php echo $_SESSION["manageItemName"] ?? '' ?>">
                   <label for="manage-item-name" class="form-label">Change Item name</label>
                 </div>
                 <div class="form-outline mb-4">
                   <textarea type="text" class="form-control form-control-lg " data-mdb-showcounter="true"
-                    id="manage-item-desc" name="manage-item-desc" maxlength="500" style="height: 10rem;"
-                    required><?php echo $_SESSION["manageItemDesc"] ?? '' ?></textarea>
+                    id="manage-item-desc" name="manage-item-desc" maxlength="500"
+                    style="height: 10rem;"><?php echo $_SESSION["manageItemDesc"] ?? '' ?></textarea>
                   <label for="manage-item-desc" class="form-label">Change Description</label>
                   <div class="form-helper"></div>
                 </div>
-                <select class="form-select mb-4" name="manage-item-category" aria-label="Mangae Item category" required>
+                <select class="form-select mb-4" name="manage-item-category" aria-label="Mangae Item category">
                   <option disabled selected>Change Category</option>
                   <option value="clothing">Clothing</option>
                   <option value="bags">Bags</option>
@@ -234,27 +235,27 @@
                 <div class="d-flex flex-row justify-content-between">
                   <div class="form-outline mb-4 me-3">
                     <input type="number" class="form-control form-control-lg" id="manage-item-size-XS"
-                      name="manage-item-size-XS" min=0 value="<?php echo $_SESSION["manageXs"] ?? '' ?>" required>
+                      name="manage-item-size-XS" min=0 value="<?php echo $_SESSION["manageXs"] ?? '' ?>">
                     <label for="manage-item-size-XS" class="form-label">XS</label>
                   </div>
                   <div class="form-outline mb-4 me-3">
                     <input type="number" class="form-control form-control-lg" id="manage-item-size-S"
-                      name="manage-item-size-S" min=0 value="<?php echo $_SESSION["manageS"] ?? '' ?>" required>
+                      name="manage-item-size-S" min=0 value="<?php echo $_SESSION["manageS"] ?? '' ?>">
                     <label for="manage-item-size-S" class="form-label">S</label>
                   </div>
                   <div class="form-outline mb-4 me-3">
                     <input type="number" class="form-control form-control-lg" id="manage-item-size-M"
-                      name="manage-item-size-M" min=0 value="<?php echo $_SESSION["manageM"] ?? '' ?>" required>
+                      name="manage-item-size-M" min=0 value="<?php echo $_SESSION["manageM"] ?? '' ?>">
                     <label for="manage-item-size-M" class="form-label">M</label>
                   </div>
                   <div class="form-outline mb-4 me-3">
                     <input type="number" class="form-control form-control-lg" id="manage-item-size-L"
-                      name="manage-item-size-L" min=0 value="<?php echo $_SESSION["manageL"] ?? '' ?>" required>
+                      name="manage-item-size-L" min=0 value="<?php echo $_SESSION["manageL"] ?? '' ?>">
                     <label for="manage-item-size-L" class="form-label">L</label>
                   </div>
                   <div class="form-outline mb-4">
                     <input type="number" class="form-control form-control-lg" id="manage-item-size-XL"
-                      name="manage-item-size-XL" min=0 value="<?php echo $_SESSION["manageXl"] ?? '' ?>" required>
+                      name="manage-item-size-XL" min=0 value="<?php echo $_SESSION["manageXl"] ?? '' ?>">
                     <label for="manage-item-size-XL" class="form-label">XL</label>
                   </div>
                 </div>

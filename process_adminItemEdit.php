@@ -11,11 +11,28 @@ $newItemName = $newItemCat = $newItemDesc = $newItemStock = $newItemImg = ""; //
 $isEmptyName = $isEmptyCat = $isEmptyDesc = $isEmptyStock = $isEmptyImg = "true"; // Empty flags 1 = empty, 0 = not empty
 $oldTargetPath = $newTargetPath = $newImageFileType = ""; // Image file variables
 
-$manageMsg = "";
+$manageMsg = " updated successfully.";
 $manageSuccess = "true";
 
-$formItem = sanitize_input($_POST["manage-chosen-item"]);
-$manageAction = sanitize_input($_POST["manage-action"]);
+$formItem = $manageAction = "";
+
+function checkRequiredEmpty() {
+  global $conn, $formItem, $manageMsg, $manageSuccess, $oldItem, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg;
+
+  if (empty($_POST["manage-admin-key"])) {
+    $manageMsg = "Admin key is required.";
+    $manageSuccess = "false";
+    return;
+  } else if (empty($_POST["manage-chosen-item"])) {
+    $manageMsg = "Please choose an item to edit.";
+    $manageSuccess = "false";
+    return;
+  }
+
+  $formItem = sanitize_input($_POST["manage-chosen-item"]);
+  $manageAction = sanitize_input($_POST["manage-action"]);
+}
+
 
 function getItemFromForm() {
   global $conn, $formItem, $manageMsg, $manageSuccess, $oldItem, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg;
@@ -42,7 +59,6 @@ function getItemFromForm() {
     }
   }
   $getItemQuery -> close();
-  var_dump($_FILES);
 }
 
 function checkEmptyAndValidate() {
@@ -57,61 +73,62 @@ function checkEmptyAndValidate() {
     $isEmptyDesc = "false";
     $newItemDesc = sanitize_input($_POST["manage-item-desc"]);
   }
-  if (!empty($_POST["manage-item-category"])) {
+  if (!empty($_POST["manage-item-category"]) && $_POST["manage-item-category"] !== "no-change") {
     $isEmptyCat = "false";
-    $newItemCat = sanitize_input($_POST["manage-item-img"]);
+    $newItemCat = sanitize_input($_POST["manage-item-category"]);
   }
   if (isset($_FILES["manage-item-img"]) && $_FILES["manage-item-img"]['error'] != UPLOAD_ERR_NO_FILE) {
     $isEmptyImg = "false";
-    $newItemImg = basename($_FILES["item-img"]["name"]);
+    $newItemImg = basename($_FILES["manage-item-img"]["name"]);
+    // Image validating
+    $oldTargetPath = $oldItemImg;
+    $newTargetPath = "images/items_imgs/" . $newItemImg;
+    $newImageFileType = strtolower(pathinfo($newTargetPath, PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES["manage-item-img"]["tmp_name"]);
+    if ($check == false) {
+      $manageMsg = "File is not an image";
+      $manageSuccess = "false";
+      return;
+    } else if (($_FILES["manage-item-img"]["size"] > 524288000)) {
+      $manageMsg = "File is too large. Please reduce the file size"; // Max 500MB
+      $manageSuccess = "false";
+      return;
+    } else if ($newImageFileType != "jpg" && $newImageFileType != "png" && $newImageFileType != "jpeg") {
+      $manageMsg = "Only JPG, PNG and JPEG files are allowed";
+      $manageSuccess = "false";
+      return;
+    }
   }
 
   // Updating stocks/sizes
+  $oldItemStock = explode(";", $oldItemStock);
+
   if (!empty($_POST["manage-item-size-XS"])) {
     $oldItemStock[0] = sanitize_input($_POST["manage-item-size-XS"]);
     $isEmptyStock = "false";
   }
   if (!empty($_POST["manage-item-size-S"])) {
-    $oldItemStock[2] = sanitize_input($_POST["manage-item-size-S"]);
+    $oldItemStock[1] = sanitize_input($_POST["manage-item-size-S"]);
     $isEmptyStock = "false";
   }
   if (!empty($_POST["manage-item-size-M"])) {
-    $oldItemStock[4] = sanitize_input($_POST["manage-item-size-M"]);
+    $oldItemStock[2] = sanitize_input($_POST["manage-item-size-M"]);
     $isEmptyStock = "false";
   }
   if (!empty($_POST["manage-item-size-L"])) {
-    $oldItemStock[6] = sanitize_input($_POST["manage-item-size-L"]);
+    $oldItemStock[3] = sanitize_input($_POST["manage-item-size-L"]);
     $isEmptyStock = "false";
   }
   if (!empty($_POST["manage-item-size-XL"])) {
-    $oldItemStock[8] = sanitize_input($_POST["manage-item-size-XL"]);
+    $oldItemStock[4] = sanitize_input($_POST["manage-item-size-XL"]);
     $isEmptyStock = "false";
   }
+  $oldItemStock = join(";", $oldItemStock);
   $newItemStock = $oldItemStock;
-
-  // Image validating
-  $oldTargetPath = $oldItemImg;
-  $newTargetPath = "images/items_imgs/" . $newItemImg;
-  $newImageFileType = strtolower(pathinfo($newTargetPath, PATHINFO_EXTENSION));
-
-  $check = getimagesize($_FILES["manage-item-img"]["tmp_name"]);
-  if ($check == false) {
-    $manageMsg = "File is not an image";
-    $manageSuccess = "false";
-    return;
-  } else if (($_FILES["manage-item-img"]["size"] > 524288000)) {
-    $manageMsg = "File is too large. Please reduce the file size"; // Max 500MB
-    $manageSuccess = "false";
-    return;
-  } else if ($newImageFileType != "jpg" && $newImageFileType != "png" && $newImageFileType != "jpeg") {
-    $manageMsg = "Only JPG, PNG and JPEG files are allowed";
-    $manageSuccess = "false";
-    return;
-  }
 
   include_once "include/admin.inc.php";
   if ($_POST["manage-admin-key"] !== $configAdminKey) {
-    $manageMsg = "Invalid admin key:";
+    $manageMsg = "Invalid admin key:" . $oldItem;
     $manageSuccess = "false";
     return;
   }
@@ -123,8 +140,6 @@ function updateQueryStatement($dbItemColumn, $new) {
   $updateQuery = $conn -> prepare("UPDATE items SET {$dbItemColumn}=? WHERE itemID={$oldItemID}");
   $updateQuery -> bind_param("s", $new);
   if (!$updateQuery -> execute()) {
-    $manageMsg = "Execution failed. Please try again later.";
-    $manageSuccess = "false";
     $updateQuery -> close();
     return "false";
   }
@@ -132,15 +147,64 @@ function updateQueryStatement($dbItemColumn, $new) {
   return "true";
 }
 
+function updateNewItem() {
+  global $conn, $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
+
+  // Update queries
+  if ($isEmptyName == "false") {
+   if (updateQueryStatement("name", $newItemName) === "false") {
+    $manageMsg = "1Execution failed. Please try again later";
+    $manageSuccess = "updateFalse";
+    };
+  }
+  if ($isEmptyCat === "false") {
+    if (updateQueryStatement("category", $newItemCat) === "false") {
+      $manageMsg = "2Execution failed. Please try again later";
+      $manageSuccess = "updateFalse";
+    };
+  }
+  if ($isEmptyDesc === "false") {
+    if (updateQueryStatement("description", $newItemDesc) === "false") {
+      $manageMsg = "3Execution failed. Please try again later";
+      $manageSuccess = "updateFalse";
+    };
+  }
+  if ($isEmptyStock === "false") {
+    if (updateQueryStatement("stock", $newItemStock) === "false") {
+      $manageMsg = "4Execution failed. Please try again later";
+      $manageSuccess = "updateFalse";
+    };
+  }
+  if ($isEmptyImg === "false") {
+    if (rename($oldTargetPath, $oldTargetPath . "-DELETED")) {
+      if (file_exists($newTargetPath)){
+        $manageMsg = "File already exists, please choose a different image name";
+        $manageSuccess = "updateFalse";
+        return;
+      } else {
+        if (move_uploaded_file($_FILES["manage-item-img"]["tmp_name"], $newTargetPath)) {
+          if (updateQueryStatement("image", $newTargetPath) === "true") {
+            return;
+          }
+        }
+      }
+      // If any of the above fails
+    };
+    $manageMsg = "5Execution failed. Please try again later";
+    $manageSuccess = "updateFalse";
+  }
+   
+}
+
 function restoreOld() {
   global $conn, $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
 
-  $restoreQuery = $conn -> prepare("UPDATE items SET name={$oldItemName},category={$oldItemCat},description={$oldItemDesc},stock={$oldItemStock},image={$oldTargetPath} WHERE itemID=?;");
+  $restoreQuery = $conn -> prepare("UPDATE items SET name='{$oldItemName}',category='{$oldItemCat}',description='{$oldItemDesc}',stock='{$oldItemStock}',image='{$oldItemImg}' WHERE itemID=?;");
   $restoreQuery -> bind_param("s", $oldItemID);
-  try {
+  if (file_exists($newTargetPath)) {
     unlink($newTargetPath);
     $unlinked = "true";
-  } catch (Exception $e) {
+  } else {
     $unlinked = "false";
   }
   if (!$restoreQuery->execute()){
@@ -154,55 +218,23 @@ function restoreOld() {
   $restoreQuery -> close();
 }
 
-function updateNewItem() {
-  global $conn, $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
-
-  // Update queries
-  if ($isEmptyName == "false") {
-   if (updateQueryStatement("name", $oldItemName, $newItemName) === "false") {
-    $manageMsg = "Execution failed. Please try again later";
-    $manageSuccess = "false";
-    };
-  }
-  if ($isEmptyCat === "false") {
-    if (updateQueryStatement("category", $newItemCat) === "false") {
-      $manageMsg = "Execution failed. Please try again later";
-      $manageSuccess = "false";
-    };
-  }
-  if ($isEmptyDesc === "false") {
-    if (updateQueryStatement("description", $newItemDesc) === "false") {
-      $manageMsg = "Execution failed. Please try again later";
-      $manageSuccess = "false";
-    };
-  }
-  if ($isEmptyStock === "false") {
-    if (updateQueryStatement("stock", $newItemStock) === "false") {
-      $manageMsg = "Execution failed. Please try again later";
-      $manageSuccess = "false";
-    };
-  }
-  if ($isEmptyImg === "false") {
-    if (!rename($oldTargetPath, $oldTargetPath . "-DELETED") && !move_uploaded_file($_FILES["manage-item-img"]["tmp_name"], $newTargetPath)) {
-      $manageMsg = "Execution failed. Please try again later";
-      $manageSuccess = "false";
-    };
-  }
-   
-}
-
-getItemFromForm();
-if ($manageSuccess === "true") {
-  CheckEmptyAndValidate();
+checkRequiredEmpty();
+if ($manageSuccess === "true"){
+  getItemFromForm();
   if ($manageSuccess === "true") {
-    updateNewItem();
+    CheckEmptyAndValidate();
+    if ($manageSuccess === "true") {
+      updateNewItem();
+    }
   }
 }
 
-if ($manageSuccess === "false") {
+if ($manageSuccess === "updateFalse") {
   restoreOld();
 }
 
 $conn -> close();
+
+if ($manageSuccess === "true") $manageMsg = $newItemName . $manageMsg;
 
 header("Location: /admin?manageSuccess={$manageSuccess}&manageMsg={$manageMsg}");
