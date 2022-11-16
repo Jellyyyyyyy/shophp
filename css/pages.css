@@ -52,6 +52,8 @@
     flex-direction: column;
     justify-content: left;
     padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
     background-color: #eee;
     border-radius: var(--img-border-radius);
     cursor: pointer;
