@@ -64,8 +64,8 @@
   }
   
   .card img {
-    height: 17rem;
-    width: 17rem;
+    height: 17em;
+    width: 17em;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
