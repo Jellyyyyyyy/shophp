@@ -70,6 +70,7 @@
     background-size: contain;
     background-position: center;
     border-radius: var(--img-border-radius) var(--img-border-radius) 0 0;
+    object-fit: cover;
   }
   
   .card .category-container {
