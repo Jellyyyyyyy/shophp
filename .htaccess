@@ -115,11 +115,19 @@ RewriteRule ^faq$ help_page.php [NC]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^privacy_policy$ help_page.php [NC]
+RewriteRule ^privacypolicy$ help_page.php [NC]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^refund_policy$ help_page.php [NC]
+RewriteRule ^refundpolicy$ help_page.php [NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^eula$ help_page.php [NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^process_adminItemEdit$ process_adminItemEdit.php [NC]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

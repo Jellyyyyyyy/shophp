@@ -17,7 +17,7 @@ $manageSuccess = "true";
 $formItem = $manageAction = "";
 
 function checkRequiredEmpty() {
-  global $conn, $formItem, $manageMsg, $manageSuccess, $oldItem, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg;
+  global $conn, $formItem, $manageAction, $manageMsg, $manageSuccess, $oldItem, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg;
 
   if (empty($_POST["manage-admin-key"])) {
     $manageMsg = "Admin key is required.";
@@ -66,10 +66,20 @@ function checkEmptyAndValidate() {
 
   // If empty set empty flags
   if (!empty($_POST["manage-item-name"])) {
+    if (!ctype_alpha(str_replace(' ', '', $_POST["manage-item-name"]))) {
+      $manageMsg = "Item name can only contain letters and spaces";
+      $manageSuccess = "false";
+      return;
+    }
     $isEmptyName = "false";
     $newItemName = sanitize_input($_POST["manage-item-name"]);
   }
   if (!empty($_POST["manage-item-desc"])) {
+    if (!ctype_alpha(str_replace(' ', '', $_POST["manage-item-desc"]))) {
+      $manageMsg = "Item description can only contain letters and spaces";
+      $manageSuccess = "false";
+      return;
+    }
     $isEmptyDesc = "false";
     $newItemDesc = sanitize_input($_POST["manage-item-desc"]);
   }
@@ -218,8 +228,19 @@ function restoreOld() {
   $restoreQuery -> close();
 }
 
+function deleteItem() {
+  global $conn, $formItem, $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
+
+  $deleteQuery = $conn -> prepare("DELETE FROM items WHERE name=?");
+  $deleteQuery -> bind_param("s", $formItem);
+  if (!$deleteQuery -> execute()) {
+    $manageMsg = "Item could not be deleted. Please try again later.";
+    $manageSuccess = "false";
+  }
+}
+
 checkRequiredEmpty();
-if ($manageSuccess === "true"){
+if ($manageSuccess === "true" && $manageAction === "edit"){
   getItemFromForm();
   if ($manageSuccess === "true") {
     CheckEmptyAndValidate();
@@ -227,7 +248,15 @@ if ($manageSuccess === "true"){
       updateNewItem();
     }
   }
+  if ($manageSuccess === "true") $manageMsg = $newItemName . $manageMsg;
+} else if ($manageSuccess === "true" && $manageAction === "delete") {
+  deleteItem();
+  $manageMsg = "Item has been deleted successfully.";
+} else {
+  $manageMsg = "An Unexpected error has occurred. Please contact a server adminstrator immediately.";
+  $manageSuccess = "false";
 }
+
 
 if ($manageSuccess === "updateFalse") {
   restoreOld();
@@ -235,6 +264,5 @@ if ($manageSuccess === "updateFalse") {
 
 $conn -> close();
 
-if ($manageSuccess === "true") $manageMsg = $newItemName . $manageMsg;
 
 header("Location: /admin?manageSuccess={$manageSuccess}&manageMsg={$manageMsg}");

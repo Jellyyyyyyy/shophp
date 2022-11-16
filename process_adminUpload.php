@@ -35,6 +35,16 @@ function checkEmptyAndValidate()
     return;
   }
 
+  if (!ctype_alpha(str_replace(' ', '', $_POST["item-name"]))) {
+    $uploadMsg = "Item name can only contain letters and spaces";
+    $uploadSuccess = "false";
+    return;
+  } else if (!ctype_alpha(str_replace(' ', '', $_POST["item-desc"]))) {
+    $uploadMsg = "Item description can only contain letters and spaces";
+    $uploadSuccess = "false";
+    return;
+  }
+
   if (empty($_POST["item-size-XS"])) {
     if (empty($_POST["item-size-S"])) {
       if (empty($_POST["item-size-M"])) {
@@ -99,7 +109,7 @@ function uploadItem()
     $query = $conn->prepare("INSERT INTO items (name, description, image, category, stock) VALUES (?, ?, ?, ?, ?);");
     $query->bind_param("sssss", $itemName, $itemDesc, $targetPath, $itemCat, $itemStock);
     if (!$query->execute()) {
-      $uploadMsg = "Execution failed: Please try again later.";
+      $uploadMsg = "Execution failed: Please try again later." . $query->error;
       $uploadSuccess = "false";
     } else {
       if (!move_uploaded_file($_FILES["item-img"]["tmp_name"], $targetPath)) {

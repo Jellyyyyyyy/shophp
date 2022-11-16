@@ -18,15 +18,17 @@
   include_once "include/nav.inc.php";
   include_once "include/dbcon.inc.php";
   ?>
-  <main>
+  <main style="min-height: 85vh;">
     <div class="row w-100">
       <div class="col-3">
         <!-- Tab navs -->
         <div class="nav flex-column nav-tabs text-center" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link active" id="v-tabs-upload-listing-tab" data-mdb-toggle="tab" href="#v-tabs-upload-listing"
-            role="tab" aria-controls="v-tabs-upload-listing" aria-selected="true">Upload listing</a>
-          <a class="nav-link" id="v-tabs-manage-listing-tab" data-mdb-toggle="tab" href="#v-tabs-manage-listing"
-            role="tab" aria-controls="v-tabs-manage-listing" aria-selected="false">Manage listing</a>
+          <a class="nav-link <?php echo isset($_GET["uploadSuccess"]) || empty($_GET) ? 'active' : '' ?>"
+            id="v-tabs-upload-listing-tab" data-mdb-toggle="tab" href="#v-tabs-upload-listing" role="tab"
+            aria-controls="v-tabs-upload-listing" aria-selected="true">Upload listing</a>
+          <a class="nav-link <?php echo isset($_GET["manageSuccess"]) ? 'active' : '' ?>" id="v-tabs-manage-listing-tab"
+            data-mdb-toggle="tab" href="#v-tabs-manage-listing" role="tab" aria-controls="v-tabs-manage-listing"
+            aria-selected="false">Manage listing</a>
           <a class="nav-link" id="v-tabs-users-tab" data-mdb-toggle="tab" href="#v-tabs-users" role="tab"
             aria-controls="v-tabs-users" aria-selected="false">Manage users</a>
           <a class="nav-link" id="v-tabs-reviews-tab" data-mdb-toggle="tab" href="#v-tabs-reviews" role="tab"
@@ -40,8 +42,8 @@
       <div class="col-9">
         <!-- Tab content -->
         <div class="tab-content" id="v-tabs-tabContent">
-          <div class="tab-pane fade show active" id="v-tabs-upload-listing" role="tabpanel"
-            aria-labelledby="v-tabs-upload-listing-tab">
+          <div class="tab-pane fade <?php echo isset($_GET["uploadSuccess"]) || empty($_GET) ? 'active show' : '' ?>"
+            id="v-tabs-upload-listing" role="tabpanel" aria-labelledby="v-tabs-upload-listing-tab">
             <form action="process_adminUpload" method="post" target="_self" enctype="multipart/form-data"
               style="width: 60%;">
               <h2>Upload item</h2>
@@ -62,7 +64,7 @@
               ?>
               <div class="form-outline mb-4 item-name">
                 <input type="text" class="form-control form-control-lg" id="item-name" name="item-name"
-                  value="<?php echo $_SESSION["itemname"] ?? '' ?>" required>
+                  value="<?php echo $_SESSION["itemname"] ?? '' ?>" maxlength="20" required>
                 <label for="item-name" class="form-label item-name">Item name</label>
               </div>
 
@@ -126,8 +128,8 @@
             </form>
           </div>
 
-          <div class="tab-pane fade" id="v-tabs-manage-listing" role="tabpanel"
-            aria-labelledby="v-tabs-manage-listing-tab">
+          <div class="tab-pane fade <?php echo isset($_GET["manageSuccess"]) ? 'show active' : '' ?>"
+            id="v-tabs-manage-listing" role="tabpanel" aria-labelledby="v-tabs-manage-listing-tab">
             <?php
             function putItemInSelect($category)
             {
@@ -214,7 +216,7 @@
                 <h6>Leave fields empty to make no changes</h6>
                 <div class="form-outline mb-4">
                   <input type="text" class="form-control form-control-lg" id="manage-item-name" name="manage-item-name"
-                    value="<?php echo $_SESSION["manageItemName"] ?? '' ?>">
+                    maxlength="20" value="<?php echo $_SESSION["manageItemName"] ?? '' ?>">
                   <label for="manage-item-name" class="form-label">Change Item name</label>
                 </div>
                 <div class="form-outline mb-4">
@@ -261,24 +263,16 @@
                 </div>
                 <label for="manage-item-img" class="form-label">Change image</label>
                 <input class="form-control mb-4" type="file" id="manage-item-img" name="manage-item-img" />
-                <div class="form-outline mb-4 item-name">
-                  <input type="password" class="form-control form-control-lg" id="manage-admin-key"
-                    name="manage-admin-key" required>
-                  <label for="manage-admin-key" class="form-label">Admin key</label>
-                </div>
-                <div class="pt-1 mb-4">
-                  <button class="btn btn-dark btn-lg btn-block submit-button" type="submit">
-                    Make changes
-                  </button>
-                </div>
-
               </div>
-              <div class="delete-container hide">
-                <div class="pt-1 mb-4">
-                  <button class="btn btn-dark btn-lg btn-block submit-button" type="submit">
-                    Delete
-                  </button>
-                </div>
+              <div class="form-outline mb-4 item-name">
+                <input type="password" class="form-control form-control-lg" id="manage-admin-key"
+                  name="manage-admin-key" required>
+                <label for="manage-admin-key" class="form-label">Admin key</label>
+              </div>
+              <div class="pt-1 mb-4">
+                <button class="btn btn-dark btn-lg btn-block submit-button manage-item-submit-btn" type="submit">
+                  Make Changes
+                </button>
               </div>
             </form>
           </div>
