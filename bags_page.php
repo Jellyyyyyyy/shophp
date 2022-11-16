@@ -26,28 +26,29 @@
       </div>
     </div>
   </section>
-
-  <div class="grid-container" style="height: 10em;">
-    <template class="card-template">
-      <div class="card col-md-4">
-        <div class="arrow-previous arrow">
-          <i class='bx bxs-left-arrow'></i>
-        </div>
-
-        <img data-item-image>
-        <div class="text-container">
-          <div class="category-container">
-            <span data-item-category>UNISEX</span>
-            <span data-item-size>XS-XL</span>
+  <div class="main-container">
+    <div class="grid-container" style="height: 10em;">
+      <template class="card-template">
+        <div class="card col-md-4">
+          <div class="arrow-previous arrow">
+            <i class='bx bxs-left-arrow'></i>
           </div>
-          <span data-item-name>Pocketable Coat</span>
-          <span data-item-price>$129.90</span>
+
+          <img data-item-image>
+          <div class="text-container">
+            <div class="category-container">
+              <span data-item-category>UNISEX</span>
+              <span data-item-size>XS-XL</span>
+            </div>
+            <span data-item-name>Pocketable Coat</span>
+            <span data-item-price>$129.90</span>
+          </div>
+          <div class="arrow-next arrow">
+            <i class='bx bxs-right-arrow'></i>
+          </div>
         </div>
-        <div class="arrow-next arrow">
-          <i class='bx bxs-right-arrow'></i>
-        </div>
-      </div>
-    </template>
+      </template>
+    </div>
   </div>
 
   <script>
