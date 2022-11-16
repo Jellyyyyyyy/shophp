@@ -1,4 +1,4 @@
-<?php //include_once "include/checkAdminLogin.inc.php" 
+<?php include_once "include/checkAdminLogin.inc.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
