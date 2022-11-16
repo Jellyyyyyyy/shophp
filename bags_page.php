@@ -27,7 +27,7 @@
     </div>
   </section>
 
-  <div class="container" style="height: 10em;">
+  <div class="grid-container" style="height: 10em;">
     <template class="card-template">
       <div class="card col-md-4">
         <div class="arrow-previous arrow">
@@ -53,7 +53,7 @@
       <?php
       include_once "include/functions.inc.php";
       foreach (getItems("bags") as $item) {
-        echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.container');";
+        echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
       }
       ?>
     </script>

@@ -39,4 +39,5 @@ function addCard(imgSource, category, size, name, price, elementContainer) {
   cardPrice.textContent = price;
 
   document.querySelector(elementContainer).appendChild(card);
+  addArrowEvents();
 }
