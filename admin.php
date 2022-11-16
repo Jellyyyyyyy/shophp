@@ -150,7 +150,7 @@
                   $clothings = putItemInSelect("clothing");
                   if (gettype($clothings) == "array") {
                     foreach ($clothings as $item) {
-                      echo "<option value={$clothings}>{$clothings}</option>";
+                      echo "<option value={$item}>{$item}</option>";
                     }
                   }
                   ?>
@@ -160,7 +160,7 @@
                   $bags = putItemInSelect("bags");
                   if (gettype($bags) == "array") {
                     foreach ($bags as $item) {
-                      echo "<option value={$bags}>{$bags}</option>";
+                      echo "<option value={$item}>{$item}</option>";
                     }
                   }
                   ?>
@@ -170,7 +170,7 @@
                   $accessories = putItemInSelect("accessories");
                   if (gettype($accessories) == "array") {
                     foreach ($accessories as $item) {
-                      echo "<option value={$accessories}>{$accessories}</option>";
+                      echo "<option value={$item}>{$item}</option>";
                     }
                   }
                   ?>
