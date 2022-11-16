@@ -46,7 +46,7 @@
   
   .main-container .grid-container .card {
     --img-border-radius: 1rem;
-    width: 100%;
+    width: 75%;
     height: 100%;
     display: flex;
     flex-direction: column;
