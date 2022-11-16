@@ -92,6 +92,7 @@
 
       document.querySelector(".grid-container").appendChild(card);
     }
+
     <?php 
       include_once "include/functions.inc.php";
       foreach (getItems("bags") as $item) {
