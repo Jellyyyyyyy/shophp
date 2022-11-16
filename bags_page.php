@@ -33,8 +33,9 @@
           <div class="arrow-previous arrow">
             <i class='bx bxs-left-arrow'></i>
           </div>
-
-          <img data-item-image>
+          <div class="imageDIV">
+            <img data-item-image>
+          </div>
           <div class="text-container">
             <div class="category-container">
               <span data-item-category>UNISEX</span>
