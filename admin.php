@@ -1,4 +1,5 @@
-<?php include_once "include/checkAdminLogin.inc.php" ?>
+<?php //include_once "include/checkAdminLogin.inc.php" 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,22 +14,20 @@
 </head>
 
 <body>
-  <?php include_once "include/nav.inc.php" ?>
+  <?php
+  include_once "include/nav.inc.php";
+  include_once "include/dbcon.inc.php";
+  ?>
   <main>
     <div class="row w-100">
       <div class="col-3">
         <!-- Tab navs -->
         <div class="nav flex-column nav-tabs text-center" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link active" id="v-tabs-upload-listing-tab" data-mdb-toggle="tab" href="#v-tabs-upload-listing"
-            role="tab" aria-controls="v-tabs-upload-listing" aria-selected="true">Upload listing</a>
-          <a class="nav-link" id="v-tabs-manage-listing-tab" data-mdb-toggle="tab" href="#v-tabs-manage-listing"
-            role="tab" aria-controls="v-tabs-manage-listing" aria-selected="false">Manage listing</a>
-          <a class="nav-link" id="v-tabs-users-tab" data-mdb-toggle="tab" href="#v-tabs-users" role="tab"
-            aria-controls="v-tabs-users" aria-selected="false">Manage users</a>
-          <a class="nav-link" id="v-tabs-reviews-tab" data-mdb-toggle="tab" href="#v-tabs-reviews" role="tab"
-            aria-controls="v-tabs-reviews" aria-selected="false">Manage reviews</a>
-          <a class="nav-link" id="v-tabs-orders-tab" data-mdb-toggle="tab" href="#v-tabs-orders" role="tab"
-            aria-controls="v-tabs-orders" aria-selected="false">Manage orders</a>
+          <a class="nav-link active" id="v-tabs-upload-listing-tab" data-mdb-toggle="tab" href="#v-tabs-upload-listing" role="tab" aria-controls="v-tabs-upload-listing" aria-selected="true">Upload listing</a>
+          <a class="nav-link" id="v-tabs-manage-listing-tab" data-mdb-toggle="tab" href="#v-tabs-manage-listing" role="tab" aria-controls="v-tabs-manage-listing" aria-selected="false">Manage listing</a>
+          <a class="nav-link" id="v-tabs-users-tab" data-mdb-toggle="tab" href="#v-tabs-users" role="tab" aria-controls="v-tabs-users" aria-selected="false">Manage users</a>
+          <a class="nav-link" id="v-tabs-reviews-tab" data-mdb-toggle="tab" href="#v-tabs-reviews" role="tab" aria-controls="v-tabs-reviews" aria-selected="false">Manage reviews</a>
+          <a class="nav-link" id="v-tabs-orders-tab" data-mdb-toggle="tab" href="#v-tabs-orders" role="tab" aria-controls="v-tabs-orders" aria-selected="false">Manage orders</a>
         </div>
         <!-- Tab navs -->
       </div>
@@ -36,12 +35,10 @@
       <div class="col-9">
         <!-- Tab content -->
         <div class="tab-content" id="v-tabs-tabContent">
-          <div class="tab-pane fade show active" id="v-tabs-upload-listing" role="tabpanel"
-            aria-labelledby="v-tabs-upload-listing-tab">
-            <form action="process_adminUpload" method="post" target="_self" enctype="multipart/form-data"
-              style="width: 60%;">
+          <div class="tab-pane fade show active" id="v-tabs-upload-listing" role="tabpanel" aria-labelledby="v-tabs-upload-listing-tab">
+            <form action="process_adminUpload" method="post" target="_self" enctype="multipart/form-data" style="width: 60%;">
               <h2>Upload item</h2>
-              <?php 
+              <?php
               if (isset($_GET['uploadSuccess'])) {
                 $uploadSuccess = $_GET['uploadSuccess'];
                 $uploadMsg = $_GET['uploadMsg'];
@@ -57,21 +54,18 @@
               }
               ?>
               <div class="form-outline mb-4 item-name">
-                <input type="text" class="form-control form-control-lg" id="item-name" name="item-name"
-                  value="<?php echo $_SESSION["itemname"] ?? '' ?>" required>
+                <input type="text" class="form-control form-control-lg" id="item-name" name="item-name" value="<?php echo $_SESSION["itemname"] ?? '' ?>" required>
                 <label for="item-name" class="form-label item-name">Item name</label>
               </div>
 
               <div class="form-outline mb-4 item-desc">
-                <textarea type="text" class="form-control form-control-lg " data-mdb-showcounter="true" id="item-desc"
-                  name="item-desc" maxlength="500" style="height: 10rem;"
-                  required><?php echo $_SESSION["itemdesc"] ?? '' ?></textarea>
+                <textarea type="text" class="form-control form-control-lg " data-mdb-showcounter="true" id="item-desc" name="item-desc" maxlength="500" style="height: 10rem;" required><?php echo $_SESSION["itemdesc"] ?? '' ?></textarea>
                 <label for="item-desc" class="form-label item-desc">Description</label>
                 <div class="form-helper"></div>
               </div>
 
               <select class="form-select mb-4 item-category" name="item-category" aria-label="Item category" required>
-                <option disabled selected value="category" disabled>Category</option>
+                <option disabled selected>Category</option>
                 <option value="clothing">Clothing</option>
                 <option value="bags">Bags</option>
                 <option value="accessories">Accessories</option>
@@ -80,28 +74,23 @@
               <label class="form-label" for="item-size">Stock</label>
               <div class="d-flex flex-row justify-content-between">
                 <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS" min=0
-                    value="<?php echo $_SESSION["xs"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS" min=0 value="<?php echo $_SESSION["xs"] ?? '' ?>" required>
                   <label for="item-size-XS" class="form-label">XS</label>
                 </div>
                 <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-S" name="item-size-S" min=0
-                    value="<?php echo $_SESSION["s"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-S" name="item-size-S" min=0 value="<?php echo $_SESSION["s"] ?? '' ?>" required>
                   <label for="item-size-S" class="form-label">S</label>
                 </div>
                 <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-M" name="item-size-M" min=0
-                    value="<?php echo $_SESSION["m"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-M" name="item-size-M" min=0 value="<?php echo $_SESSION["m"] ?? '' ?>" required>
                   <label for="item-size-M" class="form-label">M</label>
                 </div>
                 <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-L" name="item-size-L" min=0
-                    value="<?php echo $_SESSION["l"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-L" name="item-size-L" min=0 value="<?php echo $_SESSION["l"] ?? '' ?>" required>
                   <label for="item-size-L" class="form-label">L</label>
                 </div>
                 <div class="form-outline mb-4 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-XL" name="item-size-XL" min=0
-                    value="<?php echo $_SESSION["xl"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-XL" name="item-size-XL" min=0 value="<?php echo $_SESSION["xl"] ?? '' ?>" required>
                   <label for="item-size-XL" class="form-label">XL</label>
                 </div>
               </div>
@@ -121,21 +110,72 @@
               </div>
             </form>
           </div>
-          <div class="tab-pane fade" id="v-tabs-manage-listing" role="tabpanel"
-            aria-labelledby="v-tabs-manage-listing-tab">
-            <form action="" style="width: 60%;">
-              <h2>Upload item</h2>
-              <div class="form-outline mb-4 item-name">
-                <input type="text" class="form-control form-control-lg" id="item-name" name="item-name" required>
-                <label for="item-name" class="form-label item-name">Item name</label>
-              </div>
 
-              <div class="form-outline mb-4 item-desc">
-                <textarea type="text" class="form-control form-control-lg " data-mdb-showcounter="true" id="item-desc"
-                  name="item-name" maxlength="500" required style="height: 10rem;"></textarea>
-                <label for="item-desc" class="form-label item-desc">Description</label>
-                <div class="form-helper"></div>
-              </div>
+          <div class="tab-pane fade" id="v-tabs-manage-listing" role="tabpanel" aria-labelledby="v-tabs-manage-listing-tab">
+            <?php
+            function putItemInSelect($category)
+            {
+              global $conn;
+              if ($conn->connect_error) {
+                echo "<div>Connection to server failed. Please try again later.</div>";
+              } else {
+                $clothingQuery = $conn->prepare("SELECT * FROM items WHERE category=?");
+                $clothingQuery->bind_param('s', $category);
+                $clothingQuery->execute();
+                $clothingResult = $clothingQuery->get_result();
+                $clothingArr = array();
+                if ($clothingResult->num_rows > 0) {
+                  while ($clothingRow = $clothingResult->fetch_assoc()) {
+                    $clothingArr[] = $clothingRow["name"];
+                  }
+                } else {
+                  $clothingArr[] = "No items found";
+                }
+              }
+              return $clothingArr;
+            }
+            ?>
+
+            <form action="" style="width: 60%;">
+              <h2>Manage Listing</h2>
+              <select class="form-select mb-3" name="manage-action" aria-label="Item category" required>
+                <option selected value="edit">Edit</option>
+                <option value="delete">Delete</option>
+              </select>
+
+              <select class="form-select mb-3" name="manage-chosen-item" aria-label="Item category" required>
+                <option disabled selected>Choose Item</option>
+                <optgroup label="Clothing">
+                  <?php
+                  $clothings = putItemInSelect("clothing");
+                  if (gettype($clothings) == "array") {
+                    foreach ($clothings as $item) {
+                      echo "<option value={$clothings}>{$clothings}</option>";
+                    }
+                  }
+                  ?>
+                </optgroup>
+                <optgroup label="Bags">
+                  <?php
+                  $bags = putItemInSelect("bags");
+                  if (gettype($bags) == "array") {
+                    foreach ($bags as $item) {
+                      echo "<option value={$bags}>{$bags}</option>";
+                    }
+                  }
+                  ?>
+                </optgroup>
+                <optgroup label="Accessories">
+                  <?php
+                  $accessories = putItemInSelect("accessories");
+                  if (gettype($accessories) == "array") {
+                    foreach ($accessories as $item) {
+                      echo "<option value={$accessories}>{$accessories}</option>";
+                    }
+                  }
+                  ?>
+                </optgroup>
+              </select>
 
               <select class="form-select mb-4 item-category" name="item-category" aria-label="Item category">
                 <option selected value="category" disabled>Category</option>
@@ -147,28 +187,23 @@
               <h5>Stock</h5>
               <div class="d-flex flex-row justify-content-between">
                 <div class="form-outline mb-4 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS"
-                    required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS" required>
                   <label for="item-size-XS" class="form-label">XS</label>
                 </div>
                 <div class="form-outline mb-4 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-S" name="item-size-S"
-                    required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-S" name="item-size-S" required>
                   <label for="item-size-S" class="form-label">S</label>
                 </div>
                 <div class="form-outline mb-4 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-M" name="item-size-M"
-                    required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-M" name="item-size-M" required>
                   <label for="item-size-M" class="form-label">M</label>
                 </div>
                 <div class="form-outline mb-4 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-L" name="item-size-L"
-                    required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-L" name="item-size-L" required>
                   <label for="item-size-L" class="form-label">L</label>
                 </div>
                 <div class="form-outline mb-4 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-XL" name="item-size-XL"
-                    required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-XL" name="item-size-XL" required>
                   <label for="item-size-XL" class="form-label">XL</label>
                 </div>
               </div>
@@ -197,7 +232,7 @@
       </div>
     </div>
   </main>
-  <?php include_once "include/footer.inc.php" ?>
+  <?php include_once "include/footer.inc.php"; ?>
 </body>
 
 </html>

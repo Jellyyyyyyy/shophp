@@ -8,7 +8,8 @@ $itemName = $itemDesc = $itemCat = $itemStock = $targetPath = $adminKey = "";
 $uploadMsg = "Item has been uploaded successfully";
 $uploadSuccess = "true";
 
-function checkEmptyAndValidate() {
+function checkEmptyAndValidate()
+{
   global $itemName, $itemDesc, $itemCat, $uploadMsg, $uploadSuccess, $itemStock, $targetPath, $imageFileType;
 
   // Check empty
@@ -32,7 +33,7 @@ function checkEmptyAndValidate() {
     $uploadMsg = "The item must have an image";
     $uploadSuccess = "false";
     return;
-  } 
+  }
 
   if (empty($_POST["item-size-XS"])) {
     if (empty($_POST["item-size-S"])) {
@@ -53,11 +54,11 @@ function checkEmptyAndValidate() {
   $itemCat = sanitize_input($_POST["item-category"]);
   $itemStock = sanitize_input($_POST["item-size-XS"] . ';' . $_POST["item-size-S"] . ';' . $_POST["item-size-M"] . ';' . $_POST["item-size-L"] . ';' . $_POST["item-size-XL"]);
   $adminKey = sanitize_input($_POST["admin-key"]);
-  
+
   $itemImg = basename($_FILES["item-img"]["name"]);
   $targetPath = "images/items_imgs/" . $itemImg;
   $imageFileType = strtolower(pathinfo($targetPath, PATHINFO_EXTENSION));
-  
+
   $check = getimagesize($_FILES["item-img"]["tmp_name"]);
   if ($check == false) {
     $uploadMsg = "File is not an image";
@@ -71,7 +72,7 @@ function checkEmptyAndValidate() {
     $uploadMsg = "File is too large. Please reduce the file size";
     $uploadSuccess = "false";
     return;
-  } else if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+  } else if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
     $uploadMsg = "Only JPG, PNG and JPEG files are allowed";
     $uploadSuccess = "false";
     return;
@@ -84,7 +85,8 @@ function checkEmptyAndValidate() {
   }
 }
 
-function uploadItem() {
+function uploadItem()
+{
   global $itemName, $itemDesc, $itemCat, $uploadMsg, $uploadSuccess, $itemStock, $targetPath, $imageFileType;
 
   // Create DB connection
@@ -94,24 +96,24 @@ function uploadItem() {
     $uploadMsg = "Connection to server failed. Please try again later.";
     $uploadSuccess = "false";
   } else {
-    $query = $conn -> prepare("INSERT INTO items (name, description, image, category, stock) VALUES (?, ?, ?, ?, ?);");
-    $query -> bind_param("sssss", $itemName, $itemDesc, $targetPath, $itemCat, $itemStock);
-    if (!$query -> execute()) {
-      $query -> close();
+    $query = $conn->prepare("INSERT INTO items (name, description, image, category, stock) VALUES (?, ?, ?, ?, ?);");
+    $query->bind_param("sssss", $itemName, $itemDesc, $targetPath, $itemCat, $itemStock);
+    if (!$query->execute()) {
       $uploadMsg = "Execution failed: Please try again later.";
       $uploadSuccess = "false";
     } else {
-      if(!move_uploaded_file($_FILES["item-img"]["tmp_name"], $targetPath)) {
+      if (!move_uploaded_file($_FILES["item-img"]["tmp_name"], $targetPath)) {
         $uploadMsg = "Upload image failed. Please try again later.";
         $uploadSuccess = "false";
-        $deleteQuery = $conn -> prepare("DELETE FROM items WHERE name=?");
-        $deleteQuery -> bind_param("s", $itemName);
-        $deleteQuery -> execute();
-        $deleteQuery -> close();
+        $deleteQuery = $conn->prepare("DELETE FROM items WHERE name=?");
+        $deleteQuery->bind_param("s", $itemName);
+        $deleteQuery->execute();
+        $deleteQuery->close();
       }
     }
+    $query->close();
   }
-  $conn -> close();
+  $conn->close();
 }
 
 checkEmptyAndValidate();
