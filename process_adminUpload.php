@@ -5,7 +5,7 @@ require_once 'include/functions.inc.php';
 turnOnErrorReport();
 
 $itemName = $itemDesc = $itemCat = $itemStock = $targetPath = $adminKey = "";
-$uploadMsg = "Item has been uploaded successfully";
+$uploadMsg = " has been uploaded successfully";
 $uploadSuccess = "true";
 
 function checkEmptyAndValidate()
@@ -31,6 +31,16 @@ function checkEmptyAndValidate()
     return;
   } else if (!isset($_FILES["item-img"]) && $_FILES["item-img"]['error'] == UPLOAD_ERR_NO_FILE) {
     $uploadMsg = "The item must have an image";
+    $uploadSuccess = "false";
+    return;
+  }
+
+  if (!ctype_alpha(str_replace(' ', '', $_POST["item-name"]))) {
+    $uploadMsg = "Item name can only contain letters and spaces";
+    $uploadSuccess = "false";
+    return;
+  } else if (!ctype_alpha(str_replace(' ', '', $_POST["item-desc"]))) {
+    $uploadMsg = "Item description can only contain letters and spaces";
     $uploadSuccess = "false";
     return;
   }
@@ -99,7 +109,7 @@ function uploadItem()
     $query = $conn->prepare("INSERT INTO items (name, description, image, category, stock) VALUES (?, ?, ?, ?, ?);");
     $query->bind_param("sssss", $itemName, $itemDesc, $targetPath, $itemCat, $itemStock);
     if (!$query->execute()) {
-      $uploadMsg = "Execution failed: Please try again later.";
+      $uploadMsg = "Execution failed: Please try again later." . $query->error;
       $uploadSuccess = "false";
     } else {
       if (!move_uploaded_file($_FILES["item-img"]["tmp_name"], $targetPath)) {
@@ -128,5 +138,7 @@ $_SESSION["s"] = $_POST["item-size-S"];
 $_SESSION["m"] = $_POST["item-size-M"];
 $_SESSION["l"] = $_POST["item-size-L"];
 $_SESSION["xl"] = $_POST["item-size-XL"];
+
+if ($uploadSuccess === "true") $uploadMsg = $itemName . $uploadMsg;
 
 header("Location: /admin?uploadSuccess=" . $uploadSuccess . "&uploadMsg=" . $uploadMsg);

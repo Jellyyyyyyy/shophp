@@ -2,8 +2,8 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BAGS</title>
   <?php include_once "include/head.inc.php" ?>
@@ -53,9 +53,14 @@
   </div>
 
   <script>
-    <?php
+  <?php
     include_once "include/functions.inc.php";
     foreach (getItems("bags") as $item) {
+      foreach ($item as $key => $value) {
+        if (strpos($value, "'") && $key !== "image") $item[$key] = str_replace("'", "&#39;", $item[$key]);
+        if (strpos($value, '"') && $key !== "image") $item[$key] = str_replace('"', "&#34;", $item[$key]);
+        if (strpos($value, ')') && $key !== "image") $item[$key] = str_replace(')', "&#41;", $item[$key]);
+      }
       echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
     }
     ?>
