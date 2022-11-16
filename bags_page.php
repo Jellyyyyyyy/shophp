@@ -48,15 +48,15 @@
         </div>
       </div>
     </template>
-
-    <script>
-      <?php
-      include_once "include/functions.inc.php";
-      foreach (getItems("bags") as $item) {
-        echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
-      }
-      ?>
-    </script>
   </div>
+
+  <script>
+    <?php
+    include_once "include/functions.inc.php";
+    foreach (getItems("bags") as $item) {
+      echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
+    }
+    ?>
+  </script>
   <?php include_once "include/footer.inc.php" ?>
 </body>
