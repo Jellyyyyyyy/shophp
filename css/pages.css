@@ -46,8 +46,8 @@
   
   .main-container .grid-container .card {
     --img-border-radius: 1rem;
-    width: 17em;
-    height: 23em;
+    width: 20vh;
+    height: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -64,8 +64,8 @@
   }
   
   .card img {
-    height: 17em;
-    width: 17em;
+    height: 20vh;
+    width: 20vh;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
