@@ -27,3 +27,19 @@ body {
 .msg-container > span {
   color: black;
 }
+
+.hide {
+  display: none;
+}
+
+select optgroup {
+  font-style: normal;
+  font-weight: 100;
+  color: #757575;
+  opacity: .8;
+}
+
+select option {
+  color: #000;
+  opacity: 1;
+}
