@@ -27,7 +27,7 @@
     </div>
   </section>
   <div class="main-container">
-    <div class="grid-container" style="height: 10em;">
+    <div class="grid-container">
       <template class="card-template">
         <div class="card col-md-4">
           <div class="arrow-previous arrow">
