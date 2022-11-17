@@ -26,12 +26,12 @@ mobileMenuIconContainer.addEventListener("click", () => {
 });
 
 // Generating Popover for bag
-const loginState = document.querySelector("[data-state]");
+const states = document.querySelector("[data-login-state]");
 let loginClass;
 let loginText;
 let loginHref;
 
-if (loginState.getAttribute("data-state") === "true") {
+if (states.getAttribute("data-login-state") === "true") {
   loginClass = "bx-log-out";
   loginText = "Log out";
   loginHref = "process_logout";
