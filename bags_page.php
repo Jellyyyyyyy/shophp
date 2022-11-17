@@ -9,7 +9,6 @@
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/pages.css" />
   <script src="js/addCard.js"></script>
-  <script src="js/pages.js"></script>
 </head>
 
 <body>
@@ -60,17 +59,4 @@
   </script>
   <?php include_once "include/footer.inc.php" ?>
 </body>
-<style>
-.card .icons {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0 1rem;
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  color: #000;
-}
-</style>
-
 </html>

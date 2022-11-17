@@ -91,7 +91,7 @@ if (states.getAttribute("data-items-state") === "true") {
     for (let item of uniqueItems) {
       let numberOfItem = itemsQuantity[item];
       if (numberOfItem > 1) {
-        cartItemsString += `<div class="cart-items-content"><span>${item}</span><span>${numberOfItem}</span></div>\n`;
+        cartItemsString += `<div class="cart-items-content"><span>${item}</span><span> x${numberOfItem}</span></div>\n`;
       } else {
         cartItemsString += `<span class="cart-items-content">${item}</span>`;
       }
