@@ -28,7 +28,5 @@
   </section>
   <div class="container" style="height: 10em;">
   </div>
-  <?php
-        include_once "include/footer.inc.php"
-    ?>
+  <?php include_once "include/footer.inc.php" ?>
 </body>
