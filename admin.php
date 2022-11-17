@@ -137,20 +137,20 @@
               if ($conn->connect_error) {
                 echo "<div>Connection to server failed. Please try again later.</div>";
               } else {
-                $clothingQuery = $conn->prepare("SELECT * FROM items WHERE category=?");
-                $clothingQuery->bind_param('s', $category);
-                $clothingQuery->execute();
-                $clothingResult = $clothingQuery->get_result();
-                $clothingArr = array();
-                if ($clothingResult->num_rows > 0) {
-                  while ($clothingRow = $clothingResult->fetch_assoc()) {
-                    $clothingArr[] = $clothingRow["name"];
+                $query = $conn->prepare("SELECT * FROM items WHERE category=?");
+                $query->bind_param('s', $category);
+                $query->execute();
+                $result = $query->get_result();
+                $arr = array();
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    $arr[] = $row["name"];
                   }
                 } else {
-                  $clothingArr[] = "No items found";
+                  $arr[] = "No items found";
                 }
               }
-              return $clothingArr;
+              return $arr;
             }
             ?>
 
@@ -183,8 +183,11 @@
                   <?php
                   $clothings = putItemInSelect("clothing");
                   if (gettype($clothings) == "array") {
-                    foreach ($clothings as $item) {
+                    if ($clothings[0] == "No items found") echo "<option disabled>No items found</option>";
+                    else {
+                      foreach ($clothings as $item) {
                       echo "<option value='{$item}'>{$item}</option>";
+                      }
                     }
                   }
                   ?>
@@ -193,8 +196,11 @@
                   <?php
                   $bags = putItemInSelect("bags");
                   if (gettype($bags) == "array") {
-                    foreach ($bags as $item) {
+                    if ($bags[0] == "No items found") echo "<option disabled>No items found</option>";
+                    else {
+                      foreach ($bags as $item) {
                       echo "<option value='{$item}'>{$item}</option>";
+                      }
                     }
                   }
                   ?>
@@ -203,8 +209,11 @@
                   <?php
                   $accessories = putItemInSelect("accessories");
                   if (gettype($accessories) == "array") {
-                    foreach ($accessories as $item) {
+                    if ($accessories[0] == "No items found") echo "<option disabled>No items found</option>";
+                    else {
+                      foreach ($accessories as $item) {
                       echo "<option value='{$item}'>{$item}</option>";
+                      }
                     }
                   }
                   ?>
