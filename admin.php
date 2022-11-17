@@ -16,7 +16,7 @@
 <body>
   <?php
   include_once "include/nav.inc.php";
-  // include_once "include/dbcon.inc.php";
+  include_once "include/dbcon.inc.php";
   ?>
   <main style="min-height: 85vh;">
     <div class="row w-100">
@@ -131,27 +131,27 @@
           <div class="tab-pane fade <?php echo isset($_GET["manageSuccess"]) ? 'show active' : '' ?>"
             id="v-tabs-manage-listing" role="tabpanel" aria-labelledby="v-tabs-manage-listing-tab">
             <?php
-            // function putItemInSelect($category)
-            // {
-            //   global $conn;
-            //   if ($conn->connect_error) {
-            //     echo "<div>Connection to server failed. Please try again later.</div>";
-            //   } else {
-            //     $clothingQuery = $conn->prepare("SELECT * FROM items WHERE category=?");
-            //     $clothingQuery->bind_param('s', $category);
-            //     $clothingQuery->execute();
-            //     $clothingResult = $clothingQuery->get_result();
-            //     $clothingArr = array();
-            //     if ($clothingResult->num_rows > 0) {
-            //       while ($clothingRow = $clothingResult->fetch_assoc()) {
-            //         $clothingArr[] = $clothingRow["name"];
-            //       }
-            //     } else {
-            //       $clothingArr[] = "No items found";
-            //     }
-            //   }
-            //   return $clothingArr;
-            // }
+            function putItemInSelect($category)
+            {
+              global $conn;
+              if ($conn->connect_error) {
+                echo "<div>Connection to server failed. Please try again later.</div>";
+              } else {
+                $clothingQuery = $conn->prepare("SELECT * FROM items WHERE category=?");
+                $clothingQuery->bind_param('s', $category);
+                $clothingQuery->execute();
+                $clothingResult = $clothingQuery->get_result();
+                $clothingArr = array();
+                if ($clothingResult->num_rows > 0) {
+                  while ($clothingRow = $clothingResult->fetch_assoc()) {
+                    $clothingArr[] = $clothingRow["name"];
+                  }
+                } else {
+                  $clothingArr[] = "No items found";
+                }
+              }
+              return $clothingArr;
+            }
             ?>
 
             <form action="process_adminItemEdit" method="post" target="_self" enctype="multipart/form-data"
@@ -181,32 +181,32 @@
                 <option disabled selected>Choose Item</option>
                 <optgroup label="Clothing">
                   <?php
-                  // $clothings = putItemInSelect("clothing");
-                  // if (gettype($clothings) == "array") {
-                  //   foreach ($clothings as $item) {
-                  //     echo "<option value='{$item}'>{$item}</option>";
-                  //   }
-                  // }
+                  $clothings = putItemInSelect("clothing");
+                  if (gettype($clothings) == "array") {
+                    foreach ($clothings as $item) {
+                      echo "<option value='{$item}'>{$item}</option>";
+                    }
+                  }
                   ?>
                 </optgroup>
                 <optgroup label="Bags">
                   <?php
-                  // $bags = putItemInSelect("bags");
-                  // if (gettype($bags) == "array") {
-                  //   foreach ($bags as $item) {
-                  //     echo "<option value='{$item}'>{$item}</option>";
-                  //   }
-                  // }
+                  $bags = putItemInSelect("bags");
+                  if (gettype($bags) == "array") {
+                    foreach ($bags as $item) {
+                      echo "<option value='{$item}'>{$item}</option>";
+                    }
+                  }
                   ?>
                 </optgroup>
                 <optgroup label="Accessories">
                   <?php
-                  // $accessories = putItemInSelect("accessories");
-                  // if (gettype($accessories) == "array") {
-                  //   foreach ($accessories as $item) {
-                  //     echo "<option value='{$item}'>{$item}</option>";
-                  //   }
-                  // }
+                  $accessories = putItemInSelect("accessories");
+                  if (gettype($accessories) == "array") {
+                    foreach ($accessories as $item) {
+                      echo "<option value='{$item}'>{$item}</option>";
+                    }
+                  }
                   ?>
                 </optgroup>
               </select>
