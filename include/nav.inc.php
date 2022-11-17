@@ -1,7 +1,8 @@
 <!-- Start of nav bar -->
 <?php session_start(); ?>
-<aside class="logged-in-state" style="display: none"
-  data-state="<?php echo isset($_SESSION['user']) ? 'true' : 'false' ?>"></aside>
+<aside class="states" style="display: none" data-login-state="<?php echo isset($_SESSION['user']) ? 'true' : 'false' ?>"
+  data-items-state="<?php echo isset($_COOKIE['cartItems']) && !empty($_COOKIE['cartItems']) ? 'true' : 'false' ?>">
+</aside>
 <header class="nav-main">
   <nav>
     <!-- For mobile part -->
@@ -14,7 +15,7 @@
       </li>
       <li id="mobileLogo">
         <a href="home">
-          <img src="images/shophp.jpeg" alt="shophp logo" id="mobileShophp"/>
+          <img src="images/shophp.jpeg" alt="shophp logo" id="mobileShophp" />
         </a>
       </li>
       <li class="mobile-user-icon d-flex align-items-center justify-content-center">
