@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account Verification</title>
   <?php include_once "include/head.inc.php" ?>
-  <link rel="stylesheet" href="css/verify.css">
+  <link rel="stylesheet" href="css/reset.css">
 </head>
 
 <body>
   <?php include_once 'include/nav.inc.php' ?>
-  <section class="container">
+  <section class="container" id="formBoxes">
       <form action="process_reset" method="post" target="_self">
-        <h3 class="fw-bold mb-3 form-header" style="letter-spacing: 1px">Reset Password</h3>
+        <h3 class="mb-3 form-header" style="letter-spacing: 1px">Reset Password</h3>
         <?php
         if (isset($_GET['resetsuccess'])) {
           $resetSuccess = $_GET['resetsuccess'];

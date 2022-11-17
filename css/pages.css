@@ -38,20 +38,24 @@
     --card-height: 1fr;
     --side-padding: 3rem;
     padding: 1rem var(--side-padding) 0 var(--side-padding);
+    padding-top: 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(18%, 0.7fr));
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 0.7fr));
     /* grid-template-rows: var(--card-height) var(--card-height) var(--card-height); */
-    gap: 2rem;
+    gap: 1rem!important;
+    justify-items: center;
   }
   
   .main-container .grid-container .card {
     --img-border-radius: 1rem;
-    width: 17em;
-    height: 23em;
+    width: 19em;
+    height: 26em;
     display: flex;
     flex-direction: column;
     justify-content: left;
     padding: 0;
+    padding-left: 0!important;
+    padding-right: 0!important;
     background-color: #eee;
     border-radius: var(--img-border-radius);
     cursor: pointer;
@@ -64,17 +68,18 @@
   }
   
   .card img {
-    height: 17em;
-    width: 17em;
+    height: 19em;
+    width: 19em;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     border-radius: var(--img-border-radius) var(--img-border-radius) 0 0;
-  }
-
-  .imageDIV {
     object-fit: cover;
   }
+
+  /** .imageDIV {
+    object-fit: fill;
+  }*/
   
   .card .category-container {
     margin-top: 2rem;
@@ -89,10 +94,12 @@
     flex-direction: column;
     width: 100%;
     padding: 1rem 1rem;
+    padding-top: 0.2rem;
   }
   
   .card .text-container span:nth-of-type(1) {
     font-size: 1.5rem;
+    text-transform: uppercase;
   }
   
   .card .text-container span:nth-of-type(2) {
@@ -113,4 +120,12 @@
 
   .category-container {
     margin-top: 0rem !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    #displayJumbo {
+      padding-top: 5rem;
+    }
+    /* Make content centered for bigger smaller screens */
+
   }

@@ -344,10 +344,9 @@ img {
     height: 100%;
   }
 
-  .nav-menu-mobile li > a img {
-    scale: 0.6;
-    width: 12rem;
-  }
+  /*.nav-menu-mobile li > a img {
+  
+  }*/
 
   .nav-menu-mobile i {
     padding-top: 3px;
@@ -405,9 +404,10 @@ img {
   }
 
   #mobileShophp {
-    height: 80%;
-    width: 90%;
-    margin-top: 5%;
+    height: 50%;
+    width: 35%;
+    margin-top: 6%;
+    margin-left: 31%;
   }
 
   .nav-menu-mobile {
