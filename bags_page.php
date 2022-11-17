@@ -58,7 +58,6 @@
     echo "});";
     ?>
   </script>
-  <?php var_dump($_COOKIE['cartItems']); ?>
   <?php include_once "include/footer.inc.php" ?>
 </body>
 <style>
