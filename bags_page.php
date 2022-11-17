@@ -8,8 +8,7 @@
   <title>BAGS</title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/pages.css" />
-  <script src="js/cookieFunctions.js"></script>
-  <script type="module" src="js/addCard.js" defer></script>
+  <script src="js/addCard.js"></script>
 </head>
 
 <body>
@@ -36,11 +35,11 @@
           <img data-item-image>
           <div class="text-container">
             <div class="category-container">
-              <span data-item-category>UNISEX</span>
-              <span data-item-size>XS-XL</span>
+              <span data-item-category></span>
+              <span data-item-size></span>
             </div>
-            <span data-item-name>Pocketable Coat</span>
-            <span data-item-price>$129.90</span>
+            <span data-item-name></span>
+            <span data-item-price></span>
           </div>
         </div>
       </template>
