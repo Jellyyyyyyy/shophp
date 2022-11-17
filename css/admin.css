@@ -32,11 +32,15 @@ body {
   display: none;
 }
 
+form .delete-container {
+  margin-bottom: 40rem;
+}
+
 select optgroup {
   font-style: normal;
   font-weight: 100;
   color: #757575;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 select option {
