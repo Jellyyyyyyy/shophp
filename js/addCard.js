@@ -21,7 +21,9 @@ function addCard(imgSource, category, size, name, price, elementContainer) {
 
 function addEvents() {
   cartItems = getCookie("cartItems").split(",");
-  if (cartItems.length == 1) cartItems = [];
+  const testEmptyString = cartItems.indexOf("");
+  if (testEmptyString !== -1) cartItems.splice(testEmptyString, 1); // Removes empty string
+
   const addToCart = document.querySelectorAll(".add-to-cart");
   [...addToCart].forEach((cart) => {
     cart.addEventListener("click", (e) => {
@@ -33,6 +35,7 @@ function addEvents() {
       cartItems.push(itemName);
       console.log(cartItems);
       setCookie(`cartItems`, cartItems, 30);
+      window.location.reload();
     });
   });
 }

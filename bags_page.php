@@ -9,6 +9,7 @@
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/pages.css" />
   <script src="js/addCard.js"></script>
+  <script src="js/pages.js"></script>
 </head>
 
 <body>
