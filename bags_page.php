@@ -8,13 +8,12 @@
   <title>BAGS</title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/pages.css" />
-  <script src="js/addCard.js"></script>
+  <script src="js/cookieFunctions.js"></script>
+  <script type="module" src="js/addCard.js" defer></script>
 </head>
 
 <body>
-  <?php
-  include_once "include/nav.inc.php"
-  ?>
+  <?php include_once "include/nav.inc.php" ?>
   <section id="description">
     <div class="jumbotron" id="displayJumbo">
       <div class="row">
@@ -30,12 +29,11 @@
     <div class="grid-container">
       <template class="card-template">
         <div class="card col-md-4">
-          <div class="arrow-previous arrow">
-            <i class='bx bxs-left-arrow'></i>
+          <div class="icons">
+            <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist'></i>
+            <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart'></i>
           </div>
-          <div class="imageDIV">
-            <img data-item-image>
-          </div>
+          <img data-item-image>
           <div class="text-container">
             <div class="category-container">
               <span data-item-category>UNISEX</span>
@@ -43,9 +41,6 @@
             </div>
             <span data-item-name>Pocketable Coat</span>
             <span data-item-price>$129.90</span>
-          </div>
-          <div class="arrow-next arrow">
-            <i class='bx bxs-right-arrow'></i>
           </div>
         </div>
       </template>
@@ -55,15 +50,28 @@
   <script>
   <?php
     include_once "include/functions.inc.php";
+    echo "window.addEventListener('load', () => {";
     foreach (getItems("bags") as $item) {
-      foreach ($item as $key => $value) {
-        if (strpos($value, "'") && $key !== "image") $item[$key] = str_replace("'", "&#39;", $item[$key]);
-        if (strpos($value, '"') && $key !== "image") $item[$key] = str_replace('"', "&#34;", $item[$key]);
-        if (strpos($value, ')') && $key !== "image") $item[$key] = str_replace(')', "&#41;", $item[$key]);
-      }
       echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
     }
+    echo "addEvents();";
+    echo "});";
     ?>
   </script>
+  <?php var_dump($_COOKIE['cartItems']); ?>
   <?php include_once "include/footer.inc.php" ?>
 </body>
+<style>
+.card .icons {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #000;
+}
+</style>
+
+</html>

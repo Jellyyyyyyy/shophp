@@ -43,7 +43,9 @@ if (loginState.getAttribute("data-state") === "true") {
 
 const popoverContent = `
   <div class='pop-content user-card-container'>
-    <h6 class='pop-content user-card-header'>Your bag is empty.</h6>
+    <div class='cartItems'>
+      <h6 class='pop-content user-card-header'>Your bag is empty.</h6>
+    </div>
     <ul class='pop-content user-card-body'>
       <li><a href='cart'><i class='bx bx-shopping-bag'></i><span>Bag</span></a></li>
       <li><a href='wishlist'><i class='bx bx-bookmark'></i><span>Wishlist</span></a></li>
