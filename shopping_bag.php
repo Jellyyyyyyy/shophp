@@ -14,11 +14,21 @@
 <body>
   <?php include_once "include/nav.inc.php" ?>
   <main>
+    <section id="description">
+      <div class="jumbotron" id="displayJumbo">
+        <div class="row">
+          <div class="col-md-4">
+            <h1 class="hugeText">CHECKOUT</h1>
+            <p class="paraText">Thank you for shopping with us! We hope you come back again!</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="fluid-container mb-4 h-100 w-100 cart-container">
-      <div class="title-text">
+      <!--<div class="title-text">
         <h1>Your bag total is $3000</h1>
         <button class="btn btn-dark mt-2">Check out</button>
-      </div>
+      </div>-->
       <div class="items">
         <div class="item">
           <img src="images/login_page_photo.jpeg" alt="">
