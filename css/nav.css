@@ -21,7 +21,7 @@ body {
   left: 0;
   right: 0;
   top: 0;
-  z-index: 10;
+  z-index: 500;
   box-shadow: 0.3em 0.1em #aaa;
 }
 
@@ -45,7 +45,7 @@ body {
 .nav-menu li a {
   color: #000;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.8rem;
   opacity: 0.7;
   transition: opacity 0.4s;
 }
@@ -68,12 +68,38 @@ li.logo:hover {
 
 img {
   height: 100%;
-  width: 7rem;
+  width: 5rem;
 }
 
 .user-card-container .user-card-header {
   margin: 2rem 0;
   text-align: center;
+}
+
+.user-card-container .user-card-header.hide {
+  display: none;
+}
+
+.user-card-container .cart-items {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.user-card-container .cart-items .cart-items-content {
+  font-size: 16px;
+  padding: 1rem 0;
+  border-bottom: 1px solid #aaa;
+}
+
+.user-card-container .cart-items span:last-of-type {
+  border: none;
+}
+
+.user-card-container .cart-items .cart-items-footer {
+  text-align: center;
+  font-size: 12px;
 }
 
 .user-card-container .user-card-body {
@@ -123,7 +149,7 @@ img {
 }
 
 .search-container {
-  width: 40%; /* Change this width to change size of search bar */
+  width: 55%; /* Change this width to change size of search bar */
   margin: 0 auto;
   padding: 0 1rem;
   position: fixed;
@@ -264,6 +290,7 @@ img {
   /* Change main nav styles */
   .nav-main {
     height: 4rem;
+    z-index: 500;
   }
 
   .nav-main nav {
@@ -343,10 +370,9 @@ img {
     height: 100%;
   }
 
-  .nav-menu-mobile li > a img {
-    scale: 0.6;
-    width: 12rem;
-  }
+  /*.nav-menu-mobile li > a img {
+  
+  }*/
 
   .nav-menu-mobile i {
     padding-top: 3px;
@@ -401,5 +427,16 @@ img {
   .menu-icon-container.open .menu-icon .line-2 {
     top: 0;
     transform: rotateZ(-45deg);
+  }
+
+  #mobileShophp {
+    height: 50%;
+    width: 35%;
+    margin-top: 6%;
+    margin-left: 34%;
+  }
+
+  .nav-menu-mobile {
+    position: relative;
   }
 }

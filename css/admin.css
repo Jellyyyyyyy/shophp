@@ -1,0 +1,49 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, "Lucida Grande", sans-serif;
+  font-weight: 400;
+  margin-top: 5rem;
+  height: 100vh;
+}
+
+.msg-container {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  width: 100%;
+  border-radius: 0.4rem;
+  margin-bottom: 1rem;
+  padding-left: 0.4rem;
+}
+
+.msg-container > span {
+  color: black;
+}
+
+.hide {
+  display: none;
+}
+
+form .delete-container {
+  margin-bottom: 40rem;
+}
+
+select optgroup {
+  font-style: normal;
+  font-weight: 100;
+  color: #757575;
+  opacity: 0.8;
+}
+
+select option {
+  color: #000;
+  opacity: 1;
+}

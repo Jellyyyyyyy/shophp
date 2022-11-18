@@ -1,9 +1,11 @@
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 0em;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+  background-color: transparent!important;
+
 }
 
 ::-webkit-scrollbar-thumb {
@@ -15,4 +17,15 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
+}
+
+@media screen and (max-width: 768px) {
+  scrollbar-hidden::-webkit-scrollbar {
+    display: none!important;
+    overflow-y: hidden!important;
+  }
+  body::-webkit-scrollbar {
+    display: none!important; /* for Chrome, Safari, and Opera */
+  }
+  
 }

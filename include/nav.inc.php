@@ -1,4 +1,8 @@
 <!-- Start of nav bar -->
+<?php session_start(); ?>
+<aside class="states" style="display: none" data-login-state="<?php echo isset($_SESSION['user']) ? 'true' : 'false' ?>"
+  data-items-state="<?php echo isset($_COOKIE['cartItems']) && !empty($_COOKIE['cartItems']) ? 'true' : 'false' ?>">
+</aside>
 <header class="nav-main">
   <nav>
     <!-- For mobile part -->
@@ -9,9 +13,9 @@
           <span class="line-2"></span>
         </div>
       </li>
-      <li>
+      <li id="mobileLogo">
         <a href="home">
-          <img src="images/shophp.jpeg" alt="shophp logo" />
+          <img src="images/shophp.jpeg" alt="shophp logo" id="mobileShophp" />
         </a>
       </li>
       <li class="mobile-user-icon d-flex align-items-center justify-content-center">
@@ -23,17 +27,18 @@
       <li class="logo">
         <a href="home"><img class="nav-logo" src="images/shophp.jpeg" alt="shophp logo" /></a>
       </li>
-      <li><a href="#">Trending</a></li>
-      <li><a href="#">New</a></li>
-      <li><a href="#">Clothing</a></li>
-      <li><a href="#">Bags</a></li>
-      <li><a href="#">Accessories</a></li>
-      <li><a href="#">Sale</a></li>
+      <li><a href="trending">Trending</a></li>
+      <li><a href="newitems">New</a></li>
+      <li><a href="clothing">Clothing</a></li>
+      <li><a href="bags">Bags</a></li>
+      <li><a href="accessories">Accessories</a></li>
+      <li><a href="sale">Sale</a></li>
       <li>
-        <a href="#" class="nav-search-icon"><i class="bx bx-search-alt-2 nav-toggle-menu nav-search-icon"></i></a>
+        <a class="nav-search-icon"><i class="bx bx-search-alt-2 nav-toggle-menu nav-search-icon"
+            style="cursor: pointer;"></i></a>
       </li>
       <li>
-        <a href="#" id="nav-user" class="nav-user">
+        <a id="nav-user" class="nav-user" style="cursor: pointer;">
           <i class="bx bx-user main-nav-user-icon"></i>
         </a>
       </li>
