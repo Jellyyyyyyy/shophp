@@ -37,10 +37,10 @@
       <div class="col-lg-2 col-md-6">
         <h5 class="word-style text-white mb-3">Help</h5>
         <ul class="list-unstyled text-muted">
-          <li><a class="word-style" href="/help#faq">FAQ</a></li>
-          <li><a class="word-style" href="/help#returnpolicy">Return Policy</a></li>
-          <li><a class="word-style" href="/help#privacypolicy">Privacy Policy</a></li>
-          <li><a class="word-style" href="/help#eula">EULA</a></li>
+          <li><a class="word-style" href="faq">FAQ</a></li>
+          <li><a class="word-style" href="returnpolicy">Return Policy</a></li>
+          <li><a class="word-style" href="privacypolicy">Privacy Policy</a></li>
+          <li><a class="word-style" href="eula">EULA</a></li>
         </ul>
       </div>
       <div class="col-lg-2 col-md-6">
@@ -66,7 +66,7 @@
       </div>
     </div>
     <p class="small text-muted mb-0 text-center">Copyright &copy; shophp 2022 <a class="text-primary"
-        href="inf1005.com">inf1005.com</a></p>
+        href="https://shophp.shop">shophp.shop</a></p>
   </div>
 </footer>
 <?php 
