@@ -1,3 +1,17 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, "Lucida Grande", sans-serif;
+  font-weight: 400;
+}
+
 #displayJumbo {
   background-color: black;
   padding-top: 5%;
@@ -31,6 +45,7 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 2rem;
+  min-height: 50vh;
 }
 
 .main-container .grid-container {
