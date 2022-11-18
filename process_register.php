@@ -92,7 +92,7 @@ function sendEmail(){
   global $username, $email, $registerMsg, $registerSuccess, $token;
 
   $subject = 'shoPHP Account Verification';
-  $body = 'Hi ' . $username . ',<br><br>Thank you for signing up with shoPHP. For your account security, please <a href="shophp.shop/verify?email=' . $email . '&token=' . $token . '">verify your email address</a>.';
+  $body = '<h1 style="font-size: 30px;"> Hi ' . $username . ',</h1> <p style="font-size: 16px;">Thank you for signing up with shoPHP. For your account security, please <a href="shophp.shop/verify?email=' . $email . '&token=' . $token . '">verify your email address</a>.</p>';
   if (sendMail('no-reply@shophp.shop', $email, $subject, $body)) {
     $registerMsg =  "Verification email sent to " . $email . ". Please verify to log in.";
   } else {

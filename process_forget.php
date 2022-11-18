@@ -61,7 +61,7 @@ function sendEmail(){
   global $email, $username, $errorMsg, $success, $resetToken;
 
   $subject = 'shoPHP Reset Password';
-  $body = '<h1>Hi ' . $username . ',</h1> <br><br> <span>To reset your password, Click here: <a href="shophp.shop/reset?email=' . $email . '&resetToken=' . $resetToken . '">Reset Password</a>.</span>';
+  $body = '<h1 style="font-size: 30px;"> Hi ' . $username . ',</h1><p style="font-size: 16px;">To reset your password. Click here to <a href="shophp.shop/reset?email=' . $email . '&resetToken=' . $resetToken . '">Reset Password</a>.</p>';
   if (sendMail('no-reply@shophp.shop', $email, $subject, $body)) {
     $errorMsg =  "Reset password email has been sent to " . $email . " if that account exists.";
     $success = "false"; // To display error message
