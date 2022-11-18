@@ -41,9 +41,10 @@ function checkEmpty()
 
 function resetPass()
 {
-  global $email, $pwd, $errorMsg, $success, $resetToken;
+  global $email, $pwd, $errorMsg, $success, $resetToken, $verify;
 
   // Create DB connection
+  $verify = 1;
   $config = parse_ini_file('../private/db-config.ini');
   $conn = mysqli_connect($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
@@ -67,6 +68,9 @@ function resetPass()
       $tokenQuery = $conn->prepare("UPDATE users SET token=? WHERE email=?");
       $tokenQuery->bind_param("ss", $resetToken, $email);
       $tokenQuery->execute();
+      $verifyQuery = $conn->prepare("UPDATE users SET verified='1' WHERE email=?");
+      $verifyQuery->bind_param("s", $email);
+      $verifyQuery->execute();
     } else {
       $errorMsg = "Failed to reset";
       $success = "false";
