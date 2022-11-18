@@ -109,10 +109,10 @@ body {
   flex-direction: column;
   width: 100%;
   padding: 1rem 1rem;
-  padding-top: 0.2rem;
+  padding-top: 0.8rem;
 }
 
-.card .text-container span:nth-of-type(1) {
+.card .text-container .category-container span:nth-of-type(1) {
   font-size: 1.5rem;
   text-transform: uppercase;
 }
@@ -152,5 +152,10 @@ body {
   #displayJumbo {
     padding-top: 5rem;
   }
-  /* Make content centered for bigger smaller screens */
+
+  .hugeText {
+    font-weight: 700;
+    font-size: 3em;
+    padding-right: 10%;
+  }
 }

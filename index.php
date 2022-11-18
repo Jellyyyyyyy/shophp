@@ -83,17 +83,17 @@
                 <div class="carousel-inner">
                   <div class="carousel-item active" data-mdb-interval="3000">
                     <a href="https://instagram.com/handdongs?igshid=YmMyMTA2M2Y=">
-                      <img src="/images/index/handong.jpeg" class="d-block w-100" alt="handong"></img>
+                      <img src="/images/index/handong.jpeg" class="d-block w-100" alt="handong">
                     </a>
                   </div>
                   <div class="carousel-item" data-mdb-interval="3000">
                     <a href="https://instagram.com/vansatthemetgala?igshid=YmMyMTA2M2Y=">
-                      <img src="/images/index/christianvui.jpeg" class="d-block w-100" alt="christianvui"></img>
+                      <img src="/images/index/christianvui.jpeg" class="d-block w-100" alt="christianvui">
                     </a>
                   </div>
                   <div class="carousel-item" data-mdb-interval="3000">
                     <a href="https://instagram.com/timdessaint?igshid=YmMyMTA2M2Y=">
-                      <img src="/images/index/timdessaint.jpeg" class="d-block w-100" alt="timdessaint"></img>
+                      <img src="/images/index/timdessaint.jpeg" class="d-block w-100" alt="timdessaint">
                     </a>
                   </div>
                 </div>

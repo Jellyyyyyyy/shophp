@@ -21,7 +21,7 @@ body {
   left: 0;
   right: 0;
   top: 0;
-  z-index: 10;
+  z-index: 500;
   box-shadow: 0.3em 0.1em #aaa;
 }
 
@@ -290,6 +290,7 @@ img {
   /* Change main nav styles */
   .nav-main {
     height: 4rem;
+    z-index: 500;
   }
 
   .nav-main nav {
