@@ -18,17 +18,13 @@
       <div class="col-3">
         <!-- Tab navs -->
         <div class="nav flex-column nav-tabs text-center" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link <?php echo isset($_GET["faq"]) || empty($_GET) ? 'active' : '' ?>" id="v-tabs-FAQ-tab" data-mdb-toggle="tab" href="#v-tabs-FAQ" role="tab"
-            aria-controls="v-tabs-FAQ" aria-selected="true">FAQ</a>
+          <a class="nav-link <?php echo strpos($_SERVER["REQUEST_URI"], "faq") !== false ||  strpos($_SERVER["REQUEST_URI"], "help") !== false ? 'active' : '' ?>" id="v-tabs-FAQ-tab" data-mdb-toggle="tab" href="#v-tabs-FAQ" role="tab" aria-controls="v-tabs-FAQ" aria-selected="true">FAQ</a>
 
-          <a class="nav-link <?php echo isset($_GET["returnpolicy"]) || empty($_GET) ? 'active' : '' ?>" id="v-tabs-return-policy-tab" data-mdb-toggle="tab" href="#v-tabs-return-policy"
-            role="tab" aria-controls="v-tabs-return-policy" aria-selected="false">Return Policy</a>
+          <a class="nav-link <?php echo strpos($_SERVER["REQUEST_URI"], "returnpolicy") !== false ||  strpos($_SERVER["REQUEST_URI"], "refundpolicy") !== false ? 'active' : '' ?>" id="v-tabs-return-policy-tab" data-mdb-toggle="tab" href="#v-tabs-return-policy" role="tab" aria-controls="v-tabs-return-policy" aria-selected="false">Return Policy</a>
 
-          <a class="nav-link <?php echo isset($_GET["privacypolicy"]) || empty($_GET) ? 'active' : '' ?>" id="v-tabs-privacy-policy-tab" data-mdb-toggle="tab" href="#v-tabs-privacy-policy" role="tab"
-            aria-controls="v-tabs-privacy-policy" aria-selected="false">Privacy policy</a>
+          <a class="nav-link <?php echo strpos($_SERVER["REQUEST_URI"], "privacypolicy") !== false ? 'active' : '' ?>" id="v-tabs-privacy-policy-tab" data-mdb-toggle="tab" href="#v-tabs-privacy-policy" role="tab" aria-controls="v-tabs-privacy-policy" aria-selected="false">Privacy policy</a>
 
-          <a class="nav-link <?php echo isset($_GET["eula"]) || empty($_GET) ? 'active' : '' ?>" id="v-tabs-eula4lyf3-tab" data-mdb-toggle="tab" href="#v-tabs-eula4lyf3"
-            role="tab" aria-controls="v-tabs-eula4lyf3" aria-selected="false">EULA</a>
+          <a class="nav-link <?php echo strpos($_SERVER["REQUEST_URI"], "eula") !== false ? 'active' : '' ?>" id="v-tabs-eula4lyf3-tab" data-mdb-toggle="tab" href="#v-tabs-eula4lyf3" role="tab" aria-controls="v-tabs-eula4lyf3" aria-selected="false">EULA</a>
 
         </div>
         <!-- Tab navs -->
@@ -37,116 +33,113 @@
       <div class="col-9">
         <!-- Tab content -->
         <div class="tab-content" id="v-tabs-tabContent">
-          <div class="tab-pane fade show active" id="v-tabs-FAQ" role="tabpanel"
-            aria-labelledby="v-tabs-FAQ-tab">
+          <div class="tab-pane fade <?php echo strpos($_SERVER["REQUEST_URI"], "faq") !== false ||  strpos($_SERVER["REQUEST_URI"], 'help') !== false ? 'show active' : '' ?>" id="v-tabs-FAQ" role="tabpanel" aria-labelledby="v-tabs-FAQ-tab">
             <h1>FAQ</h1>
             <ul>
-            <li>
-            <p>Q: What payment methods do you accept?</p>
-            <p>A: Credit card and PayPal</p>
-            </li>
-            <li>
-            <p>Q: How can I get a refund?</p>
-            <p>A: Check our refund policy and if you think it's suitable for refund, contact us @ admin@shophp.shop</p>
-            </li>
-            <li>
-            <p>Q: Do you ship internationally?</p>
-            <p>A: Yes! However, shipping fees may vary depending on which country you live in.</p>
-            </li>
-            <li>
-            <p>Q: How do I track my order?</p>
-            <p>A: We will send you an email upon delivering your order. Your order progress will be trackable in the link provided in the email.</p>
-            </li>
-            <li>
-            <p>Q: What happens if I forget my password?</p>
-            <p>A: Click the "Reset Password" button and enter your email to reset your password.</p>
-            </li>
-            <li>
-            <p>Q: What happens if the item I want is out of stock?</p>
-            <p>A: Too bad. Please select another design or visit our outlets to see if there is available stock</p>
-            </li>
-            <li>
-            <p>Q: Is there a cart size limit?</p>
-            <p>A: No, the only limit is your credit card limit :)</p>
-            </li>
-            <li>
-            <p>Q: Do you offer special benefits for members like loyalty points, rewards or discounts?</p>
-            <p>A: Yes we do! We have a loyalty system implemented for members.</p>
-            </li>
+              <li>
+                <p>Q: What payment methods do you accept?</p>
+                <p>A: Credit card and PayPal</p>
+              </li>
+              <li>
+                <p>Q: How can I get a refund?</p>
+                <p>A: Check our refund policy and if you think it's suitable for refund, contact us @ admin@shophp.shop</p>
+              </li>
+              <li>
+                <p>Q: Do you ship internationally?</p>
+                <p>A: Yes! However, shipping fees may vary depending on which country you live in.</p>
+              </li>
+              <li>
+                <p>Q: How do I track my order?</p>
+                <p>A: We will send you an email upon delivering your order. Your order progress will be trackable in the link provided in the email.</p>
+              </li>
+              <li>
+                <p>Q: What happens if I forget my password?</p>
+                <p>A: Click the "Reset Password" button and enter your email to reset your password.</p>
+              </li>
+              <li>
+                <p>Q: What happens if the item I want is out of stock?</p>
+                <p>A: Too bad. Please select another design or visit our outlets to see if there is available stock</p>
+              </li>
+              <li>
+                <p>Q: Is there a cart size limit?</p>
+                <p>A: No, the only limit is your credit card limit :)</p>
+              </li>
+              <li>
+                <p>Q: Do you offer special benefits for members like loyalty points, rewards or discounts?</p>
+                <p>A: Yes we do! We have a loyalty system implemented for members.</p>
+              </li>
             </ul>
           </div>
 
-          <div class="tab-pane fade" id="v-tabs-return-policy" role="tabpanel"
-            aria-labelledby="v-tabs-return-policy-tab">
-              <h1>Return and Refund Policy</h1>
-              <p>Last updated: November 13, 2022</p>
-              <p>Thank you for shopping at shoPHP.</p>
-              <p>If, for any reason, You are not completely satisfied with a purchase We invite You to review our policy on refunds and returns.</p>
-              <p>The following terms are applicable for any products that You purchased with Us.</p>
-              <h1>Interpretation and Definitions</h1>
-              <h2>Interpretation</h2>
-              <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
-              <h2>Definitions</h2>
-              <p>For the purposes of this Return and Refund Policy:</p>
-              <ul>
+          <div class="tab-pane fade <?php echo strpos($_SERVER["REQUEST_URI"], "returnpolicy") !== false ||  strpos($_SERVER["REQUEST_URI"], "refundpolicy") !== false ? 'show active' : '' ?>" id="v-tabs-return-policy" role="tabpanel" aria-labelledby="v-tabs-return-policy-tab">
+            <h1>Return and Refund Policy</h1>
+            <p>Last updated: November 13, 2022</p>
+            <p>Thank you for shopping at shoPHP.</p>
+            <p>If, for any reason, You are not completely satisfied with a purchase We invite You to review our policy on refunds and returns.</p>
+            <p>The following terms are applicable for any products that You purchased with Us.</p>
+            <h1>Interpretation and Definitions</h1>
+            <h2>Interpretation</h2>
+            <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+            <h2>Definitions</h2>
+            <p>For the purposes of this Return and Refund Policy:</p>
+            <ul>
               <li>
-              <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to LeryLoiCompany LLC, Kitchen.</p>
+                <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to LeryLoiCompany LLC, Kitchen.</p>
               </li>
               <li>
-              <p><strong>Goods</strong> refer to the items offered for sale on the Service.</p>
+                <p><strong>Goods</strong> refer to the items offered for sale on the Service.</p>
               </li>
               <li>
-              <p><strong>Orders</strong> mean a request by You to purchase Goods from Us.</p>
+                <p><strong>Orders</strong> mean a request by You to purchase Goods from Us.</p>
               </li>
               <li>
-              <p><strong>Service</strong> refers to the Website.</p>
+                <p><strong>Service</strong> refers to the Website.</p>
               </li>
               <li>
-              <p><strong>Website</strong> refers to shoPHP, accessible from <a href="shoPHP.shop" rel="external nofollow noopener" target="_blank">shoPHP.shop</a></p>
+                <p><strong>Website</strong> refers to shoPHP, accessible from <a href="shoPHP.shop" rel="external nofollow noopener" target="_blank">shoPHP.shop</a></p>
               </li>
               <li>
-              <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
+                <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
               </li>
-              </ul>
-              <h1>Your Order Cancellation Rights</h1>
-              <p>You are entitled to cancel Your Order within 7 days without giving any reason for doing so.</p>
-              <p>The deadline for cancelling an Order is 7 days from the date on which You received the Goods or on which a third party you have appointed, who is not the carrier, takes possession of the product delivered.</p>
-              <p>In order to exercise Your right of cancellation, You must inform Us of your decision by means of a clear statement. You can inform us of your decision by:</p>
-              <ul>
+            </ul>
+            <h1>Your Order Cancellation Rights</h1>
+            <p>You are entitled to cancel Your Order within 7 days without giving any reason for doing so.</p>
+            <p>The deadline for cancelling an Order is 7 days from the date on which You received the Goods or on which a third party you have appointed, who is not the carrier, takes possession of the product delivered.</p>
+            <p>In order to exercise Your right of cancellation, You must inform Us of your decision by means of a clear statement. You can inform us of your decision by:</p>
+            <ul>
               <li>By email: admin@shophp.shop</li>
-              </ul>
-              <p>We will reimburse You no later than 14 days from the day on which We receive the returned Goods. We will use the same means of payment as You used for the Order, and You will not incur any fees for such reimbursement.</p>
-              <h1>Conditions for Returns</h1>
-              <p>In order for the Goods to be eligible for a return, please make sure that:</p>
-              <ul>
+            </ul>
+            <p>We will reimburse You no later than 14 days from the day on which We receive the returned Goods. We will use the same means of payment as You used for the Order, and You will not incur any fees for such reimbursement.</p>
+            <h1>Conditions for Returns</h1>
+            <p>In order for the Goods to be eligible for a return, please make sure that:</p>
+            <ul>
               <li>The Goods were purchased in the last 7 days</li>
               <li>The Goods are in the original packaging</li>
-              </ul>
-              <p>The following Goods cannot be returned:</p>
-              <ul>
+            </ul>
+            <p>The following Goods cannot be returned:</p>
+            <ul>
               <li>The supply of Goods made to Your specifications or clearly personalized.</li>
               <li>The supply of Goods which according to their nature are not suitable to be returned, deteriorate rapidly or where the date of expiry is over.</li>
               <li>The supply of Goods which are not suitable for return due to health protection or hygiene reasons and were unsealed after delivery.</li>
               <li>The supply of Goods which are, after delivery, according to their nature, inseparably mixed with other items.</li>
-              </ul>
-              <p>We reserve the right to refuse returns of any merchandise that does not meet the above return conditions in our sole discretion.</p>
-              <p>Only regular priced Goods may be refunded. Unfortunately, Goods on sale cannot be refunded. This exclusion may not apply to You if it is not permitted by applicable law.</p>
-              <h1>Returning Goods</h1>
-              <p>You are responsible for the cost and risk of returning the Goods to Us. You should send the Goods at the following address:</p>
-              <p>Kitchen</p>
-              <p>We cannot be held responsible for Goods damaged or lost in return shipment. Therefore, We recommend an insured and trackable mail service. We are unable to issue a refund without actual receipt of the Goods or proof of received return delivery.</p>
-              <h1>Gifts</h1>
-              <p>If the Goods were marked as a gift when purchased and then shipped directly to you, You'll receive a gift credit for the value of your return. Once the returned product is received, a gift certificate will be mailed to You.</p>
-              <p>If the Goods weren't marked as a gift when purchased, or the gift giver had the Order shipped to themselves to give it to You later, We will send the refund to the gift giver.</p>
-              <h2>Contact Us</h2>
-              <p>If you have any questions about our Returns and Refunds Policy, please contact us:</p>
-              <ul>
+            </ul>
+            <p>We reserve the right to refuse returns of any merchandise that does not meet the above return conditions in our sole discretion.</p>
+            <p>Only regular priced Goods may be refunded. Unfortunately, Goods on sale cannot be refunded. This exclusion may not apply to You if it is not permitted by applicable law.</p>
+            <h1>Returning Goods</h1>
+            <p>You are responsible for the cost and risk of returning the Goods to Us. You should send the Goods at the following address:</p>
+            <p>Kitchen</p>
+            <p>We cannot be held responsible for Goods damaged or lost in return shipment. Therefore, We recommend an insured and trackable mail service. We are unable to issue a refund without actual receipt of the Goods or proof of received return delivery.</p>
+            <h1>Gifts</h1>
+            <p>If the Goods were marked as a gift when purchased and then shipped directly to you, You'll receive a gift credit for the value of your return. Once the returned product is received, a gift certificate will be mailed to You.</p>
+            <p>If the Goods weren't marked as a gift when purchased, or the gift giver had the Order shipped to themselves to give it to You later, We will send the refund to the gift giver.</p>
+            <h2>Contact Us</h2>
+            <p>If you have any questions about our Returns and Refunds Policy, please contact us:</p>
+            <ul>
               <li>By email: admin@shophp.shop</li>
-              </ul>
+            </ul>
           </div>
 
-          <div class="tab-pane fade" id="v-tabs-privacy-policy" role="tabpanel"
-            aria-labelledby="v-tabs-privacy-policy-tab">
+          <div class="tab-pane fade <?php echo strpos($_SERVER["REQUEST_URI"], "privacypolicy") !== false ? 'show active' : '' ?>" id="v-tabs-privacy-policy" role="tabpanel" aria-labelledby="v-tabs-privacy-policy-tab">
             <h1>Privacy Policy</h1>
             <p>Last updated: November 15, 2022</p>
             <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -157,57 +150,57 @@
             <h2>Definitions</h2>
             <p>For the purposes of this Privacy Policy:</p>
             <ul>
-            <li>
-            <p><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</p>
-            </li>
-            <li>
-            <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to LeryLoiCompany LLC, Kitchen.</p>
-            </li>
-            <li>
-            <p><strong>Cookies</strong> are small files that are placed on Your computer, mobile device or any other device by a website, containing the details of Your browsing history on that website among its many uses.</p>
-            </li>
-            <li>
-            <p><strong>Country</strong> refers to:  Singapore</p>
-            </li>
-            <li>
-            <p><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</p>
-            </li>
-            <li>
-            <p><strong>Personal Data</strong> is any information that relates to an identified or identifiable individual.</p>
-            </li>
-            <li>
-            <p><strong>Service</strong> refers to the Website.</p>
-            </li>
-            <li>
-            <p><strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.</p>
-            </li>
-            <li>
-            <p><strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).</p>
-            </li>
-            <li>
-            <p><strong>Website</strong> refers to shoPHP, accessible from <a href="www.shophp.shop" rel="external nofollow noopener" target="_blank">www.shophp.shop</a></p>
-            </li>
-            <li>
-            <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
-            </li>
+              <li>
+                <p><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</p>
+              </li>
+              <li>
+                <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to LeryLoiCompany LLC, Kitchen.</p>
+              </li>
+              <li>
+                <p><strong>Cookies</strong> are small files that are placed on Your computer, mobile device or any other device by a website, containing the details of Your browsing history on that website among its many uses.</p>
+              </li>
+              <li>
+                <p><strong>Country</strong> refers to: Singapore</p>
+              </li>
+              <li>
+                <p><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</p>
+              </li>
+              <li>
+                <p><strong>Personal Data</strong> is any information that relates to an identified or identifiable individual.</p>
+              </li>
+              <li>
+                <p><strong>Service</strong> refers to the Website.</p>
+              </li>
+              <li>
+                <p><strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.</p>
+              </li>
+              <li>
+                <p><strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).</p>
+              </li>
+              <li>
+                <p><strong>Website</strong> refers to shoPHP, accessible from <a href="www.shophp.shop" rel="external nofollow noopener" target="_blank">www.shophp.shop</a></p>
+              </li>
+              <li>
+                <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
+              </li>
             </ul>
             <h1>Collecting and Using Your Personal Data</h1>
             <h2>Types of Data Collected</h2>
             <h3>Personal Data</h3>
             <p>While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
             <ul>
-            <li>
-            <p>Email address</p>
-            </li>
-            <li>
-            <p>First name and last name</p>
-            </li>
-            <li>
-            <p>Address, State, Province, ZIP/Postal code, City</p>
-            </li>
-            <li>
-            <p>Usage Data</p>
-            </li>
+              <li>
+                <p>Email address</p>
+              </li>
+              <li>
+                <p>First name and last name</p>
+              </li>
+              <li>
+                <p>Address, State, Province, ZIP/Postal code, City</p>
+              </li>
+              <li>
+                <p>Usage Data</p>
+              </li>
             </ul>
             <h3>Usage Data</h3>
             <p>Usage Data is collected automatically when using the Service.</p>
@@ -217,68 +210,68 @@
             <h3>Tracking Technologies and Cookies</h3>
             <p>We use Cookies and similar tracking technologies to track the activity on Our Service and store certain information. Tracking technologies used are beacons, tags, and scripts to collect and track information and to improve and analyze Our Service. The technologies We use may include:</p>
             <ul>
-            <li><strong>Cookies or Browser Cookies.</strong> A cookie is a small file placed on Your Device. You can instruct Your browser to refuse all Cookies or to indicate when a Cookie is being sent. However, if You do not accept Cookies, You may not be able to use some parts of our Service. Unless you have adjusted Your browser setting so that it will refuse Cookies, our Service may use Cookies.</li>
-            <li><strong>Web Beacons.</strong> Certain sections of our Service and our emails may contain small electronic files known as web beacons (also referred to as clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for example, to count users who have visited those pages or opened an email and for other related website statistics (for example, recording the popularity of a certain section and verifying system and server integrity).</li>
+              <li><strong>Cookies or Browser Cookies.</strong> A cookie is a small file placed on Your Device. You can instruct Your browser to refuse all Cookies or to indicate when a Cookie is being sent. However, if You do not accept Cookies, You may not be able to use some parts of our Service. Unless you have adjusted Your browser setting so that it will refuse Cookies, our Service may use Cookies.</li>
+              <li><strong>Web Beacons.</strong> Certain sections of our Service and our emails may contain small electronic files known as web beacons (also referred to as clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for example, to count users who have visited those pages or opened an email and for other related website statistics (for example, recording the popularity of a certain section and verifying system and server integrity).</li>
             </ul>
             <p>Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser. You can learn more about cookies on <a href="https://www.termsfeed.com/blog/cookies/#What_Are_Cookies" target="_blank">TermsFeed website</a> article.</p>
             <p>We use both Session and Persistent Cookies for the purposes set out below:</p>
             <ul>
-            <li>
-            <p><strong>Necessary / Essential Cookies</strong></p>
-            <p>Type: Session Cookies</p>
-            <p>Administered by: Us</p>
-            <p>Purpose: These Cookies are essential to provide You with services available through the Website and to enable You to use some of its features. They help to authenticate users and prevent fraudulent use of user accounts. Without these Cookies, the services that You have asked for cannot be provided, and We only use these Cookies to provide You with those services.</p>
-            </li>
-            <li>
-            <p><strong>Cookies Policy / Notice Acceptance Cookies</strong></p>
-            <p>Type: Persistent Cookies</p>
-            <p>Administered by: Us</p>
-            <p>Purpose: These Cookies identify if users have accepted the use of cookies on the Website.</p>
-            </li>
-            <li>
-            <p><strong>Functionality Cookies</strong></p>
-            <p>Type: Persistent Cookies</p>
-            <p>Administered by: Us</p>
-            <p>Purpose: These Cookies allow us to remember choices You make when You use the Website, such as remembering your login details or language preference. The purpose of these Cookies is to provide You with a more personal experience and to avoid You having to re-enter your preferences every time You use the Website.</p>
-            </li>
+              <li>
+                <p><strong>Necessary / Essential Cookies</strong></p>
+                <p>Type: Session Cookies</p>
+                <p>Administered by: Us</p>
+                <p>Purpose: These Cookies are essential to provide You with services available through the Website and to enable You to use some of its features. They help to authenticate users and prevent fraudulent use of user accounts. Without these Cookies, the services that You have asked for cannot be provided, and We only use these Cookies to provide You with those services.</p>
+              </li>
+              <li>
+                <p><strong>Cookies Policy / Notice Acceptance Cookies</strong></p>
+                <p>Type: Persistent Cookies</p>
+                <p>Administered by: Us</p>
+                <p>Purpose: These Cookies identify if users have accepted the use of cookies on the Website.</p>
+              </li>
+              <li>
+                <p><strong>Functionality Cookies</strong></p>
+                <p>Type: Persistent Cookies</p>
+                <p>Administered by: Us</p>
+                <p>Purpose: These Cookies allow us to remember choices You make when You use the Website, such as remembering your login details or language preference. The purpose of these Cookies is to provide You with a more personal experience and to avoid You having to re-enter your preferences every time You use the Website.</p>
+              </li>
             </ul>
             <p>For more information about the cookies we use and your choices regarding cookies, please visit our Cookies Policy or the Cookies section of our Privacy Policy.</p>
             <h2>Use of Your Personal Data</h2>
             <p>The Company may use Personal Data for the following purposes:</p>
             <ul>
-            <li>
-            <p><strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service.</p>
-            </li>
-            <li>
-            <p><strong>To manage Your Account:</strong> to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user.</p>
-            </li>
-            <li>
-            <p><strong>For the performance of a contract:</strong> the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased or of any other contract with Us through the Service.</p>
-            </li>
-            <li>
-            <p><strong>To contact You:</strong> To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.</p>
-            </li>
-            <li>
-            <p><strong>To provide You</strong> with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information.</p>
-            </li>
-            <li>
-            <p><strong>To manage Your requests:</strong> To attend and manage Your requests to Us.</p>
-            </li>
-            <li>
-            <p><strong>For business transfers:</strong> We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.</p>
-            </li>
-            <li>
-            <p><strong>For other purposes</strong>: We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.</p>
-            </li>
+              <li>
+                <p><strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service.</p>
+              </li>
+              <li>
+                <p><strong>To manage Your Account:</strong> to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user.</p>
+              </li>
+              <li>
+                <p><strong>For the performance of a contract:</strong> the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased or of any other contract with Us through the Service.</p>
+              </li>
+              <li>
+                <p><strong>To contact You:</strong> To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.</p>
+              </li>
+              <li>
+                <p><strong>To provide You</strong> with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information.</p>
+              </li>
+              <li>
+                <p><strong>To manage Your requests:</strong> To attend and manage Your requests to Us.</p>
+              </li>
+              <li>
+                <p><strong>For business transfers:</strong> We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.</p>
+              </li>
+              <li>
+                <p><strong>For other purposes</strong>: We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.</p>
+              </li>
             </ul>
             <p>We may share Your personal information in the following situations:</p>
             <ul>
-            <li><strong>With Service Providers:</strong> We may share Your personal information with Service Providers to monitor and analyze the use of our Service,  to contact You.</li>
-            <li><strong>For business transfers:</strong> We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.</li>
-            <li><strong>With Affiliates:</strong> We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our parent company and any other subsidiaries, joint venture partners or other companies that We control or that are under common control with Us.</li>
-            <li><strong>With business partners:</strong> We may share Your information with Our business partners to offer You certain products, services or promotions.</li>
-            <li><strong>With other users:</strong> when You share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside.</li>
-            <li><strong>With Your consent</strong>: We may disclose Your personal information for any other purpose with Your consent.</li>
+              <li><strong>With Service Providers:</strong> We may share Your personal information with Service Providers to monitor and analyze the use of our Service, to contact You.</li>
+              <li><strong>For business transfers:</strong> We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.</li>
+              <li><strong>With Affiliates:</strong> We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our parent company and any other subsidiaries, joint venture partners or other companies that We control or that are under common control with Us.</li>
+              <li><strong>With business partners:</strong> We may share Your information with Our business partners to offer You certain products, services or promotions.</li>
+              <li><strong>With other users:</strong> when You share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside.</li>
+              <li><strong>With Your consent</strong>: We may disclose Your personal information for any other purpose with Your consent.</li>
             </ul>
             <h2>Retention of Your Personal Data</h2>
             <p>The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.</p>
@@ -300,11 +293,11 @@
             <h3>Other legal requirements</h3>
             <p>The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:</p>
             <ul>
-            <li>Comply with a legal obligation</li>
-            <li>Protect and defend the rights or property of the Company</li>
-            <li>Prevent or investigate possible wrongdoing in connection with the Service</li>
-            <li>Protect the personal safety of Users of the Service or the public</li>
-            <li>Protect against legal liability</li>
+              <li>Comply with a legal obligation</li>
+              <li>Protect and defend the rights or property of the Company</li>
+              <li>Prevent or investigate possible wrongdoing in connection with the Service</li>
+              <li>Protect the personal safety of Users of the Service or the public</li>
+              <li>Protect against legal liability</li>
             </ul>
             <h2>Security of Your Personal Data</h2>
             <p>The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.</p>
@@ -321,13 +314,12 @@
             <h1>Contact Us</h1>
             <p>If you have any questions about this Privacy Policy, You can contact us:</p>
             <ul>
-            <li>By email: admin@shophp.shop</li>
+              <li>By email: admin@shophp.shop</li>
             </ul>
           </div>
 
-          
-          <div class="tab-pane fade" id="v-tabs-eula4lyf3" role="tabpanel"
-            aria-labelledby="v-tabs-eula4lyf3-tab">
+
+          <div class="tab-pane fade <?php echo strpos($_SERVER["REQUEST_URI"], "eula") !== false ? 'show active' : '' ?>" id="v-tabs-eula4lyf3" role="tabpanel" aria-labelledby="v-tabs-eula4lyf3-tab">
             <h1>End-User License Agreement (&quot;Agreement&quot;)</h1>
             <p>Last updated: November 13, 2022</p>
             <p>Please read this End-User License Agreement carefully before being a Karen, downloading or using shoPHP.</p>
@@ -337,30 +329,30 @@
             <h2>Definitions</h2>
             <p>For the purposes of this End-User License Agreement:</p>
             <ul>
-            <li>
-            <p><strong>Agreement</strong> means this End-User License Agreement that forms the entire agreement between You and the Company regarding the use of the Application.</p>
-            </li>
-            <li>
-            <p><strong>Application</strong> means the software program provided by the Company downloaded by You to a Device, named shoPHP</p>
-            </li>
-            <li>
-            <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to LeryLoiCompany LLC, Kitchen.</p>
-            </li>
-            <li>
-            <p><strong>Content</strong> refers to content such as text, images, or other information that can be posted, uploaded, linked to or otherwise made available by You, regardless of the form of that content.</p>
-            </li>
-            <li>
-            <p><strong>Country</strong> refers to:  Singapore</p>
-            </li>
-            <li>
-            <p><strong>Device</strong> means any device that can access the Application such as a computer, a cellphone or a digital tablet.</p>
-            </li>
-            <li>
-            <p><strong>Third-Party Services</strong> means any services or content (including data, information, applications and other products services) provided by a third-party that may be displayed, included or made available by the Application.</p>
-            </li>
-            <li>
-            <p><strong>You</strong> means the individual accessing or using the Application or the company, or other legal entity on behalf of which such individual is accessing or using the Application, as applicable.</p>
-            </li>
+              <li>
+                <p><strong>Agreement</strong> means this End-User License Agreement that forms the entire agreement between You and the Company regarding the use of the Application.</p>
+              </li>
+              <li>
+                <p><strong>Application</strong> means the software program provided by the Company downloaded by You to a Device, named shoPHP</p>
+              </li>
+              <li>
+                <p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to LeryLoiCompany LLC, Kitchen.</p>
+              </li>
+              <li>
+                <p><strong>Content</strong> refers to content such as text, images, or other information that can be posted, uploaded, linked to or otherwise made available by You, regardless of the form of that content.</p>
+              </li>
+              <li>
+                <p><strong>Country</strong> refers to: Singapore</p>
+              </li>
+              <li>
+                <p><strong>Device</strong> means any device that can access the Application such as a computer, a cellphone or a digital tablet.</p>
+              </li>
+              <li>
+                <p><strong>Third-Party Services</strong> means any services or content (including data, information, applications and other products services) provided by a third-party that may be displayed, included or made available by the Application.</p>
+              </li>
+              <li>
+                <p><strong>You</strong> means the individual accessing or using the Application or the company, or other legal entity on behalf of which such individual is accessing or using the Application, as applicable.</p>
+              </li>
             </ul>
             <h1>Acknowledgment</h1>
             <p>By clicking the &quot;I Agree&quot; button, downloading or using the Application, You are agreeing to be bound by the terms and conditions of this Agreement. If You do not agree to the terms of this Agreement, do not click on the &quot;I Agree&quot; button, do not download or do not use the Application.</p>
@@ -376,7 +368,7 @@
             <p>You must comply with applicable Third parties' Terms of agreement when using the Application. Third-party Services and links thereto are provided solely as a convenience to You and You access and use them entirely at your own risk and subject to such third parties' Terms and conditions.</p>
             <h1>Term and Termination</h1>
             <p>This Agreement shall remain in effect until terminated by You or the Company.
-            The Company may, in its sole discretion, at any time and for any or no reason, suspend or terminate this Agreement with or without prior notice.</p>
+              The Company may, in its sole discretion, at any time and for any or no reason, suspend or terminate this Agreement with or without prior notice.</p>
             <p>This Agreement will terminate immediately, without prior notice from the Company, in the event that you fail to comply with any provision of this Agreement. You may also terminate this Agreement by deleting the Application and all copies thereof from your Device or from your computer.</p>
             <p>Upon termination of this Agreement, You shall cease all use of the Application and delete all copies of the Application from your Device.</p>
             <p>Termination of this Agreement will not limit any of the Company's rights or remedies at law or in equity in case of breach by You (during the term of this Agreement) of any of your obligations under the present Agreement.</p>
@@ -410,7 +402,7 @@
             <h1>Contact Us</h1>
             <p>If you have any questions about this Agreement, You can contact Us:</p>
             <ul>
-            <li>By email: admin@shoPHP.shop</li>
+              <li>By email: admin@shoPHP.shop</li>
             </ul>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPEHu0pfTMhTZD1RlVsllbVQufgXrXCt5HFA&usqp=CAU" alt="alternatetext">
           </div>
