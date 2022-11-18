@@ -149,6 +149,7 @@ $_SESSION["itemname"] = $_POST["item-name"];
 $_SESSION["itemdesc"] = $_POST["item-desc"];
 $_SESSION["itemprice"] = $_POST["item-price"];
 $_SESSION["itemtype"] = $_POST["item-type"];
+$_SESSION["itemcat"] = $_POST["item-category"];
 $_SESSION["xs"] = $_POST["item-size-XS"];
 $_SESSION["s"] = $_POST["item-size-S"];
 $_SESSION["m"] = $_POST["item-size-M"];

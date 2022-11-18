@@ -65,10 +65,10 @@
               </div>
 
               <select class="form-select mb-3 item-category" name="item-category" aria-label="Item category" required>
-                <option disabled selected>Category</option>
-                <option value="clothing">Clothing</option>
-                <option value="bags">Bags</option>
-                <option value="accessories">Accessories</option>
+                <option disabled <?php echo !isset($_SESSION["itemcat"]) ? 'selected' : '' ?>>Category</option>
+                <option <?php echo isset($_SESSION["itemcat"]) && $_SESSION["itemcat"] === "clothing" ? 'selected' : '' ?> value="clothing">Clothing</option>
+                <option <?php echo isset($_SESSION["itemcat"]) && $_SESSION["itemcat"] === "bags" ? 'selected' : '' ?> value="bags">Bags</option>
+                <option <?php echo isset($_SESSION["itemcat"]) && $_SESSION["itemcat"] === "accessories" ? 'selected' : '' ?> value="accessories">Accessories</option>
               </select>
 
               <div class="form-outline mb-3">
@@ -77,10 +77,10 @@
               </div>
 
               <select class="form-select mb-3" name="item-type" aria-label="Item type" required>
-                <option disabled selected>Type</option>
-                <option value="Unisex">Unisex</option>
-                <option value="Men">Men</option>
-                <option value="Women">Women</option>
+                <option disabled <?php echo !isset($_SESSION["itemtype"]) ? 'selected' : '' ?>>Type</option>
+                <option <?php echo isset($_SESSION["itemtype"]) && $_SESSION["itemtype"] === "unisex" ? 'selected' : '' ?> value="unisex">Unisex</option>
+                <option <?php echo isset($_SESSION["itemtype"]) && $_SESSION["itemtype"] === "men" ? 'selected' : '' ?> value="men">Men</option>
+                <option <?php echo isset($_SESSION["itemtype"]) && $_SESSION["itemtype"] === "women" ? 'selected' : '' ?> value="women">Women</option>
               </select>
 
               <label class="form-label" for="item-size">Stock</label>
