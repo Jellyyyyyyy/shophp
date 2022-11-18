@@ -50,11 +50,17 @@
   <?php
     include_once "include/functions.inc.php";
     echo "window.addEventListener('load', () => {";
-    foreach (getItems("accessories") as $item) {
-      echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
+    $accessories = getItems("accessories");
+    if (!is_array($accessories)) {
+      echo "appendHtmlChild('h1', 'No items found', '.main-container');";
+      echo "});";
+    } else {
+      foreach ($accessories as $item) {
+        echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
+      }
+      echo "addEvents();";
+      echo "});";
     }
-    echo "addEvents();";
-    echo "});";
     ?>
   </script>
   <?php
