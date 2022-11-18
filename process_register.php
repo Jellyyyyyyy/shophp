@@ -94,7 +94,7 @@ function sendEmail(){
   $subject = 'shoPHP Account Verification';
   $body = '<h1 style="font-size: 30px;"> Hi ' . $username . ',</h1> <p style="font-size: 16px;">Thank you for signing up with shoPHP. For your account security, please <a href="shophp.shop/verify?email=' . $email . '&token=' . $token . '">verify your email address</a>.</p>';
   if (sendMail('no-reply@shophp.shop', $email, $subject, $body)) {
-    $registerMsg =  "Verification email sent to " . $email . ". Please verify to log in.";
+    $registerMsg =  "Verification email sent to " . $email . ". Please verify to log in. If you do not receive the email verification email, please reset your password to do so.";
   } else {
     $registerMsg = "Verification email could not be sent. Please contact customer support to verify your account.";
     $registerSuccess = "false";
@@ -108,6 +108,7 @@ if ($registerSuccess == "true") {
     sendEmail();
   }
 }
+
 
 header('Location: /login?registerSuccess=' . $registerSuccess . '&registerMsg=' . $registerMsg . '&username=' . $username . '&fname=' . $fname . '&lname=' . $lname . '&email=' . $email);
   

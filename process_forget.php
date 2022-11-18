@@ -37,13 +37,7 @@ function authenticateUser() {
       $result = $query -> get_result();
       if ($result -> num_rows > 0) {
         $row = $result -> fetch_assoc();
-        $verified = $row["verified"];
         $username = $row["username"]; // For sending mail
-
-        if (!$verified) {
-          $errorMsg = "Please verify your email before resetting your password.";
-          $success = "false";
-        }
       } else {
         $errorMsg =  "Reset password email has been sent to " . $email . " if that account exists.";
         $success = "false";
