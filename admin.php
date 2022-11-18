@@ -137,20 +137,20 @@
               if ($conn->connect_error) {
                 echo "<div>Connection to server failed. Please try again later.</div>";
               } else {
-                $clothingQuery = $conn->prepare("SELECT * FROM items WHERE category=?");
-                $clothingQuery->bind_param('s', $category);
-                $clothingQuery->execute();
-                $clothingResult = $clothingQuery->get_result();
-                $clothingArr = array();
-                if ($clothingResult->num_rows > 0) {
-                  while ($clothingRow = $clothingResult->fetch_assoc()) {
-                    $clothingArr[] = $clothingRow["name"];
+                $query = $conn->prepare("SELECT * FROM items WHERE category=?");
+                $query->bind_param('s', $category);
+                $query->execute();
+                $result = $query->get_result();
+                $arr = array();
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    $arr[] = $row["name"];
                   }
                 } else {
-                  $clothingArr[] = "No items found";
+                  $arr[] = "No items found";
                 }
               }
-              return $clothingArr;
+              return $arr;
             }
             ?>
 
@@ -183,8 +183,11 @@
                   <?php
                   $clothings = putItemInSelect("clothing");
                   if (gettype($clothings) == "array") {
-                    foreach ($clothings as $item) {
+                    if ($clothings[0] == "No items found") echo "<option disabled>No items found</option>";
+                    else {
+                      foreach ($clothings as $item) {
                       echo "<option value='{$item}'>{$item}</option>";
+                      }
                     }
                   }
                   ?>
@@ -193,8 +196,11 @@
                   <?php
                   $bags = putItemInSelect("bags");
                   if (gettype($bags) == "array") {
-                    foreach ($bags as $item) {
+                    if ($bags[0] == "No items found") echo "<option disabled>No items found</option>";
+                    else {
+                      foreach ($bags as $item) {
                       echo "<option value='{$item}'>{$item}</option>";
+                      }
                     }
                   }
                   ?>
@@ -203,8 +209,11 @@
                   <?php
                   $accessories = putItemInSelect("accessories");
                   if (gettype($accessories) == "array") {
-                    foreach ($accessories as $item) {
+                    if ($accessories[0] == "No items found") echo "<option disabled>No items found</option>";
+                    else {
+                      foreach ($accessories as $item) {
                       echo "<option value='{$item}'>{$item}</option>";
+                      }
                     }
                   }
                   ?>
@@ -277,7 +286,46 @@
             </form>
           </div>
           <div class="tab-pane fade" id="v-tabs-users" role="tabpanel" aria-labelledby="v-tabs-users-tab">
-            Manage users content
+            <form action="process_adminUserEdit" method="post" target="_self" style="width: 60%;">
+              <h2>Manage User</h2>
+              <?php
+              if (isset($_GET['mngUserSuccess'])) {
+                $mngUserSuccess = $_GET['mngUserSuccess'];
+                $mngUserMsg = $_GET['mngUserMsg'];
+                if ($mngUserSuccess == "true") {
+                  echo '<div class="msg-container" style="background: rgba(45, 197, 45, 0.665);border: 2px solid rgb(23, 210, 23);">';
+                  echo "<span> {$mngUserMsg} </span>";
+                  echo '</div>';
+                } else {
+                  echo '<div class="msg-container" style="background: rgba(255, 43, 43, 0.707);border: 1px solid rgb(255, 0, 0);">';
+                  echo "<span> {$mngUserMsg} </span>";
+                  echo '</div>';
+                }
+              }
+              ?>
+              <div class="form-outline mb-3">
+                <input type="text" class="form-control form-control-lg" id="mng-user-name" name="mng-user-name"
+                  value="<?php echo $_SESSION["mngUserName"] ?? '' ?>" maxlength="20" required>
+                <label for="mng-user-name" class="form-label">Username/UserID</label>
+              </div>
+              <select class="form-select mb-3 manage-user-action" name="manage-user-action"
+                aria-label="Manage User Action">
+                <option value="Suspend">Suspend</option>
+                <option value="Unsuspend">Unsuspend</option>
+                <option value="Delete">Delete</option>
+              </select>
+              <div class="form-outline mb-3 item-name">
+                <input type="password" class="form-control form-control-lg" id="user-admin-key" name="user-admin-key"
+                  required>
+                <label for="user-admin-key" class="form-label">Admin key</label>
+              </div>
+
+              <div class="pt-1 mb-3">
+                <button class="btn btn-dark btn-lg btn-block submit-button manage-user-btn" type="submit">
+                  suspend account
+                </button>
+              </div>
+            </form>
           </div>
           <div class="tab-pane fade" id="v-tabs-reviews" role="tabpanel" aria-labelledby="v-tabs-reviews-tab">
             Manage reviews content

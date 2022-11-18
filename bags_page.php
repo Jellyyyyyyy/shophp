@@ -12,9 +12,7 @@
 </head>
 
 <body>
-  <?php
-  include_once "include/nav.inc.php"
-  ?>
+  <?php include_once "include/nav.inc.php" ?>
   <section id="description">
     <div class="jumbotron" id="displayJumbo">
       <div class="row">
@@ -30,22 +28,18 @@
     <div class="grid-container">
       <template class="card-template">
         <div class="card col-md-4">
-          <div class="arrow-previous arrow">
-            <i class='bx bxs-left-arrow'></i>
+          <div class="icons">
+            <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist'></i>
+            <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart'></i>
           </div>
-          <div class="imageDIV">
-            <img data-item-image>
-          </div>
+          <img data-item-image>
           <div class="text-container">
             <div class="category-container">
-              <span data-item-category>UNISEX</span>
-              <span data-item-size>XS-XL</span>
+              <span data-item-category></span>
+              <span data-item-size></span>
             </div>
-            <span data-item-name>Pocketable Coat</span>
-            <span data-item-price>$129.90</span>
-          </div>
-          <div class="arrow-next arrow">
-            <i class='bx bxs-right-arrow'></i>
+            <span data-item-name></span>
+            <span data-item-price></span>
           </div>
         </div>
       </template>
@@ -55,15 +49,14 @@
   <script>
   <?php
     include_once "include/functions.inc.php";
+    echo "window.addEventListener('load', () => {";
     foreach (getItems("bags") as $item) {
-      foreach ($item as $key => $value) {
-        if (strpos($value, "'") && $key !== "image") $item[$key] = str_replace("'", "&#39;", $item[$key]);
-        if (strpos($value, '"') && $key !== "image") $item[$key] = str_replace('"', "&#34;", $item[$key]);
-        if (strpos($value, ')') && $key !== "image") $item[$key] = str_replace(')', "&#41;", $item[$key]);
-      }
       echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
     }
+    echo "addEvents();";
+    echo "});";
     ?>
   </script>
   <?php include_once "include/footer.inc.php" ?>
 </body>
+</html>

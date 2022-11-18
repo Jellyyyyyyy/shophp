@@ -1,0 +1,124 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, "Lucida Grande", sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+.cart-container {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-container .title-text {
+  width: 40%;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  color: #000;
+}
+
+.cart-container .title-text h1 {
+  font-weight: bold;
+}
+
+.cart-container .title-text button {
+  width: 30%;
+}
+
+.cart-container .items {
+  width: 60%;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-container .items .item {
+  height: 30rem;
+  width: 100%;
+  padding: 5rem 0;
+  border-top: 1px solid #aaa;
+  display: flex;
+  flex-direction: row;
+}
+
+.cart-container .items .item img {
+  height: 100%;
+  width: 40%;
+  object-fit: contain;
+}
+
+.cart-container .items .item .item-details {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.item-details .item-name {
+  font-size: smaller;
+  width: 5rem;
+}
+
+.cart-container i {
+  cursor: pointer;
+}
+
+.cart-container .price-container {
+  padding: 1rem 0;
+  width: 60%;
+  border-top: 1px solid #aaa;
+  display: flex;
+  justify-content: right;
+}
+
+.cart-container .price-container .price-content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-container .price-container .price-content .price-subcontent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cart-container .price-container .price-content .price-subcontent.total {
+  border-top: 1px solid #aaa;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.cart-container .price-container .price-content .price-info {
+  font-size: smaller;
+  font-weight: lighter;
+  display: flex;
+  justify-content: right;
+  color: #aaa;
+}
+
+.cart-container .checkout-btn {
+  width: 60%;
+  display: flex;
+  justify-content: right;
+}
+
+.cart-container .checkout-btn button {
+  height: 3.5rem;
+  width: 50%;
+}

@@ -1,26 +1,4 @@
-// Card functions
-function addArrowEvents() {
-  const arrows = document.querySelectorAll(".card .arrow");
-  const cards = document.querySelectorAll(".container .card");
-  let arrowArray = [...arrows],
-    cardArray = [...cards],
-    currentCard = 0;
-
-  arrowArray.forEach((arrow) => {
-    arrow.addEventListener("click", () => {
-      cardArray.forEach((card) => (card.style.opacity = "0"));
-
-      if (arrow.classList.contains("arrow-next")) {
-        currentCard++;
-        if (currentCard > cardArray.length - 1) currentCard = 0;
-      } else if (arrow.classList.contains("arrow-previous")) {
-        currentCard--;
-        if (currentCard < 0) currentCard = cardArray.length - 1;
-      }
-      cardArray[currentCard].style.opacity = "1";
-    });
-  });
-}
+let cartItems;
 
 function addCard(imgSource, category, size, name, price, elementContainer) {
   // Load cards into webpage
@@ -39,5 +17,48 @@ function addCard(imgSource, category, size, name, price, elementContainer) {
   cardPrice.textContent = price;
 
   document.querySelector(elementContainer).appendChild(card);
-  addArrowEvents();
+}
+
+function addEvents() {
+  cartItems = getCookie("cartItems").split(",");
+  const testEmptyString = cartItems.indexOf("");
+  if (testEmptyString !== -1) cartItems.splice(testEmptyString, 1); // Removes empty string
+
+  const addToCart = document.querySelectorAll(".add-to-cart");
+  [...addToCart].forEach((cart) => {
+    cart.addEventListener("click", (e) => {
+      let itemName =
+        e.target.parentElement.parentElement.querySelector(
+          "[data-item-name]"
+        ).textContent;
+      console.log(itemName);
+      cartItems.push(itemName);
+      console.log(cartItems);
+      setCookie(`cartItems`, cartItems, 30);
+      window.location.reload();
+    });
+  });
+}
+
+function setCookie(name, value, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+  let expiryDate = d.toUTCString();
+  document.cookie = `${name}=${value}; expires=${expiryDate}`;
+}
+
+function getCookie(cookieName) {
+  let name = cookieName + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }

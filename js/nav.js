@@ -25,13 +25,37 @@ mobileMenuIconContainer.addEventListener("click", () => {
   searchContainer.classList.toggle("hide");
 });
 
-// Generating Popover for bag
-const loginState = document.querySelector("[data-state]");
-let loginClass;
-let loginText;
-let loginHref;
+// Get cookie function
+function getCookie(cookieName) {
+  let name = cookieName + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
-if (loginState.getAttribute("data-state") === "true") {
+// Count duplicate items function
+function getQuantityOfItems(arr) {
+  const counts = {};
+  arr.forEach(function (x) {
+    counts[x] = (counts[x] || 0) + 1;
+  });
+  return counts;
+}
+
+// Generating Popover for bag
+const states = document.querySelector("[data-login-state]");
+let loginClass, loginText, loginHref, hideState, cartItemsString;
+
+if (states.getAttribute("data-login-state") === "true") {
   loginClass = "bx-log-out";
   loginText = "Log out";
   loginHref = "process_logout";
@@ -41,11 +65,50 @@ if (loginState.getAttribute("data-state") === "true") {
   loginHref = "login";
 }
 
+if (states.getAttribute("data-items-state") === "true") {
+  cartItems = getCookie("cartItems").split(",");
+  hideState = "hide";
+
+  cartItemsString = "";
+  uniqueItems = [...new Set(cartItems)];
+  let itemsQuantity = getQuantityOfItems(cartItems);
+  let offset = 0;
+
+  if (uniqueItems.length > 3) {
+    for (let i = 0; i < 3; i++) {
+      let numberOfItem = itemsQuantity[uniqueItems[i]];
+      if (numberOfItem > 1) {
+        cartItemsString += `<div class="cart-items-content"><span>${uniqueItems[i]}</span><span> x${numberOfItem}</span></div>\n`;
+        offset += numberOfItem - 1;
+      } else {
+        cartItemsString += `<span class="cart-items-content">${uniqueItems[i]}</span>`;
+      }
+    }
+    cartItemsString += `<span class="cart-items-footer">${
+      cartItems.length - 3 - offset
+    } more items in your bag</span>`;
+  } else {
+    for (let item of uniqueItems) {
+      let numberOfItem = itemsQuantity[item];
+      if (numberOfItem > 1) {
+        cartItemsString += `<div class="cart-items-content"><span>${item}</span><span> x${numberOfItem}</span></div>\n`;
+      } else {
+        cartItemsString += `<span class="cart-items-content">${item}</span>`;
+      }
+    }
+  }
+}
+
 const popoverContent = `
   <div class='pop-content user-card-container'>
-    <h6 class='pop-content user-card-header'>Your bag is empty.</h6>
+    <div class='cart-items user-card-header'>
+      ${cartItemsString ?? ""}
+      <h6 class='pop-content user-card-header ${hideState}'>Your bag is empty.</h6>
+    </div>
     <ul class='pop-content user-card-body'>
-      <li><a href='cart'><i class='bx bx-shopping-bag'></i><span>Bag</span></a></li>
+      <li><a href='cart'><i class='bx bx-shopping-bag'></i><span>Bag ${
+        cartItems ? `(${cartItems.length})` : ""
+      }</span></a></li>
       <li><a href='wishlist'><i class='bx bx-bookmark'></i><span>Wishlist</span></a></li>
       <li><a href='orders'><i class='bx bx-package'></i><span>Orders</span></a></li>
       <li><a href='profile'><i class='bx bx-cog'></i><span>Account</span></a></li>
