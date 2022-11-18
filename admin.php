@@ -23,18 +23,11 @@
       <div class="col-3">
         <!-- Tab navs -->
         <div class="nav flex-column nav-tabs text-center" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link <?php echo isset($_GET["uploadSuccess"]) || empty($_GET) ? 'active' : '' ?>"
-            id="v-tabs-upload-listing-tab" data-mdb-toggle="tab" href="#v-tabs-upload-listing" role="tab"
-            aria-controls="v-tabs-upload-listing" aria-selected="true">Upload listing</a>
-          <a class="nav-link <?php echo isset($_GET["manageSuccess"]) ? 'active' : '' ?>" id="v-tabs-manage-listing-tab"
-            data-mdb-toggle="tab" href="#v-tabs-manage-listing" role="tab" aria-controls="v-tabs-manage-listing"
-            aria-selected="false">Manage listing</a>
-          <a class="nav-link" id="v-tabs-users-tab" data-mdb-toggle="tab" href="#v-tabs-users" role="tab"
-            aria-controls="v-tabs-users" aria-selected="false">Manage users</a>
-          <a class="nav-link" id="v-tabs-reviews-tab" data-mdb-toggle="tab" href="#v-tabs-reviews" role="tab"
-            aria-controls="v-tabs-reviews" aria-selected="false">Manage reviews</a>
-          <a class="nav-link" id="v-tabs-orders-tab" data-mdb-toggle="tab" href="#v-tabs-orders" role="tab"
-            aria-controls="v-tabs-orders" aria-selected="false">Manage orders</a>
+          <a class="nav-link <?php echo isset($_GET["uploadSuccess"]) || empty($_GET) ? 'active' : '' ?>" id="v-tabs-upload-listing-tab" data-mdb-toggle="tab" href="#v-tabs-upload-listing" role="tab" aria-controls="v-tabs-upload-listing" aria-selected="true">Upload listing</a>
+          <a class="nav-link <?php echo isset($_GET["manageSuccess"]) ? 'active' : '' ?>" id="v-tabs-manage-listing-tab" data-mdb-toggle="tab" href="#v-tabs-manage-listing" role="tab" aria-controls="v-tabs-manage-listing" aria-selected="false">Manage listing</a>
+          <a class="nav-link" id="v-tabs-users-tab" data-mdb-toggle="tab" href="#v-tabs-users" role="tab" aria-controls="v-tabs-users" aria-selected="false">Manage users</a>
+          <a class="nav-link" id="v-tabs-reviews-tab" data-mdb-toggle="tab" href="#v-tabs-reviews" role="tab" aria-controls="v-tabs-reviews" aria-selected="false">Manage reviews</a>
+          <a class="nav-link" id="v-tabs-orders-tab" data-mdb-toggle="tab" href="#v-tabs-orders" role="tab" aria-controls="v-tabs-orders" aria-selected="false">Manage orders</a>
         </div>
         <!-- Tab navs -->
       </div>
@@ -42,10 +35,8 @@
       <div class="col-9">
         <!-- Tab content -->
         <div class="tab-content" id="v-tabs-tabContent">
-          <div class="tab-pane fade <?php echo isset($_GET["uploadSuccess"]) || empty($_GET) ? 'active show' : '' ?>"
-            id="v-tabs-upload-listing" role="tabpanel" aria-labelledby="v-tabs-upload-listing-tab">
-            <form action="process_adminUpload" method="post" target="_self" enctype="multipart/form-data"
-              style="width: 60%;">
+          <div class="tab-pane fade <?php echo isset($_GET["uploadSuccess"]) || empty($_GET) ? 'active show' : '' ?>" id="v-tabs-upload-listing" role="tabpanel" aria-labelledby="v-tabs-upload-listing-tab">
+            <form action="process_adminUpload" method="post" target="_self" enctype="multipart/form-data" style="width: 60%;">
               <h2>Upload item</h2>
               <?php
               if (isset($_GET['uploadSuccess'])) {
@@ -63,51 +54,55 @@
               }
               ?>
               <div class="form-outline mb-4 item-name">
-                <input type="text" class="form-control form-control-lg" id="item-name" name="item-name"
-                  value="<?php echo $_SESSION["itemname"] ?? '' ?>" maxlength="20" required>
+                <input type="text" class="form-control form-control-lg" id="item-name" name="item-name" value="<?php echo $_SESSION["itemname"] ?? '' ?>" maxlength="20" required>
                 <label for="item-name" class="form-label item-name">Item name</label>
               </div>
 
               <div class="form-outline mb-4 item-desc">
-                <textarea type="text" class="form-control form-control-lg " data-mdb-showcounter="true" id="item-desc"
-                  name="item-desc" maxlength="500" style="height: 10rem;"
-                  required><?php echo $_SESSION["itemdesc"] ?? '' ?></textarea>
+                <textarea type="text" class="form-control form-control-lg " data-mdb-showcounter="true" id="item-desc" name="item-desc" maxlength="500" style="height: 10rem;" required><?php echo $_SESSION["itemdesc"] ?? '' ?></textarea>
                 <label for="item-desc" class="form-label item-desc">Description</label>
                 <div class="form-helper"></div>
               </div>
 
-              <select class="form-select mb-4 item-category" name="item-category" aria-label="Item category" required>
+              <select class="form-select mb-3 item-category" name="item-category" aria-label="Item category" required>
                 <option disabled selected>Category</option>
                 <option value="clothing">Clothing</option>
                 <option value="bags">Bags</option>
                 <option value="accessories">Accessories</option>
               </select>
 
+              <div class="form-outline mb-3">
+                <input type="tel" class="form-control form-control-lg" id="item-price" name="item-price" value="<?php echo $_SESSION["itemprice"] ?? '' ?>" maxlength="10" required>
+                <label for="item-price" class="form-label">Price (S$)</label>
+              </div>
+
+              <select class="form-select mb-3" name="item-type" aria-label="Item type" required>
+                <option disabled selected>Type</option>
+                <option value="Unisex">Unisex</option>
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+              </select>
+
               <label class="form-label" for="item-size">Stock</label>
               <div class="d-flex flex-row justify-content-between">
                 <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS" min=0
-                    value="<?php echo $_SESSION["xs"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS" min=0 value="<?php echo $_SESSION["xs"] ?? '' ?>" required>
                   <label for="item-size-XS" class="form-label">XS</label>
                 </div>
                 <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-S" name="item-size-S" min=0
-                    value="<?php echo $_SESSION["s"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-S" name="item-size-S" min=0 value="<?php echo $_SESSION["s"] ?? '' ?>" required>
                   <label for="item-size-S" class="form-label">S</label>
                 </div>
                 <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-M" name="item-size-M" min=0
-                    value="<?php echo $_SESSION["m"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-M" name="item-size-M" min=0 value="<?php echo $_SESSION["m"] ?? '' ?>" required>
                   <label for="item-size-M" class="form-label">M</label>
                 </div>
                 <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-L" name="item-size-L" min=0
-                    value="<?php echo $_SESSION["l"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-L" name="item-size-L" min=0 value="<?php echo $_SESSION["l"] ?? '' ?>" required>
                   <label for="item-size-L" class="form-label">L</label>
                 </div>
                 <div class="form-outline mb-4 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-XL" name="item-size-XL" min=0
-                    value="<?php echo $_SESSION["xl"] ?? '' ?>" required>
+                  <input type="number" class="form-control form-control-lg" id="item-size-XL" name="item-size-XL" min=0 value="<?php echo $_SESSION["xl"] ?? '' ?>" required>
                   <label for="item-size-XL" class="form-label">XL</label>
                 </div>
               </div>
@@ -128,8 +123,7 @@
             </form>
           </div>
 
-          <div class="tab-pane fade <?php echo isset($_GET["manageSuccess"]) ? 'show active' : '' ?>"
-            id="v-tabs-manage-listing" role="tabpanel" aria-labelledby="v-tabs-manage-listing-tab">
+          <div class="tab-pane fade <?php echo isset($_GET["manageSuccess"]) ? 'show active' : '' ?>" id="v-tabs-manage-listing" role="tabpanel" aria-labelledby="v-tabs-manage-listing-tab">
             <?php
             function putItemInSelect($category)
             {
@@ -154,8 +148,7 @@
             }
             ?>
 
-            <form action="process_adminItemEdit" method="post" target="_self" enctype="multipart/form-data"
-              style="width: 60%;">
+            <form action="process_adminItemEdit" method="post" target="_self" enctype="multipart/form-data" style="width: 60%;">
               <h2>Manage Listing</h2>
               <?php
               if (isset($_GET['manageSuccess'])) {
@@ -186,7 +179,7 @@
                     if ($clothings[0] == "No items found") echo "<option disabled>No items found</option>";
                     else {
                       foreach ($clothings as $item) {
-                      echo "<option value='{$item}'>{$item}</option>";
+                        echo "<option value='{$item}'>{$item}</option>";
                       }
                     }
                   }
@@ -199,7 +192,7 @@
                     if ($bags[0] == "No items found") echo "<option disabled>No items found</option>";
                     else {
                       foreach ($bags as $item) {
-                      echo "<option value='{$item}'>{$item}</option>";
+                        echo "<option value='{$item}'>{$item}</option>";
                       }
                     }
                   }
@@ -212,7 +205,7 @@
                     if ($accessories[0] == "No items found") echo "<option disabled>No items found</option>";
                     else {
                       foreach ($accessories as $item) {
-                      echo "<option value='{$item}'>{$item}</option>";
+                        echo "<option value='{$item}'>{$item}</option>";
                       }
                     }
                   }
@@ -224,14 +217,11 @@
                 <h4 class="mb-2">Edit item</h4>
                 <h6>Leave fields empty to make no changes</h6>
                 <div class="form-outline mb-4">
-                  <input type="text" class="form-control form-control-lg" id="manage-item-name" name="manage-item-name"
-                    maxlength="20" value="<?php echo $_SESSION["manageItemName"] ?? '' ?>">
+                  <input type="text" class="form-control form-control-lg" id="manage-item-name" name="manage-item-name" maxlength="20" value="<?php echo $_SESSION["manageItemName"] ?? '' ?>">
                   <label for="manage-item-name" class="form-label">Change Item name</label>
                 </div>
                 <div class="form-outline mb-4">
-                  <textarea type="text" class="form-control form-control-lg " data-mdb-showcounter="true"
-                    id="manage-item-desc" name="manage-item-desc" maxlength="500"
-                    style="height: 10rem;"><?php echo $_SESSION["manageItemDesc"] ?? '' ?></textarea>
+                  <textarea type="text" class="form-control form-control-lg " data-mdb-showcounter="true" id="manage-item-desc" name="manage-item-desc" maxlength="500" style="height: 10rem;"><?php echo $_SESSION["manageItemDesc"] ?? '' ?></textarea>
                   <label for="manage-item-desc" class="form-label">Change Description</label>
                   <div class="form-helper"></div>
                 </div>
@@ -242,31 +232,36 @@
                   <option value="accessories">Accessories</option>
                   <option value="no-change">No change</option>
                 </select>
+                <div class="form-outline mb-3">
+                  <input type="tel" class="form-control form-control-lg" id="item-price" name="manage-item-price" value="<?php echo $_SESSION["manageItemPrice"] ?? '' ?>" maxlength="10" required>
+                  <label for="manage-item-price" class="form-label">Price (S$)</label>
+                </div>
+                <select class="form-select mb-3" name="manage-item-type" aria-label="Item type" required>
+                  <option disabled selected>Type</option>
+                  <option value="Unisex">Unisex</option>
+                  <option value="Men">Men</option>
+                  <option value="Women">Women</option>
+                </select>
                 <label class="form-label" for="manage-item-size">Change Stock</label>
                 <div class="d-flex flex-row justify-content-between">
                   <div class="form-outline mb-4 me-3">
-                    <input type="number" class="form-control form-control-lg" id="manage-item-size-XS"
-                      name="manage-item-size-XS" min=0 value="<?php echo $_SESSION["manageXs"] ?? '' ?>">
+                    <input type="number" class="form-control form-control-lg" id="manage-item-size-XS" name="manage-item-size-XS" min=0 value="<?php echo $_SESSION["manageXs"] ?? '' ?>">
                     <label for="manage-item-size-XS" class="form-label">XS</label>
                   </div>
                   <div class="form-outline mb-4 me-3">
-                    <input type="number" class="form-control form-control-lg" id="manage-item-size-S"
-                      name="manage-item-size-S" min=0 value="<?php echo $_SESSION["manageS"] ?? '' ?>">
+                    <input type="number" class="form-control form-control-lg" id="manage-item-size-S" name="manage-item-size-S" min=0 value="<?php echo $_SESSION["manageS"] ?? '' ?>">
                     <label for="manage-item-size-S" class="form-label">S</label>
                   </div>
                   <div class="form-outline mb-4 me-3">
-                    <input type="number" class="form-control form-control-lg" id="manage-item-size-M"
-                      name="manage-item-size-M" min=0 value="<?php echo $_SESSION["manageM"] ?? '' ?>">
+                    <input type="number" class="form-control form-control-lg" id="manage-item-size-M" name="manage-item-size-M" min=0 value="<?php echo $_SESSION["manageM"] ?? '' ?>">
                     <label for="manage-item-size-M" class="form-label">M</label>
                   </div>
                   <div class="form-outline mb-4 me-3">
-                    <input type="number" class="form-control form-control-lg" id="manage-item-size-L"
-                      name="manage-item-size-L" min=0 value="<?php echo $_SESSION["manageL"] ?? '' ?>">
+                    <input type="number" class="form-control form-control-lg" id="manage-item-size-L" name="manage-item-size-L" min=0 value="<?php echo $_SESSION["manageL"] ?? '' ?>">
                     <label for="manage-item-size-L" class="form-label">L</label>
                   </div>
                   <div class="form-outline mb-4">
-                    <input type="number" class="form-control form-control-lg" id="manage-item-size-XL"
-                      name="manage-item-size-XL" min=0 value="<?php echo $_SESSION["manageXl"] ?? '' ?>">
+                    <input type="number" class="form-control form-control-lg" id="manage-item-size-XL" name="manage-item-size-XL" min=0 value="<?php echo $_SESSION["manageXl"] ?? '' ?>">
                     <label for="manage-item-size-XL" class="form-label">XL</label>
                   </div>
                 </div>
@@ -274,8 +269,7 @@
                 <input class="form-control mb-4" type="file" id="manage-item-img" name="manage-item-img" />
               </div>
               <div class="form-outline mb-4 item-name">
-                <input type="password" class="form-control form-control-lg" id="manage-admin-key"
-                  name="manage-admin-key" required>
+                <input type="password" class="form-control form-control-lg" id="manage-admin-key" name="manage-admin-key" required>
                 <label for="manage-admin-key" class="form-label">Admin key</label>
               </div>
               <div class="pt-1 mb-4">
@@ -304,19 +298,16 @@
               }
               ?>
               <div class="form-outline mb-3">
-                <input type="text" class="form-control form-control-lg" id="mng-user-name" name="mng-user-name"
-                  value="<?php echo $_SESSION["mngUserName"] ?? '' ?>" maxlength="20" required>
+                <input type="text" class="form-control form-control-lg" id="mng-user-name" name="mng-user-name" value="<?php echo $_SESSION["mngUserName"] ?? '' ?>" maxlength="20" required>
                 <label for="mng-user-name" class="form-label">Username/UserID</label>
               </div>
-              <select class="form-select mb-3 manage-user-action" name="manage-user-action"
-                aria-label="Manage User Action">
+              <select class="form-select mb-3 manage-user-action" name="manage-user-action" aria-label="Manage User Action">
                 <option value="Suspend">Suspend</option>
                 <option value="Unsuspend">Unsuspend</option>
                 <option value="Delete">Delete</option>
               </select>
               <div class="form-outline mb-3 item-name">
-                <input type="password" class="form-control form-control-lg" id="user-admin-key" name="user-admin-key"
-                  required>
+                <input type="password" class="form-control form-control-lg" id="user-admin-key" name="user-admin-key" required>
                 <label for="user-admin-key" class="form-label">Admin key</label>
               </div>
 

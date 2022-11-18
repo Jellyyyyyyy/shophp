@@ -1,4 +1,10 @@
-let cartItems;
+var cartItems;
+
+function appendHtmlChild(element, value, elementContainer) {
+  let child = document.createElement(element);
+  child.textContent = value;
+  document.querySelector(elementContainer).appendChild(child);
+}
 
 function addCard(imgSource, category, size, name, price, elementContainer) {
   // Load cards into webpage
@@ -14,7 +20,7 @@ function addCard(imgSource, category, size, name, price, elementContainer) {
   cardCategory.textContent = category;
   cardSize.textContent = size;
   cardName.textContent = name;
-  cardPrice.textContent = price;
+  cardPrice.textContent = "$" + price;
 
   document.querySelector(elementContainer).appendChild(card);
 }
@@ -31,9 +37,7 @@ function addEvents() {
         e.target.parentElement.parentElement.querySelector(
           "[data-item-name]"
         ).textContent;
-      console.log(itemName);
       cartItems.push(itemName);
-      console.log(cartItems);
       setCookie(`cartItems`, cartItems, 30);
       window.location.reload();
     });

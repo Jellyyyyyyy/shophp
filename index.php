@@ -146,8 +146,8 @@
       </div>
     </div>
   </template>
+  <?php include_once "include/footer.inc.php" ?>
 </body>
 
-<?php include_once "include/footer.inc.php" ?>
 
 </html>

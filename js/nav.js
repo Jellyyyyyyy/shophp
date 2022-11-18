@@ -54,6 +54,7 @@ function getQuantityOfItems(arr) {
 // Generating Popover for bag
 const states = document.querySelector("[data-login-state]");
 let loginClass, loginText, loginHref, hideState, cartItemsString;
+var cartItems;
 
 if (states.getAttribute("data-login-state") === "true") {
   loginClass = "bx-log-out";

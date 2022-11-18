@@ -6,9 +6,9 @@ require_once 'include/dbcon.inc.php';
 turnOnErrorReport();
 mysqli_report(MYSQLI_REPORT_ALL);
 
-$oldItem = $oldItemName = $oldItemCat = $oldItemDesc = $oldItemStock = $oldItemImg = ""; // Old item variables
-$newItemName = $newItemCat = $newItemDesc = $newItemStock = $newItemImg = ""; // New item variables
-$isEmptyName = $isEmptyCat = $isEmptyDesc = $isEmptyStock = $isEmptyImg = "true"; // Empty flags 1 = empty, 0 = not empty
+$oldItem = $oldItemName = $oldItemCat = $oldItemDesc = $oldItemPrice = $oldItemType = $oldItemStock = $oldItemImg = ""; // Old item variables
+$newItemName = $newItemCat = $newItemDesc = $newItemPrice = $newItemType = $newItemStock = $newItemImg = ""; // New item variables
+$isEmptyName = $isEmptyCat = $isEmptyDesc = $isEmptyType = $isEmptyType = $isEmptyStock = $isEmptyImg = "true"; // Empty flags 1 = empty, 0 = not empty
 $oldTargetPath = $newTargetPath = $newImageFileType = ""; // Image file variables
 
 $manageMsg = " updated successfully.";
@@ -16,7 +16,8 @@ $manageSuccess = "true";
 
 $formItem = $manageAction = "";
 
-function checkRequiredEmpty() {
+function checkRequiredEmpty()
+{
   global $conn, $formItem, $manageAction, $manageMsg, $manageSuccess, $oldItem, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg;
 
   if (empty($_POST["manage-admin-key"])) {
@@ -34,23 +35,26 @@ function checkRequiredEmpty() {
 }
 
 
-function getItemFromForm() {
-  global $conn, $formItem, $manageMsg, $manageSuccess, $oldItem, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg;
+function getItemFromForm()
+{
+  global $conn, $formItem, $manageMsg, $manageSuccess, $oldItem, $oldItemPrice, $oldItemType, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg;
 
   if ($conn->connect_error) {
     $manageMsg = "Connection to server failed. Please try again later";
     $manageSuccess = "false";
   } else {
-    $getItemQuery = $conn -> prepare("SELECT * FROM items WHERE name=?;");
-    $getItemQuery -> bind_param("s", $formItem);
-    $getItemQuery -> execute();
-    $result = $getItemQuery -> get_result();
+    $getItemQuery = $conn->prepare("SELECT * FROM items WHERE name=?;");
+    $getItemQuery->bind_param("s", $formItem);
+    $getItemQuery->execute();
+    $result = $getItemQuery->get_result();
     if ($result->num_rows > 0) {
-      $oldItem = $result -> fetch_assoc();
+      $oldItem = $result->fetch_assoc();
       $oldItemID = $oldItem["itemID"];
       $oldItemName = $oldItem["name"];
       $oldItemCat = $oldItem["category"];
       $oldItemDesc = $oldItem["description"];
+      $oldItemPrice = $oldItem["price"];
+      $oldItemType = $oldItem["type"];
       $oldItemStock = $oldItem["stock"];
       $oldItemImg = $oldItem["image"];
     } else {
@@ -58,11 +62,12 @@ function getItemFromForm() {
       $manageSuccess = "false";
     }
   }
-  $getItemQuery -> close();
+  $getItemQuery->close();
 }
 
-function checkEmptyAndValidate() {
-  global $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
+function checkEmptyAndValidate()
+{
+  global $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemPrice, $newItemType, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyPrice, $isEmptyType, $isEmptyStock, $isEmptyImg, $oldItemStock, $oldItemImg, $oldItemPrice, $oldItemType, $oldTargetPath, $newTargetPath, $newImageFileType;
 
   // If empty set empty flags
   if (!empty($_POST["manage-item-name"])) {
@@ -82,6 +87,19 @@ function checkEmptyAndValidate() {
     }
     $isEmptyDesc = "false";
     $newItemDesc = sanitize_input($_POST["manage-item-desc"]);
+  }
+  if (!empty($_POST["manage-item-price"])) {
+    if (!ctype_digit($_POST["manage-item-price"])) {
+      $manageMsg = "Item price can only contain numbers";
+      $manageSuccess = "false";
+      return;
+    }
+    $isEmptyPrice = "false";
+    $newItemPrice = sanitize_input($_POST["manage-item-price"]);
+  }
+  if (!empty($_POST["manage-item-type"]) && $_POST["manage-item-type"] !== "no-change") {
+    $isEmptyType = "false";
+    $newItemType = sanitize_input($_POST["manage-item-type"]);
   }
   if (!empty($_POST["manage-item-category"]) && $_POST["manage-item-category"] !== "no-change") {
     $isEmptyCat = "false";
@@ -144,27 +162,29 @@ function checkEmptyAndValidate() {
   }
 }
 
-function updateQueryStatement($dbItemColumn, $new) {
+function updateQueryStatement($dbItemColumn, $new)
+{
   global $conn, $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
 
-  $updateQuery = $conn -> prepare("UPDATE items SET {$dbItemColumn}=? WHERE itemID={$oldItemID}");
-  $updateQuery -> bind_param("s", $new);
-  if (!$updateQuery -> execute()) {
-    $updateQuery -> close();
+  $updateQuery = $conn->prepare("UPDATE items SET {$dbItemColumn}=? WHERE itemID={$oldItemID}");
+  $updateQuery->bind_param("s", $new);
+  if (!$updateQuery->execute()) {
+    $updateQuery->close();
     return "false";
   }
-  $updateQuery -> close();
+  $updateQuery->close();
   return "true";
 }
 
-function updateNewItem() {
-  global $conn, $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
+function updateNewItem()
+{
+  global $conn, $manageMsg, $manageSuccess, $newItemName, $newItemType, $newItemPrice, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyPrice, $isEmptyType, $isEmptyStock, $isEmptyImg, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
 
   // Update queries
   if ($isEmptyName == "false") {
-   if (updateQueryStatement("name", $newItemName) === "false") {
-    $manageMsg = "1Execution failed. Please try again later";
-    $manageSuccess = "updateFalse";
+    if (updateQueryStatement("name", $newItemName) === "false") {
+      $manageMsg = "1Execution failed. Please try again later";
+      $manageSuccess = "updateFalse";
     };
   }
   if ($isEmptyCat === "false") {
@@ -179,6 +199,18 @@ function updateNewItem() {
       $manageSuccess = "updateFalse";
     };
   }
+  if ($isEmptyPrice === "false") {
+    if (updateQueryStatement("price", $newItemPrice) === "false") {
+      $manageMsg = "31Execution failed. Please try again later";
+      $manageSuccess = "updateFalse";
+    };
+  }
+  if ($isEmptyType === "false") {
+    if (updateQueryStatement("type", $newItemType) === "false") {
+      $manageMsg = "32Execution failed. Please try again later";
+      $manageSuccess = "updateFalse";
+    };
+  }
   if ($isEmptyStock === "false") {
     if (updateQueryStatement("stock", $newItemStock) === "false") {
       $manageMsg = "4Execution failed. Please try again later";
@@ -187,7 +219,7 @@ function updateNewItem() {
   }
   if ($isEmptyImg === "false") {
     if (rename($oldTargetPath, $oldTargetPath . "-DELETED")) {
-      if (file_exists($newTargetPath)){
+      if (file_exists($newTargetPath)) {
         $manageMsg = "File already exists, please choose a different image name";
         $manageSuccess = "updateFalse";
         return;
@@ -203,21 +235,21 @@ function updateNewItem() {
     $manageMsg = "5Execution failed. Please try again later";
     $manageSuccess = "updateFalse";
   }
-   
 }
 
-function restoreOld() {
-  global $conn, $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
+function restoreOld()
+{
+  global $conn, $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemPrice, $oldItemType, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
 
-  $restoreQuery = $conn -> prepare("UPDATE items SET name='{$oldItemName}',category='{$oldItemCat}',description='{$oldItemDesc}',stock='{$oldItemStock}',image='{$oldItemImg}' WHERE itemID=?;");
-  $restoreQuery -> bind_param("s", $oldItemID);
+  $restoreQuery = $conn->prepare("UPDATE items SET name='{$oldItemName}',category='{$oldItemCat}',description='{$oldItemDesc}',stock='{$oldItemStock}',image='{$oldItemImg}',type='{$oldItemType}',price='{$oldItemPrice}' WHERE itemID=?;");
+  $restoreQuery->bind_param("s", $oldItemID);
   if (file_exists($newTargetPath)) {
     unlink($newTargetPath);
     $unlinked = "true";
   } else {
     $unlinked = "false";
   }
-  if (!$restoreQuery->execute()){
+  if (!$restoreQuery->execute()) {
     $manageMsg .= "<br>Unable to restore old item. Please contact server administrator.";
   }
   if ($unlinked === "true") {
@@ -225,22 +257,23 @@ function restoreOld() {
       $manageMsg .= "<br>Unable to restore old item image. Please contact server administrator.";
     }
   }
-  $restoreQuery -> close();
+  $restoreQuery->close();
 }
 
-function deleteItem() {
+function deleteItem()
+{
   global $conn, $formItem, $manageMsg, $manageSuccess, $newItemName, $newItemCat, $newItemDesc, $newItemStock, $newItemImg, $isEmptyName, $isEmptyCat, $isEmptyDesc, $isEmptyStock, $isEmptyImg, $oldItemID, $oldItemName, $oldItemCat, $oldItemDesc, $oldItemStock, $oldItemImg, $oldTargetPath, $newTargetPath, $newImageFileType;
 
-  $deleteQuery = $conn -> prepare("DELETE FROM items WHERE name=?");
-  $deleteQuery -> bind_param("s", $formItem);
-  if (!$deleteQuery -> execute()) {
+  $deleteQuery = $conn->prepare("DELETE FROM items WHERE name=?");
+  $deleteQuery->bind_param("s", $formItem);
+  if (!$deleteQuery->execute()) {
     $manageMsg = "Item could not be deleted. Please try again later.";
     $manageSuccess = "false";
   }
 }
 
 checkRequiredEmpty();
-if ($manageSuccess === "true" && $manageAction === "edit"){
+if ($manageSuccess === "true" && $manageAction === "edit") {
   getItemFromForm();
   if ($manageSuccess === "true") {
     CheckEmptyAndValidate();
@@ -262,7 +295,7 @@ if ($manageSuccess === "updateFalse") {
   restoreOld();
 }
 
-$conn -> close();
+$conn->close();
 
 
 header("Location: /admin?manageSuccess={$manageSuccess}&manageMsg={$manageMsg}");
