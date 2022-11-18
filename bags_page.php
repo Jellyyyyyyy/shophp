@@ -50,11 +50,17 @@
   <?php
     include_once "include/functions.inc.php";
     echo "window.addEventListener('load', () => {";
-    foreach (getItems("bags") as $item) {
-      echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
+    $bags = getItems("bags");
+    if (!is_array($bags)) {
+      echo "appendHtmlChild('h1', 'No items found', '.main-container');";
+      echo "});";
+    } else {
+      foreach ($bags as $item) {
+        echo "addCard('{$item["image"]}', '{$item["category"]}', '{$item["stock"]}', '{$item["name"]}', '{$item["price"]}', '.grid-container');";
+      }
+      echo "addEvents();";
+      echo "});";
     }
-    echo "addEvents();";
-    echo "});";
     ?>
   </script>
   <?php include_once "include/footer.inc.php" ?>
