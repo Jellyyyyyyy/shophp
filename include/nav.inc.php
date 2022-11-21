@@ -19,7 +19,8 @@
         </a>
       </li>
       <li class="mobile-user-icon d-flex align-items-center justify-content-center">
-        <a href="#"><i class="bx bx-user nav-user-icon"></i></a>
+        <a id="mobile-nav-user" class="nav-user" style="cursor:pointer;"><i
+            class="bx bx-user nav-user-icon mobile-nav-user-icon"></i></a>
       </li>
     </ul>
     <!-- Main nav part -->
