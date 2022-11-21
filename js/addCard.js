@@ -41,11 +41,13 @@ function addCard(itemJSON, target) {
   // Click card event
   [cardImg, cardContainer].forEach((el) => {
     el.addEventListener("click", async () => {
-      let existingModal = document.querySelector(".item-modal");
+      const existingModal = document.querySelector(".item-modal");
+      const modalOverlay = document.querySelector(".modal-overlay");
       if (!existingModal) {
         let modal = createModal(itemJSON);
         await sleep(100);
         modal.classList.remove("hide");
+        modalOverlay.classList.remove("hide");
         document.body.classList.add("no-scroll");
       } else {
         document.body.removeChild(existingModal);
@@ -79,8 +81,10 @@ function createModal(itemJSON) {
 
   // Events in modal
   closeModal.addEventListener("click", async () => {
-    let existingModal = document.querySelector(".item-modal");
+    const existingModal = document.querySelector(".item-modal");
+    const modalOverlay = document.querySelector(".modal-overlay");
     modal.classList.add("hide");
+    modalOverlay.classList.add("hide");
     document.body.classList.remove("no-scroll");
     await sleep(100);
     document.body.removeChild(existingModal);
@@ -113,15 +117,25 @@ function getCookie(cookieName) {
   return "";
 }
 
+async function closeModal() {
+  const modal = document.querySelector(".item-modal");
+  const modalOverlay = document.querySelector(".modal-overlay");
+  modal.classList.add("hide");
+  modalOverlay.classList.add("hide");
+  document.body.classList.remove("no-scroll");
+  await sleep(100);
+  document.body.removeChild(modal);
+}
+
 document.addEventListener("keydown", async (e) => {
-  console.log(e);
   if (e.key === "Escape") {
     if (document.querySelector(".item-modal")) {
-      const modal = document.querySelector(".item-modal");
-      modal.classList.add("hide");
-      document.body.classList.remove("no-scroll");
-      await sleep(100);
-      document.body.removeChild(modal);
+      closeModal();
     }
   }
+});
+
+const modalOverlay = document.querySelector(".modal-overlay");
+modalOverlay.addEventListener("click", () => {
+  closeModal();
 });

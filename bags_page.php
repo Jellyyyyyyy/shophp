@@ -8,23 +8,23 @@
   <title>BAGS</title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/pages.css" />
-  <script src="js/addCard.js"></script>
+  <script src="js/addCard.js" defer></script>
 </head>
 
 <body>
   <?php include_once "include/nav.inc.php" ?>
-  <section id="description">
-    <div class="jumbotron" id="displayJumbo">
-      <div class="row">
-        <div class="col-md-4">
-          <h1 class="hugeText">BAGS</h1>
-          <p class="paraText">What good is a killer outfit if you can't bring out your items with ease? Here are some
-            stylish bags that will complement your outfit and provide you with some storage space simultaneously.</p>
+  <main>
+    <section id="description">
+      <div class="jumbotron" id="displayJumbo">
+        <div class="row">
+          <div class="col-md-4">
+            <h1 class="hugeText">BAGS</h1>
+            <p class="paraText">What good is a killer outfit if you can't bring out your items with ease? Here are some
+              stylish bags that will complement your outfit and provide you with some storage space simultaneously.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <main class="main-container">
+    </section>
     <div class="grid-container">
       <template class="card-template">
         <div class="card col-md-4">
@@ -44,6 +44,7 @@
         </div>
       </template>
     </div>
+    <div class="modal-overlay hide"></div>
   </main>
   <template data-modal-template>
     <div class="fluid-container item-modal hide">
