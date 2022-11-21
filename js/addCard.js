@@ -29,7 +29,7 @@ function addCard(itemJSON, target) {
   else if (Number(stockArr[3]) > 0) stockStr += "-L";
   else if (Number(stockArr[2]) > 0) stockStr += "-M";
   else if (Number(stockArr[1]) > 0) stockStr += "-S";
-  else if (Number(stockArr[0])) stockStr += "-S";
+  else if (Number(stockArr[0])) stockStr += "-XS";
 
   let stockTest = stockStr.split("-");
   if (stockTest[0] === stockTest[1]) {
@@ -38,7 +38,7 @@ function addCard(itemJSON, target) {
 
   // Adding content
   cardImg.src = itemJSON.image;
-  cardCategory.textContent = itemJSON.category;
+  cardCategory.textContent = itemJSON.type;
   cardSize.textContent = stockStr;
   cardName.textContent = itemJSON.name;
   cardPrice.textContent = "$" + itemJSON.price;
