@@ -20,10 +20,9 @@ body.no-scroll {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding-bottom: 2rem;
-  min-height: 55vh;
+  min-height: 90vh;
   z-index: 1;
 }
 
