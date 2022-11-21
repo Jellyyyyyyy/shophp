@@ -4,12 +4,6 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function appendHtmlChild(element, value, elementContainer) {
-  let child = document.createElement(element);
-  child.textContent = value;
-  document.querySelector(elementContainer).appendChild(child);
-}
-
 function addCard(itemJSON, target) {
   const cardTemplate = document.querySelector(".card-template");
   const card = cardTemplate.content.cloneNode(true).children[0];
@@ -21,10 +15,31 @@ function addCard(itemJSON, target) {
   const cardPrice = card.querySelector("[data-item-price]");
   const cardCartBtn = card.querySelector(".add-to-cart");
 
+  // Refine stock
+  const stock = itemJSON.stock;
+  let stockStr = "";
+  const stockArr = stock.split(";");
+  if (Number(stockArr[0]) > 0) stockStr = "XS";
+  else if (Number(stockArr[1]) > 0) stockStr = "S";
+  else if (Number(stockArr[2]) > 0) stockStr = "M";
+  else if (Number(stockArr[3]) > 0) stockStr = "L";
+  else if (Number(stockArr[4])) stockStr = "XL";
+
+  if (Number(stockArr[4]) > 0) stockStr += "-XL";
+  else if (Number(stockArr[3]) > 0) stockStr += "-L";
+  else if (Number(stockArr[2]) > 0) stockStr += "-M";
+  else if (Number(stockArr[1]) > 0) stockStr += "-S";
+  else if (Number(stockArr[0])) stockStr += "-S";
+
+  let stockTest = stockStr.split("-");
+  if (stockTest[0] === stockTest[1]) {
+    stockStr = stockTest[0];
+  }
+
   // Adding content
   cardImg.src = itemJSON.image;
   cardCategory.textContent = itemJSON.category;
-  cardSize.textContent = itemJSON.stock;
+  cardSize.textContent = stockStr;
   cardName.textContent = itemJSON.name;
   cardPrice.textContent = "$" + itemJSON.price;
 
@@ -71,6 +86,7 @@ function createModal(itemJSON) {
   const modalDetails = modal.querySelector("[data-modal-details]");
   const modalMaterials = modal.querySelector("[data-modal-materials]");
   const closeModal = modal.querySelector(".close-modal");
+  const sizeSelect = modal.querySelector("[data-size-select]");
 
   modalImg.src = itemJSON.image;
   modalName.textContent = itemJSON.name;
@@ -78,6 +94,18 @@ function createModal(itemJSON) {
   modalDesc.textContent = itemJSON.description;
   modalDetails.textContent = itemJSON.details;
   modalMaterials.textContent = itemJSON.materials;
+
+  // Adding size options
+  let stockArr = itemJSON.stock.split(";");
+  for (let [index, size] of stockArr.entries()) {
+    const sizesArr = ["XS", "S", "M", "L", "XL"];
+    if (Number(size) > 0) {
+      const selectOption = document.createElement("option");
+      selectOption.value = sizesArr[index];
+      selectOption.textContent = sizesArr[index];
+      sizeSelect.appendChild(selectOption);
+    }
+  }
 
   // Events in modal
   closeModal.addEventListener("click", async () => {

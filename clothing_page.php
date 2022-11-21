@@ -87,12 +87,7 @@
               name="item-quantity" maxlength="2" value="1" min="0">
             <label for="item-quantity" class="form-label quantity-label">Quantity</label>
           </div>
-          <select class="form-select w-25" name="item-size" aria-label="item size">
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
+          <select class="form-select w-25" name="item-size" aria-label="item size" data-size-select>
           </select>
           <button class="btn btn-dark add-to-cart">Add to cart</button>
         </div>
@@ -107,7 +102,9 @@
     echo "window.addEventListener('load', () => {";
     $clothing = getItems("clothing");
     if (!is_array($clothing)) {
-      echo "appendHtmlChild('h1', 'No items found', '.main-container');";
+      echo "let child = document.createElement('h1');";
+      echo "child.textContent = 'No items found';";
+      echo "document.querySelector('main').appendChild(child);";
       echo "});";
     } else {
       foreach ($clothing as $item) {
