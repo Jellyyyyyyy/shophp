@@ -12,6 +12,10 @@ body {
   font-weight: 400;
 }
 
+body.no-scroll {
+  overflow-y: hidden;
+}
+
 #displayJumbo {
   background-color: black;
   padding-top: 5%;
@@ -146,6 +150,84 @@ body {
   flex-direction: row;
   justify-content: space-between;
   color: #000;
+}
+
+.item-modal {
+  height: 40rem;
+  width: 70rem;
+  margin: auto;
+  padding: 24px;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  box-shadow: 0 0 10px 4px #666;
+  border-radius: 0.4rem;
+  transition: all 0.5s ease;
+}
+
+.item-modal.hide {
+  opacity: 0;
+  scale: 0.4;
+}
+
+.item-modal .close-modal {
+  position: absolute;
+  right: 0.3rem;
+  top: 0.3rem;
+}
+
+.item-modal img {
+  height: 100%;
+  margin: 0 1rem;
+}
+
+.item-modal .item-content {
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-modal .item-content .item-more-details .more-details {
+  width: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: none;
+  border-bottom: 1px solid #aaa;
+  border-radius: 0;
+}
+
+.item-modal .item-content .item-text {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.item-modal .item-content .item-text span {
+  margin-bottom: 24px;
+}
+
+.item-modal .item-content .item-text span:first-child {
+  font-size: 24px;
+}
+
+.item-modal .item-content .item-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-modal .item-content .item-actions .add-to-wishlist {
+  line-height: 2;
+}
+
+.item-modal .item-content .item-actions .add-to-cart {
+  margin-left: 8px;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

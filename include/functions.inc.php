@@ -63,7 +63,7 @@ function getItems($category)
     $resultArr = array();
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
-        $resultArr[] = $row;
+        $resultArr[] = json_encode($row);
       }
       return $resultArr;
     } else {
