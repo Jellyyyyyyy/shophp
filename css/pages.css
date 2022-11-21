@@ -16,6 +16,22 @@ body.no-scroll {
   overflow-y: hidden;
 }
 
+/* Grid */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  min-height: 55vh;
+  z-index: 1;
+}
+
+main section {
+  width: 100%;
+  z-index: 1;
+}
+
 #displayJumbo {
   background-color: black;
   padding-top: 5%;
@@ -40,19 +56,8 @@ body.no-scroll {
 .paraText {
   padding-right: 10%;
 }
-/** asjdnas **/
 
-/* Grid */
-.main-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 2rem;
-  min-height: 55vh;
-}
-
-.main-container .grid-container {
+main .grid-container {
   width: 100%;
   --card-height: 1fr;
   --side-padding: 3rem;
@@ -63,9 +68,10 @@ body.no-scroll {
   /* grid-template-rows: var(--card-height) var(--card-height) var(--card-height); */
   gap: 1rem !important;
   justify-items: center;
+  z-index: 1;
 }
 
-.main-container .grid-container .card {
+main .grid-container .card {
   --img-border-radius: 1rem;
   width: 19em;
   height: 26em;
@@ -79,6 +85,7 @@ body.no-scroll {
   border-radius: var(--img-border-radius);
   cursor: pointer;
   opacity: 1;
+  z-index: -1;
 }
 
 .card .arrow {
@@ -95,10 +102,6 @@ body.no-scroll {
   border-radius: var(--img-border-radius) var(--img-border-radius) 0 0;
   object-fit: cover;
 }
-
-/** .imageDIV {
-    object-fit: fill;
-  }*/
 
 .card .category-container {
   margin-top: 2rem;
@@ -165,6 +168,22 @@ body.no-scroll {
   box-shadow: 0 0 10px 4px #666;
   border-radius: 0.4rem;
   transition: all 0.5s ease;
+  z-index: 5;
+}
+
+.modal-overlay {
+  position: absolute;
+  overflow: hidden;
+  inset: 0;
+  margin: auto;
+  height: 500vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 4;
+}
+
+.modal-overlay.hide {
+  display: none;
 }
 
 .item-modal.hide {
