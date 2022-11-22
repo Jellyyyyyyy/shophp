@@ -12,6 +12,25 @@ body {
   font-weight: 400;
 }
 
+body.no-scroll {
+  overflow-y: hidden;
+}
+
+/* Grid */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  min-height: 90vh;
+  z-index: 1;
+}
+
+main section {
+  width: 100%;
+  z-index: 1;
+}
+
 #displayJumbo {
   background-color: black;
   padding-top: 5%;
@@ -36,19 +55,8 @@ body {
 .paraText {
   padding-right: 10%;
 }
-/** asjdnas **/
 
-/* Grid */
-.main-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 2rem;
-  min-height: 50vh;
-}
-
-.main-container .grid-container {
+main .grid-container {
   width: 100%;
   --card-height: 1fr;
   --side-padding: 3rem;
@@ -59,9 +67,10 @@ body {
   /* grid-template-rows: var(--card-height) var(--card-height) var(--card-height); */
   gap: 1rem !important;
   justify-items: center;
+  z-index: 1;
 }
 
-.main-container .grid-container .card {
+main .grid-container .card {
   --img-border-radius: 1rem;
   width: 19em;
   height: 26em;
@@ -75,6 +84,7 @@ body {
   border-radius: var(--img-border-radius);
   cursor: pointer;
   opacity: 1;
+  z-index: -1;
 }
 
 .card .arrow {
@@ -91,10 +101,6 @@ body {
   border-radius: var(--img-border-radius) var(--img-border-radius) 0 0;
   object-fit: cover;
 }
-
-/** .imageDIV {
-    object-fit: fill;
-  }*/
 
 .card .category-container {
   margin-top: 2rem;
@@ -146,6 +152,100 @@ body {
   flex-direction: row;
   justify-content: space-between;
   color: #000;
+}
+
+.item-modal {
+  height: 40rem;
+  width: 70rem;
+  margin: auto;
+  padding: 24px;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  box-shadow: 0 0 10px 4px #666;
+  border-radius: 0.4rem;
+  transition: all 0.5s ease;
+  z-index: 5;
+}
+
+.modal-overlay {
+  position: absolute;
+  overflow: hidden;
+  inset: 0;
+  margin: auto;
+  height: 500vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 4;
+}
+
+.modal-overlay.hide {
+  display: none;
+}
+
+.item-modal.hide {
+  opacity: 0;
+  scale: 0.4;
+}
+
+.item-modal .close-modal {
+  position: absolute;
+  right: 0.3rem;
+  top: 0.3rem;
+}
+
+.item-modal img {
+  height: 100%;
+  margin: 0 1rem;
+}
+
+.item-modal .item-content {
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-modal .item-content .item-more-details .more-details {
+  width: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: none;
+  border-bottom: 1px solid #aaa;
+  border-radius: 0;
+}
+
+.item-modal .item-content .item-text {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.item-modal .item-content .item-text span {
+  margin-bottom: 24px;
+}
+
+.item-modal .item-content .item-text span:first-child {
+  font-size: 24px;
+}
+
+.item-modal .item-content .item-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-modal .item-content .item-actions .add-to-wishlist {
+  line-height: 2;
+}
+
+.item-modal .item-content .item-actions .add-to-cart {
+  margin-left: 8px;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

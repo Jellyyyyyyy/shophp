@@ -56,14 +56,19 @@ function getItems($category)
   if ($conn->connect_error) {
     return "Could not connect to server. Please try again later";
   } else {
-    $query = $conn->prepare("SELECT * FROM items WHERE category=?");
-    $query->bind_param("s", $category);
-    $query->execute();
-    $result = $query->get_result();
-    $resultArr = array();
+    if ($category === "new") {
+      $result = $conn -> query("SELECT * FROM items ORDER BY itemID DESC LIMIT 50;");
+    } else {
+      $query = $conn->prepare("SELECT * FROM items WHERE category=?");
+      $query->bind_param("s", $category);
+      $query->execute();
+      $result = $query->get_result();
+      $resultArr = array();
+    }
+
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
-        $resultArr[] = $row;
+        $resultArr[] = json_encode($row);
       }
       return $resultArr;
     } else {

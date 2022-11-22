@@ -1,47 +1,125 @@
 var cartItems;
 
-function appendHtmlChild(element, value, elementContainer) {
-  let child = document.createElement(element);
-  child.textContent = value;
-  document.querySelector(elementContainer).appendChild(child);
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function addCard(imgSource, category, size, name, price, elementContainer) {
-  // Load cards into webpage
+function addCard(itemJSON, target) {
   const cardTemplate = document.querySelector(".card-template");
   const card = cardTemplate.content.cloneNode(true).children[0];
+  const cardContainer = card.querySelector(".text-container");
   const cardImg = card.querySelector("[data-item-image]");
   const cardCategory = card.querySelector("[data-item-category]");
   const cardSize = card.querySelector("[data-item-size]");
   const cardName = card.querySelector("[data-item-name]");
   const cardPrice = card.querySelector("[data-item-price]");
+  const cardCartBtn = card.querySelector(".add-to-cart");
 
-  cardImg.src = imgSource;
-  cardCategory.textContent = category;
-  cardSize.textContent = size;
-  cardName.textContent = name;
-  cardPrice.textContent = "$" + price;
+  // Refine stock
+  const stock = itemJSON.stock;
+  let stockStr = "";
+  const stockArr = stock.split(";");
+  if (Number(stockArr[0]) > 0) stockStr = "XS";
+  else if (Number(stockArr[1]) > 0) stockStr = "S";
+  else if (Number(stockArr[2]) > 0) stockStr = "M";
+  else if (Number(stockArr[3]) > 0) stockStr = "L";
+  else if (Number(stockArr[4])) stockStr = "XL";
 
-  document.querySelector(elementContainer).appendChild(card);
-}
+  if (Number(stockArr[4]) > 0) stockStr += "-XL";
+  else if (Number(stockArr[3]) > 0) stockStr += "-L";
+  else if (Number(stockArr[2]) > 0) stockStr += "-M";
+  else if (Number(stockArr[1]) > 0) stockStr += "-S";
+  else if (Number(stockArr[0])) stockStr += "-XS";
 
-function addEvents() {
+  let stockTest = stockStr.split("-");
+  if (stockTest[0] === stockTest[1]) {
+    stockStr = stockTest[0];
+  }
+
+  // Adding content
+  cardImg.src = itemJSON.image;
+  cardCategory.textContent = itemJSON.type;
+  cardSize.textContent = stockStr;
+  cardName.textContent = itemJSON.name;
+  cardPrice.textContent = "$" + itemJSON.price;
+
+  // Add top cart event
   cartItems = getCookie("cartItems").split(",");
   const testEmptyString = cartItems.indexOf("");
   if (testEmptyString !== -1) cartItems.splice(testEmptyString, 1); // Removes empty string
+  cardCartBtn.addEventListener("click", () => {
+    cartItems.push(itemJSON.name);
+    setCookie(`cartItems`, cartItems, 30);
+    window.location.reload();
+  });
 
-  const addToCart = document.querySelectorAll(".add-to-cart");
-  [...addToCart].forEach((cart) => {
-    cart.addEventListener("click", (e) => {
-      let itemName =
-        e.target.parentElement.parentElement.querySelector(
-          "[data-item-name]"
-        ).textContent;
-      cartItems.push(itemName);
-      setCookie(`cartItems`, cartItems, 30);
-      window.location.reload();
+  // Click card event
+  [cardImg, cardContainer].forEach((el) => {
+    el.addEventListener("click", async () => {
+      const existingModal = document.querySelector(".item-modal");
+      const modalOverlay = document.querySelector(".modal-overlay");
+      if (!existingModal) {
+        let modal = createModal(itemJSON);
+        await sleep(100);
+        modal.classList.remove("hide");
+        modalOverlay.classList.remove("hide");
+        document.body.classList.add("no-scroll");
+      } else {
+        document.body.removeChild(existingModal);
+        let modal = createModal(itemJSON);
+        modal.classList.remove("hide");
+        document.body.classList.add("no-scroll");
+      }
     });
   });
+
+  document.querySelector(target).appendChild(card);
+}
+
+function createModal(itemJSON) {
+  const modalTemplate = document.querySelector("[data-modal-template]");
+  const modal = modalTemplate.content.cloneNode(true).children[0];
+  const modalImg = modal.querySelector("[data-modal-img]");
+  const modalName = modal.querySelector("[data-modal-name]");
+  const modalPrice = modal.querySelector("[data-modal-price]");
+  const modalDesc = modal.querySelector("[data-modal-desc]");
+  const modalDetails = modal.querySelector("[data-modal-details]");
+  const modalMaterials = modal.querySelector("[data-modal-materials]");
+  const closeModal = modal.querySelector(".close-modal");
+  const sizeSelect = modal.querySelector("[data-size-select]");
+
+  modalImg.src = itemJSON.image;
+  modalName.textContent = itemJSON.name;
+  modalPrice.textContent = "$" + itemJSON.price;
+  modalDesc.textContent = itemJSON.description;
+  modalDetails.textContent = itemJSON.details;
+  modalMaterials.textContent = itemJSON.materials;
+
+  // Adding size options
+  let stockArr = itemJSON.stock.split(";");
+  for (let [index, size] of stockArr.entries()) {
+    const sizesArr = ["XS", "S", "M", "L", "XL"];
+    if (Number(size) > 0) {
+      const selectOption = document.createElement("option");
+      selectOption.value = sizesArr[index];
+      selectOption.textContent = sizesArr[index];
+      sizeSelect.appendChild(selectOption);
+    }
+  }
+
+  // Events in modal
+  closeModal.addEventListener("click", async () => {
+    const existingModal = document.querySelector(".item-modal");
+    const modalOverlay = document.querySelector(".modal-overlay");
+    modal.classList.add("hide");
+    modalOverlay.classList.add("hide");
+    document.body.classList.remove("no-scroll");
+    await sleep(100);
+    document.body.removeChild(existingModal);
+  });
+
+  document.body.insertBefore(modal, document.querySelector("footer"));
+  return modal;
 }
 
 function setCookie(name, value, days) {
@@ -66,3 +144,26 @@ function getCookie(cookieName) {
   }
   return "";
 }
+
+async function closeModal() {
+  const modal = document.querySelector(".item-modal");
+  const modalOverlay = document.querySelector(".modal-overlay");
+  modal.classList.add("hide");
+  modalOverlay.classList.add("hide");
+  document.body.classList.remove("no-scroll");
+  await sleep(100);
+  document.body.removeChild(modal);
+}
+
+document.addEventListener("keydown", async (e) => {
+  if (e.key === "Escape") {
+    if (document.querySelector(".item-modal")) {
+      closeModal();
+    }
+  }
+});
+
+const modalOverlay = document.querySelector(".modal-overlay");
+modalOverlay.addEventListener("click", () => {
+  closeModal();
+});

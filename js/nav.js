@@ -118,6 +118,34 @@ const popoverContent = `
   </div>
   `;
 
+const mobileNavUserPopup = document.getElementById("mobile-nav-user");
+const mobileNavUserIcon = document.querySelector(".mobile-nav-user-icon");
+const mobilePopover = new mdb.Popover(mobileNavUserPopup, {
+  html: true,
+  container: "body",
+  trigger: "manual",
+  toggle: "popover",
+  placement: "bottom",
+  content: popoverContent,
+});
+
+document.addEventListener("click", (e) => {
+  try {
+    const popoverGenerated = document.querySelector(".popover");
+    const popContent = document.querySelectorAll(".pop-content");
+    if (e.target === mobileNavUserIcon || e.target === mobileNavUserPopup) {
+      mobilePopover.toggle();
+    } else if (
+      [...popoverGenerated.childNodes].includes(e.target) ||
+      [...popContent].includes(e.target) ||
+      e.target === popoverGenerated
+    ) {
+    } else {
+      mobilePopover.hide();
+    }
+  } catch {}
+});
+
 const navUserPopup = document.getElementById("nav-user");
 const navUserIcon = document.querySelector(".main-nav-user-icon");
 const popover = new mdb.Popover(navUserPopup, {
