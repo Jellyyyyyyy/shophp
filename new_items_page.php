@@ -28,8 +28,9 @@
       <template class="card-template">
         <div class="card col-md-4">
           <div class="icons">
-            <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist'></i>
-            <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart'></i>
+            <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' data-mdb-toggle="tooltip"
+              title="Add to wishlist"></i>
+            <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart' data-mdb-toggle="tooltip" title="Add to cart"></i>
           </div>
           <img data-item-image>
           <div class="text-container">
