@@ -59,7 +59,7 @@
             <input type="email" id="email" name="newsletterEmail" class="form-control form-control-lg"
               placeholder="Email" required />
 
-            <button class="btn btn-outline-secondary" id="button-addon2" type="submit"><i
+            <button class="btn btn-outline-secondary" id="button-addon2" type="submit" aria-label="send email"><i
                 class='bx bxs-paper-plane bx-xs'></i></button>
           </div>
         </form>
