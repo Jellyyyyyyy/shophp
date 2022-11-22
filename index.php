@@ -12,9 +12,7 @@
 </head>
 
 <body>
-  <header class="head">
-    <?php include_once "include/nav.inc.php" ?>
-  </header>
+  <?php include_once "include/nav.inc.php" ?>
   <main>
     <div class="carousel">
       <div class="left-arrow arrow">
