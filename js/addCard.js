@@ -43,7 +43,9 @@ function addCard(itemJSON, target) {
   cardName.textContent = itemJSON.name;
   cardPrice.textContent = "$" + itemJSON.price;
 
-  // Add top cart event
+  // Add add-to-wishlist event
+
+  // Add add-to-cart event
   cartItems = getCookie("cartItems").split(",");
   const testEmptyString = cartItems.indexOf("");
   if (testEmptyString !== -1) cartItems.splice(testEmptyString, 1); // Removes empty string
