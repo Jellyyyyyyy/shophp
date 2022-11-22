@@ -62,8 +62,8 @@
             <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Email"
               required />
 
-            <button class="btn btn-outline-secondary" id="button-addon2" type="submit"><i
-                class='bx bxs-paper-plane bx-xs'></i></button>
+            <button class="btn btn-outline-secondary" id="button-addon2" type="submit" aria-label="send email">
+              <i class='bx bxs-paper-plane bx-xs'></i></button>
           </div>
         </form>
       </div>
@@ -76,8 +76,8 @@
 $email = $_POST["email"];
 $emailToUse = "newsletter@shophp.shop";
 $emailToSend = $email;
-$subject = "Newsletter Subscription"
-$body = "Hi! Thank you for signing up for the shoPHP newsletter."
+$subject = "Newsletter Subscription";
+$body = "Hi! Thank you for signing up for the shoPHP newsletter.";
 sendMail($emailToUse, $emailToSend, $subject, $body)
 ?>
 
