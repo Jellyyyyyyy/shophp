@@ -321,7 +321,7 @@ input[type="radio"] {
   margin-bottom: 7rem;
 }
 
-#viewAll {
+section .descriptionBar .viewAll {
   text-decoration: none !important;
 }
 

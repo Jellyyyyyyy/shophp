@@ -60,7 +60,7 @@
     <section id="recentProducts">
       <div class="descriptionBar">
         <h2 class="sectionHeader">NEW RELEASES</h2>
-        <a id="viewAll" href="newitems">
+        <a class="viewAll" href="newitems">
           <h2 class="sectionHeader">VIEW ALL</h2>
         </a>
       </div>
@@ -117,7 +117,7 @@
     <section id="trendingItems">
       <div class="descriptionBar">
         <h2 class="sectionHeader">TRENDING ITEMS</h2>
-        <h2 class="sectionHeader"><a id="viewAll" href="trending">VIEW ALL</a></h2>
+        <h2 class="sectionHeader"><a class="viewAll" href="trending">VIEW ALL</a></h2>
       </div>
       <div class="main-container">
         <div class="grid-container2">
