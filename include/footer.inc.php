@@ -46,9 +46,9 @@
       <div class="col-lg-2 col-md-6">
         <h5 class="text-white mb-3">Follow our Socials</h5>
         <ul class="list-unstyled social">
-          <li><a href="#"><i class='footer-icon bx bxl-facebook-square bx-md word-style'></i></a></li>
-          <li><a href="#"><i class='footer-icon bx bxl-youtube bx-md word-style'></i></a></li>
-          <li><a href="#"><i class='footer-icon bx bxl-instagram bx-md word-style'></i></a></li>
+          <li><a href="https://www.facebook.com/josiah.rachmat/" aria-label="facebook"><i class='footer-icon bx bxl-facebook-square bx-md word-style'></i></a></li>
+          <li><a href="https://www.youtube.com/" aria-label="youtube"><i class='footer-icon bx bxl-youtube bx-md word-style'></i></a></li>
+          <li><a href="https://www.instagram.com/josiahrachmat/" aria-label="instagram"><i class='footer-icon bx bxl-instagram bx-md word-style'></i></a></li>
         </ul>
       </div>
       <div class="col-lg-4 col-md-6">
