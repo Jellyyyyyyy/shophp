@@ -32,21 +32,21 @@
         <div class="banner first" id="banner1">
           <h3 class="banner-text-top">DISCOVER YOUR STYLE.</h3>
           <h1 class="banner-text-main">STREETWEAR</h1>
-          <a href="#" id="link">
+          <a href="#" class="banner-link">
             <h3 class="banner-text-bottom">CHECK OUT STREETWEAR ITEMS HERE</h3>
           </a>
         </div>
         <div class="banner" style="background-image: url('/images/index/streetwearcoup.jpg');" id="banner2">
           <h3 class="banner-text-top">DISCOVER YOUR STYLE.</h3>
           <h1 class="banner-text-main">STREETWEAR</h1>
-          <a href="#" id="link">
+          <a href="#" class="-link">
             <h3 class="banner-text-bottom">CHECK OUT STREETWEAR ITEMS HERE</h3>
           </a>
         </div>
         <div class="banner" style="background-image: url('/images/index/streetwearkids.jpg');" id="banner3">
           <h3 class="banner-text-top">DISCOVER YOUR STYLE.</h3>
           <h1 class="banner-text-main">STREETWEAR</h1>
-          <a href="#" id="link">
+          <a href="#" class="-link">
             <h3 class="banner-text-bottom">CHECK OUT STREETWEAR ITEMS HERE</h3>
           </a>
         </div>
@@ -75,7 +75,8 @@
           <div class="row">
             <div class="col-md-6" id="swTitle">
               <h1 class="hugeText">STREETWEAR LOOKBOOKS</h1>
-              <p class="lookbookDesc">We know it can be hard to get into streetwear without inspiration. Here are some of our favourites to
+              <p class="lookbookDesc">We know it can be hard to get into streetwear without inspiration. Here are some
+                of our favourites to
                 keep your outfit ideas fresh!</p>
             </div>
             <div class="col-md-6" id="inspoPics">
