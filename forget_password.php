@@ -34,7 +34,7 @@
                 }
               ?>
                 <div class="form-outline mb-4 login-field">
-                  <input type="text" id="forget_pwd" class="form-control form-control-lg" name="forget_pwd"
+                  <input type="text" id="forget_pwd" class="form-control form-control-lg" aria-label="send email" name="forget_pwd"
                     value="<?php echo $_GET["email"] ?? '';?>" required />
                   <label class="form-label login-email-label" for="login-email-field">Email</label>
                 </div>
