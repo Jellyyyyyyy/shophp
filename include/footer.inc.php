@@ -46,9 +46,9 @@
       <div class="col-lg-2 col-md-6">
         <h5 class="text-white mb-3">Follow our Socials</h5>
         <ul class="list-unstyled social">
-          <li><a href="#"><i class='footer-icon bx bxl-facebook-square bx-md word-style'></i></a></li>
-          <li><a href="#"><i class='footer-icon bx bxl-youtube bx-md word-style'></i></a></li>
-          <li><a href="#"><i class='footer-icon bx bxl-instagram bx-md word-style'></i></a></li>
+          <li><a href="https://www.facebook.com/josiah.rachmat/" aria-label="facebook" target="_blank" rel="noopener noreferrer"><i class='footer-icon bx bxl-facebook-square bx-md word-style'></i></a></li>
+          <li><a href="https://www.youtube.com/" aria-label="youtube" target="_blank" rel="noopener noreferrer"><i class='footer-icon bx bxl-youtube bx-md word-style'></i></a></li>
+          <li><a href="https://www.instagram.com/josiahrachmat/" aria-label="instagram" target="_blank" rel="noopener noreferrer"><i class='footer-icon bx bxl-instagram bx-md word-style'></i></a></li>
         </ul>
       </div>
       <div class="col-lg-4 col-md-6">
@@ -57,7 +57,7 @@
         <form action="#" method="post">
           <div class="input-group">
             <input type="email" id="email" name="newsletterEmail" class="form-control form-control-lg"
-              placeholder="Email" required />
+              placeholder="Email" required>
 
             <button class="btn btn-outline-secondary" id="button-addon2" type="submit" aria-label="send email"><i
                 class='bx bxs-paper-plane bx-xs'></i></button>
@@ -73,7 +73,7 @@
 include_once "include/dbcon.inc.php";
 require_once "include/functions.inc.php";
 if (isset($_POST["newsletterEmail"]) && !empty($_POST["newsletterEmail"])) {
-  if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+  if (filter_var($_POST["newsletterEmail"], FILTER_VALIDATE_EMAIL)) {
     $email = sanitize_input($_POST["newsletterEmail"]);
 
     if ($conn -> connect_error) {
@@ -86,7 +86,7 @@ if (isset($_POST["newsletterEmail"]) && !empty($_POST["newsletterEmail"])) {
       } else {
         $emailToUse = "no-reply@shophp.shop";
         $subject = "Newsletter Subscription";
-        $body = "Hi! Thank you for signing up for the shoPHP newsletter.<br><br>Click <a href='unsubscribe'>here</a> to unsubscribe.";
+        $body = "<h1>Hi! Thank you for signing up for the shoPHP newsletter.</h1> <p>Click <a href='unsubscribe'>here</a> to unsubscribe.</p>";
         sendMail($emailToUse, $email, $subject, $body);
         $_SESSION['newsletter'] = "Thank you for signing up for our newsletter!";
       }
