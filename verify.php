@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <?php include_once 'nav.inc.php' ?>
+  <?php include_once 'include/nav.inc.php' ?>
   <div class="message">
     <?php
     require_once 'include/functions.inc.php';
