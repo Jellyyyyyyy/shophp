@@ -71,6 +71,11 @@ img {
   width: 5rem;
 }
 
+/**#mobileShophp {
+  height: 100%!important;
+  width: 5rem!important;
+}**/
+
 .user-card-container .user-card-header {
   margin: 2rem 0;
   text-align: center;
