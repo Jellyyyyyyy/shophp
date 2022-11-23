@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BAGS</title>
   <?php include_once "include/head.inc.php" ?>
-  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/pages.css">
   <script src="js/addCard.js" defer></script>
 </head>
 
