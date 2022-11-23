@@ -233,7 +233,7 @@
                   <option value="no-change">No change</option>
                 </select>
                 <div class="form-outline mb-3">
-                  <input type="tel" class="form-control form-control-lg" id="item-price" name="manage-item-price" value="<?php echo $_SESSION["manageItemPrice"] ?? '' ?>" maxlength="10" required>
+                  <input type="tel" class="form-control form-control-lg" id="manage-item-price" name="manage-item-price" value="<?php echo $_SESSION["manageItemPrice"] ?? '' ?>" maxlength="10" required>
                   <label for="manage-item-price" class="form-label">Price (S$)</label>
                 </div>
                 <select class="form-select mb-3" name="manage-item-type" aria-label="Item type" required>
