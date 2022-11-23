@@ -4,10 +4,10 @@
 <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" defer></script>
 <!-- MDBOOTSTRAP -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js" defer></script>
 <!-- NAVBAR -->
-<link rel="stylesheet" href="css/nav.css" />
+<link rel="stylesheet" href="css/nav.css">
 <script src="js/nav.js" defer></script>
 <!-- FOOTER -->
 <link rel="stylesheet" href="css/footer.css">

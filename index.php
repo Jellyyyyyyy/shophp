@@ -2,19 +2,17 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>shoPHP</title>
   <?php include_once "include/head.inc.php" ?>
-  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/index.css">
   <script src="js/index.js" defer></script>
 </head>
 
 <body>
-  <header class="head">
-    <?php include_once "include/nav.inc.php" ?>
-  </header>
+  <?php include_once "include/nav.inc.php" ?>
   <main>
     <div class="carousel">
       <div class="left-arrow arrow">
@@ -32,21 +30,21 @@
         <div class="banner first" id="banner1">
           <h3 class="banner-text-top">DISCOVER YOUR STYLE.</h3>
           <h1 class="banner-text-main">STREETWEAR</h1>
-          <a href="#" id="link">
+          <a href="#" class="banner-link">
             <h3 class="banner-text-bottom">CHECK OUT STREETWEAR ITEMS HERE</h3>
           </a>
         </div>
         <div class="banner" style="background-image: url('/images/index/streetwearcoup.jpg');" id="banner2">
           <h3 class="banner-text-top">DISCOVER YOUR STYLE.</h3>
           <h1 class="banner-text-main">STREETWEAR</h1>
-          <a href="#" id="link">
+          <a href="#" class="banner-link">
             <h3 class="banner-text-bottom">CHECK OUT STREETWEAR ITEMS HERE</h3>
           </a>
         </div>
         <div class="banner" style="background-image: url('/images/index/streetwearkids.jpg');" id="banner3">
           <h3 class="banner-text-top">DISCOVER YOUR STYLE.</h3>
           <h1 class="banner-text-main">STREETWEAR</h1>
-          <a href="#" id="link">
+          <a href="#" class="banner-link">
             <h3 class="banner-text-bottom">CHECK OUT STREETWEAR ITEMS HERE</h3>
           </a>
         </div>
@@ -60,7 +58,7 @@
     <section id="recentProducts">
       <div class="descriptionBar">
         <h2 class="sectionHeader">NEW RELEASES</h2>
-        <a id="viewAll" href="newitems">
+        <a class="viewAll" href="newitems">
           <h2 class="sectionHeader">VIEW ALL</h2>
         </a>
       </div>
@@ -75,7 +73,8 @@
           <div class="row">
             <div class="col-md-6" id="swTitle">
               <h1 class="hugeText">STREETWEAR LOOKBOOKS</h1>
-              <p class="lookbookDesc">We know it can be hard to get into streetwear without inspiration. Here are some of our favourites to
+              <p class="lookbookDesc">We know it can be hard to get into streetwear without inspiration. Here are some
+                of our favourites to
                 keep your outfit ideas fresh!</p>
             </div>
             <div class="col-md-6" id="inspoPics">
@@ -116,7 +115,7 @@
     <section id="trendingItems">
       <div class="descriptionBar">
         <h2 class="sectionHeader">TRENDING ITEMS</h2>
-        <h2 class="sectionHeader"><a id="viewAll" href="trending">VIEW ALL</a></h2>
+        <h2 class="sectionHeader"><a class="viewAll" href="trending">VIEW ALL</a></h2>
       </div>
       <div class="main-container">
         <div class="grid-container2">

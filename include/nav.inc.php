@@ -15,7 +15,7 @@
       </li>
       <li id="mobileLogo">
         <a href="home">
-          <img src="images/shophp.jpeg" alt="shophp logo" id="mobileShophp" />
+          <img src="images/shophp.jpeg" alt="shophp logo" id="mobileShophp">
         </a>
       </li>
       <li class="mobile-user-icon d-flex align-items-center justify-content-center">
@@ -26,7 +26,7 @@
     <!-- Main nav part -->
     <ul class="nav-menu">
       <li class="logo">
-        <a href="home"><img class="nav-logo" src="images/shophp.jpeg" alt="shophp logo" /></a>
+        <a href="home"><img class="nav-logo" src="images/shophp.jpeg" alt="shophp logo"></a>
       </li>
       <li><a href="trending">Trending</a></li>
       <li><a href="newitems">New</a></li>
@@ -48,9 +48,9 @@
   <div class=" search-container hide">
     <i class="bx bx-search-alt-2"></i>
     <div class="seach-bar">
-      <form action="">
+      <form action="#">
         <input autofocus type="text" placeholder="Search shoPHP.shop..." spellcheck="false" autocomplete="off"
-          id="search-field" />
+          id="search-field">
       </form>
     </div>
     <i class="bx bx-x nav-toggle-menu"></i>
