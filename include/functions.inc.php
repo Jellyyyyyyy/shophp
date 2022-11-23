@@ -50,9 +50,8 @@ function sendMail($emailToUse, $emailToSend, $subject, $body)
   return true;
 }
 
-function getItems($category)
-{
-  include_once "dbcon.inc.php";
+function getItems($category) {
+  global $conn;
   if ($conn->connect_error) {
     return "Could not connect to server. Please try again later";
   } else {
@@ -72,7 +71,44 @@ function getItems($category)
       }
       return $resultArr;
     } else {
-      return "No results found.";
+      return "No items found.";
     }
+  }
+}
+
+function getWishlistFromDB() {
+  global $conn;
+  $user = $_SESSION["user"];
+  
+  if ($conn->connect_error) {
+    return "Connection failed. Please try again later.";
+  } else {
+    $query = $conn->prepare("SELECT wishlist FROM users WHERE email=?");
+    $query->bind_param("s", $user);
+    $query->execute();
+    $result = $query->get_result();
+    $row = $result->fetch_assoc();
+    $wishlistItems = $row["wishlist"];
+    $query->close();
+    if ($wishlistItems) return $wishlistItems;
+    else return "No items found"; 
+  }
+}
+
+function addWishlistToDB() {
+  global $conn, $cookieWishlist;
+  $user = $_SESSION["user"];
+  $cookieWishlist = $_COOKIE["wishlistItems"];
+
+  if ($conn->connect_error) {
+    return "Connection failed. Please try again later.";
+  } else if ($cookieWishlist) {
+    $query = $conn->prepare("UPDATE users SET wishlist=? WHERE email=?");
+    $query->bind_param("ss", $cookieWishlist, $user);
+    $query->execute();
+    $query->close();
+    return "true";
+  } else {
+    return "false";
   }
 }

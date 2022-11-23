@@ -12,7 +12,19 @@
 </head>
 
 <body>
-  <?php include_once "include/nav.inc.php" ?>
+  <?php 
+  include_once "include/nav.inc.php";
+  include_once "include/functions.inc.php";
+  include_once "include/dbcon.inc.php";
+  
+  if (!empty(isset($_SESSION["user"]))) {
+    addWishlistToDB();
+    $wishlist = getWishlistFromDB();
+    if ($wishlist !== "No items found") {
+      setcookie("wishlistItems", $wishlist);
+    }
+  }
+  ?>
   <main>
     <section id="description">
       <div class="jumbotron" id="displayJumbo">
@@ -60,7 +72,7 @@
         <div class="item-more-details mb-2">
           <button class="btn mb-3 more-details details-btn" type="button" data-mdb-toggle="collapse"
             data-mdb-target="#details" aria-expanded="false" aria-controls="details">
-            Detials
+            Details
             <i class='bx bx-chevron-down'></i>
           </button>
           <div class="collapse my-3" id="details" data-modal-details>
@@ -98,12 +110,11 @@
 
   <script>
   <?php
-    include_once "include/functions.inc.php";
     echo "window.addEventListener('load', () => {";
     $accessories = getItems("accessories");
     if (!is_array($accessories)) {
       echo "let child = document.createElement('h1');";
-      echo "child.textContent = 'No items found';";
+      echo "child.textContent = '{$accessories}';";
       echo "document.querySelector('main').appendChild(child);";
       echo "});";
     } else {

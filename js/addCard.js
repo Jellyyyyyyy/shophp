@@ -14,6 +14,7 @@ function addCard(itemJSON, target) {
   const cardName = card.querySelector("[data-item-name]");
   const cardPrice = card.querySelector("[data-item-price]");
   const cardCartBtn = card.querySelector(".add-to-cart");
+  const wishlistCardBtn = card.querySelector(".add-to-wishlist");
 
   // Refine stock
   const stock = itemJSON.stock;
@@ -38,12 +39,32 @@ function addCard(itemJSON, target) {
 
   // Adding content
   cardImg.src = itemJSON.image;
+  cardImg.alt = itemJSON.name;
   cardCategory.textContent = itemJSON.type;
   cardSize.textContent = stockStr;
   cardName.textContent = itemJSON.name;
   cardPrice.textContent = "$" + itemJSON.price;
 
   // Add add-to-wishlist event
+  const loginState = document
+    .querySelector("[data-login-state]")
+    .getAttribute("data-login-state");
+  if (loginState == "true") {
+    // Add to wishlist
+    wishlistItems = getCookie("wishlistItems").split(",");
+    const testEmptyString = wishlistItems.indexOf("");
+    if (testEmptyString !== -1) wishlistItems.splice(testEmptyString, 1); // Removes empty string
+    wishlistCardBtn.addEventListener("click", () => {
+      wishlistItems.push(itemJSON.name);
+      setCookie("wishlistItems", wishlistItems);
+      window.location.reload();
+    });
+  } else {
+    // Show toaster popup at top center
+    wishlistCardBtn.addEventListener("click", () => {
+      console.log("NOT LOGGED IN!");
+    });
+  }
 
   // Add add-to-cart event
   cartItems = getCookie("cartItems").split(",");
@@ -91,6 +112,7 @@ function createModal(itemJSON) {
   const sizeSelect = modal.querySelector("[data-size-select]");
 
   modalImg.src = itemJSON.image;
+  modalImg.alt = itemJSON.name;
   modalName.textContent = itemJSON.name;
   modalPrice.textContent = "$" + itemJSON.price;
   modalDesc.textContent = itemJSON.description;

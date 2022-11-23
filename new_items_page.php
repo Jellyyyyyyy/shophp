@@ -12,7 +12,19 @@
 </head>
 
 <body>
-  <?php include_once "include/nav.inc.php" ?>
+  <?php 
+  include_once "include/nav.inc.php";
+  include_once "include/functions.inc.php";
+  include_once "include/dbcon.inc.php";
+  
+  if (!empty(isset($_SESSION["user"]))) {
+    addWishlistToDB();
+    $wishlist = getWishlistFromDB();
+    if ($wishlist !== "No items found") {
+      setcookie("wishlistItems", $wishlist);
+    }
+  }
+  ?>
   <main>
     <section id="description">
       <div class="jumbotron" id="displayJumbo">
@@ -32,7 +44,7 @@
               title="Add to wishlist"></i>
             <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart' data-mdb-toggle="tooltip" title="Add to cart"></i>
           </div>
-          <img data-item-image>
+          <img data-item-image onerror="this.onerror=null;this.src='images/no_image_found.jpg'">
           <div class="text-container">
             <div class="category-container">
               <span data-item-category></span>
@@ -59,7 +71,7 @@
         <div class="item-more-details mb-2">
           <button class="btn mb-3 more-details details-btn" type="button" data-mdb-toggle="collapse"
             data-mdb-target="#details" aria-expanded="false" aria-controls="details">
-            Detials
+            Details
             <i class='bx bx-chevron-down'></i>
           </button>
           <div class="collapse my-3" id="details" data-modal-details>
@@ -97,12 +109,11 @@
 
   <script>
   <?php
-    include_once "include/functions.inc.php";
     echo "window.addEventListener('load', () => {";
     $new = getItems("new");
     if (!is_array($new)) {
       echo "let child = document.createElement('h1');";
-      echo "child.textContent = 'No items found';";
+      echo "child.textContent = '{$new}';";
       echo "document.querySelector('main').appendChild(child);";
       echo "});";
     } else {
