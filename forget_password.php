@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forget Password</title>
   <?php include_once "include/head.inc.php" ?>
-  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
@@ -34,9 +34,9 @@
                 }
               ?>
                 <div class="form-outline mb-4 login-field">
-                  <input type="text" id="forget_pwd" class="form-control form-control-lg" name="forget_pwd"
-                    value="<?php echo $_GET["email"] ?? '';?>" required />
-                  <label class="form-label login-email-label" for="login-email-field">Email</label>
+                  <input type="text" id="forget_pwd" class="form-control form-control-lg" aria-label="send email" name="forget_pwd"
+                    value="<?php echo $_GET["email"] ?? '';?>" required>
+                  <label class="form-label login-email-label" for="forget_pwd">Email</label>
                 </div>
                 <div class="pt-1 mb-4">
                   <button class="btn btn-info btn-lg btn-block submit-button" type="submit">
@@ -48,7 +48,7 @@
           </div>
           <div class="col-sm-6 px-0 d-none d-sm-block">
             <img src="images/login_page_photo.jpeg" alt="Login image" class="w-100 vh-100"
-              style="object-fit: cover; object-position: left" />
+              style="object-fit: cover; object-position: left">
           </div>
         </div>
       </div>

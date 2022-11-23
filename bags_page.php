@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BAGS</title>
   <?php include_once "include/head.inc.php" ?>
-  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/pages.css">
   <script src="js/addCard.js" defer></script>
 </head>
 
