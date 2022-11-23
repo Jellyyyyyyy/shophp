@@ -54,7 +54,7 @@ function getQuantityOfItems(arr) {
 // Generating Popover for bag
 const states = document.querySelector("[data-login-state]");
 let loginClass, loginText, loginHref, hideState, cartItemsString;
-var cartItems;
+var cartItems, wishlistItems;
 
 if (states.getAttribute("data-login-state") === "true") {
   loginClass = "bx-log-out";
@@ -100,6 +100,12 @@ if (states.getAttribute("data-items-state") === "true") {
   }
 }
 
+if (states.getAttribute("data-login-state") === "true") {
+  wishlistItems = getCookie("wishlistItems").split(",");
+  const testEmptyString = wishlistItems.indexOf("");
+  if (testEmptyString !== -1) wishlistItems.splice(testEmptyString, 1); // Removes empty string
+}
+
 const popoverContent = `
   <div class='pop-content user-card-container'>
     <div class='cart-items user-card-header'>
@@ -110,7 +116,11 @@ const popoverContent = `
       <li><a href='cart'><i class='bx bx-shopping-bag'></i><span>Bag ${
         cartItems ? `(${cartItems.length})` : ""
       }</span></a></li>
-      <li><a href='wishlist'><i class='bx bx-bookmark'></i><span>Wishlist</span></a></li>
+      <li><a href='wishlist'><i class='bx bx-bookmark'></i><span>Wishlist ${
+        wishlistItems && wishlistItems.length > 0
+          ? `(${wishlistItems.length})`
+          : ""
+      }</span></a></li>
       <li><a href='orders'><i class='bx bx-package'></i><span>Orders</span></a></li>
       <li><a href='profile'><i class='bx bx-cog'></i><span>Account</span></a></li>
       <li><a href='${loginHref}'><i class='bx ${loginClass}'></i><span>${loginText}</span></a></li>
