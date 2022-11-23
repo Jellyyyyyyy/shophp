@@ -142,6 +142,17 @@ function createModal(itemJSON) {
     document.body.removeChild(existingModal);
   });
 
+  const collapseBtns = modal.querySelectorAll(".more-details");
+  const collapseBtnsArr = [...collapseBtns];
+  collapseBtnsArr.forEach((btn) => {
+    btn.addEventListener("click", (collapse) => {
+      collapseBtnsArr.forEach((el) =>
+        el.getAttribute("aria-expanded") == "true" ? el.click() : null
+      );
+      btn.click();
+    });
+  });
+
   document.body.insertBefore(modal, document.querySelector("footer"));
   return modal;
 }
