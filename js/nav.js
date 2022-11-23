@@ -122,7 +122,7 @@ const popoverContent = `
           : ""
       }</span></a></li>
       <li><a href='orders'><i class='bx bx-package'></i><span>Orders</span></a></li>
-      <li><a href='profile'><i class='bx bx-cog'></i><span>Account</span></a></li>
+      <li><a href='account'><i class='bx bx-cog'></i><span>Account</span></a></li>
       <li><a href='${loginHref}'><i class='bx ${loginClass}'></i><span>${loginText}</span></a></li>
     </ul>
   </div>
