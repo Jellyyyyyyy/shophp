@@ -1,6 +1,9 @@
 RewriteEngine on
 
-# Removes changes /index.php to home
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^legacy$ legacy.php [NC]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^home$ index.php [NC]
