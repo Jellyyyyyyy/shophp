@@ -45,14 +45,14 @@
 
                   <div class="form-outline mb-4">
                     <input type="text" id="admin-code" name="admin-code" class="form-control form-control-lg"
-                      value="<?php echo $_SESSION['loginCode'] ?? '' ?>" required />
+                      value="<?php echo $_SESSION['loginCode'] ?? '' ?>" required>
                     <label class="form-label" for="admin-code">Admin Code</label>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="password" id="admin-password" name="admin-password"
                       class="form-control form-control-lg" value="<?php echo $_SESSION['loginPassword'] ?? '' ?>"
-                      required />
+                      required>
                     <label class="form-label" for="admin-password">Admin Password</label>
                   </div>
 
@@ -97,38 +97,38 @@
 
                   <div class="form-outline mb-4">
                     <input type="text" id="admin-name" name="admin-name" class="form-control form-control-lg"
-                      value="<?php echo $_SESSION['registerAdminName'] ?? '' ?>" required />
+                      value="<?php echo $_SESSION['registerAdminName'] ?? '' ?>" required>
                     <label class="form-label" for="admin-name">Admin name</label>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="text" id="register-code" name="register-code" class="form-control form-control-lg"
-                      value="<?php echo $_SESSION['registerCode'] ?? '' ?>" minlength="10" maxlength="10" required />
+                      value="<?php echo $_SESSION['registerCode'] ?? '' ?>" minlength="10" maxlength="10" required>
                     <label class="form-label" for="register-code">Register Code</label>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="password" id="password" name="password" class="form-control form-control-lg"
-                      value="<?php echo $_SESSION['registerPassword'] ?? '' ?>" required />
+                      value="<?php echo $_SESSION['registerPassword'] ?? '' ?>" required>
                     <label class="form-label" for="password">Register Password</label>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="password" id="confirm-password" name="confirm-password"
                       class="form-control form-control-lg" value="<?php echo $_SESSION['registerCfmPassword'] ?? '' ?>"
-                      required />
+                      required>
                     <label class="form-label" for="confirm-password">Register confirm Password</label>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="password" id="admin-key" name="admin-key" class="form-control form-control-lg"
-                      value="<?php echo $_SESSION['registerAdminkey'] ?? '' ?>" required />
+                      value="<?php echo $_SESSION['registerAdminkey'] ?? '' ?>" required>
                     <label class="form-label" for="admin-key">Admin key</label>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="password" id="privilege-key" name="privilege-key" class="form-control form-control-lg"
-                      value="<?php echo $_SESSION['registerPrivilege'] ?? '' ?>" required />
+                      value="<?php echo $_SESSION['registerPrivilege'] ?? '' ?>" required>
                     <label class="form-label" for="privilege-key">Privilege Key</label>
                   </div>
 
