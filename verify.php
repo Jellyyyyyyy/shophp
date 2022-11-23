@@ -10,12 +10,10 @@
   <link rel="stylesheet" href="css/verify.css">
 </head>
 <body>
+  <?php include_once 'include/nav.inc.php' ?>
   <main>
-    <?php include_once 'nav.inc.php' ?>
-    <div class="message">
-      <?php
-      require_once 'include/functions.inc.php';
-
+  <div class="message">
+    <?php require_once 'include/functions.inc.php'; ?>
       // Variables
       $email = $token = $titleMsg = '';
       $loginLink = '<a href="/login">Login</a>';
