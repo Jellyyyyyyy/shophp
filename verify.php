@@ -9,8 +9,8 @@
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/verify.css">
 </head>
-<main>
-  <body>
+<body>
+  <main>
     <?php include_once 'nav.inc.php' ?>
     <div class="message">
       <?php
@@ -55,7 +55,7 @@
       } $conn -> close();
     ?>
     </div>
-  </body>
-</main>
+    </main>
+    </body>
 
 </html>
