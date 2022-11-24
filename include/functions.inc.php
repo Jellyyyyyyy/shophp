@@ -50,13 +50,13 @@ function sendMail($emailToUse, $emailToSend, $subject, $body)
   return true;
 }
 
-function getItems($category) {
+function getItems($category, $number=50) {
   global $conn;
   if ($conn->connect_error) {
     return "Could not connect to server. Please try again later";
   } else {
     if ($category === "new") {
-      $result = $conn -> query("SELECT * FROM items ORDER BY itemID DESC LIMIT 50;");
+      $result = $conn -> query("SELECT * FROM items ORDER BY itemID DESC LIMIT $number;");
     } else {
       $query = $conn->prepare("SELECT * FROM items WHERE category=?");
       $query->bind_param("s", $category);

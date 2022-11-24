@@ -64,6 +64,51 @@
       </div>
       <div class="main-container">
         <div class="grid-container">
+          <?php 
+        include_once "include/dbcon.inc.php";
+        include_once "include/functions.inc.php";
+        $cards = getItems("new", 4);
+        if ($cards !== "No items found.") {
+          foreach ($cards as $card) {
+            $card = json_decode($card, true);
+            $stockStr = "";
+            $stockArr = explode(";", $card["stock"]);
+            if ($stockArr[0] > 0) $stockStr = "XS";
+            else if ($stockArr[1] > 0) $stockStr = "S";
+            else if ($stockArr[2] > 0) $stockStr = "M";
+            else if ($stockArr[3] > 0) $stockStr = "L";
+            else if ($stockArr[4]) $stockStr = "XL";
+          
+            if ($stockArr[4] > 0) $stockStr .= "-XL";
+            else if ($stockArr[3] > 0) $stockStr .= "-L";
+            else if ($stockArr[2] > 0) $stockStr .= "-M";
+            else if ($stockArr[1] > 0) $stockStr .= "-S";
+            else if ($stockArr[0]) $stockStr .= "-XS";
+            
+            $stockTest = explode("-", $stockStr);
+            if ($stockTest[0] === $stockTest[1]) $stockStr = $stockTest[0];
+
+            echo "
+            <div class='card col-md-4'>
+              <div class='icons'>
+                <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' data-mdb-toggle='tooltip'
+                  title='Add to wishlist'></i>
+                <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart ' data-mdb-toggle='tooltip'
+                  title='Add to cart'></i>
+              </div>
+              <img src='{$card['image']}'>
+              <div class='text-container'>
+                <div class='category-container'>
+                  <span>{$card['category']}</span>
+                  <span>{$stockStr}</span>
+                </div>
+                <span>{$card['name']}</span>
+                <span>$" . "{$card['price']}</span>
+              </div>
+            </div>";
+            }
+          }
+        ?>
         </div>
       </div>
     </section>
@@ -123,28 +168,6 @@
       </div>
     </section>
   </main>
-
-
-  <template class="card-template">
-    <div class="card col-md-4">
-      <div class="arrow-previous arrow">
-        <i class='bx bxs-left-arrow'></i>
-      </div>
-
-      <img data-item-image>
-      <div class="text-container">
-        <div class="category-container">
-          <span data-item-category>UNISEX</span>
-          <span data-item-size>XS-XL</span>
-        </div>
-        <span data-item-name>Pocketable Coat</span>
-        <span data-item-price>$129.90</span>
-      </div>
-      <div class="arrow-next arrow">
-        <i class='bx bxs-right-arrow'></i>
-      </div>
-    </div>
-  </template>
   <?php include_once "include/footer.inc.php" ?>
 </body>
 
