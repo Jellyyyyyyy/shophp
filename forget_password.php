@@ -24,18 +24,17 @@
                 </h3>
                 <?php
                 if (isset($_GET['forgetsuccess'])) {
-                  $success = $_GET['success'];
-                  $errorMsg = $_GET['errorMsg'];
+                  $success = sanitize_input($_GET['success']);
+                  $errorMsg = sanitize_input($_GET['errorMsg']);
                   if ($success == 'true') {
                     echo $errorMsg;
                   } else {
                     echo $errorMsg;
                   }
                 }
-              ?>
+                ?>
                 <div class="form-outline mb-4 login-field">
-                  <input type="text" id="forget_pwd" class="form-control form-control-lg" aria-label="send email" name="forget_pwd"
-                    value="<?php echo $_GET["email"] ?? '';?>" required>
+                  <input type="text" id="forget_pwd" class="form-control form-control-lg" aria-label="send email" name="forget_pwd" value="<?= $_GET["email"] ?? ''; ?>" required>
                   <label class="form-label login-email-label" for="forget_pwd">Email</label>
                 </div>
                 <div class="pt-1 mb-4">
@@ -47,8 +46,7 @@
             </div>
           </div>
           <div class="col-sm-6 px-0 d-none d-sm-block">
-            <img src="images/login_page_photo.jpeg" alt="Login image" class="w-100 vh-100"
-              style="object-fit: cover; object-position: left">
+            <img src="images/login_page_photo.jpeg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left">
           </div>
         </div>
       </div>
