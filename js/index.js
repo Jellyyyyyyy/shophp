@@ -23,6 +23,28 @@ let btnArray = [...radioBtns],
 
 const NUMBER_OF_BANNERS = btnArray.length - 1;
 
+let carouselInterval = setInterval(nextCarousel, 5000);
+
+function nextCarousel() {
+  const currentActive = btnArray.filter((el) => el.checked == true)[0];
+  let currentActiveIndex = btnArray.indexOf(currentActive);
+  if (currentActiveIndex == NUMBER_OF_BANNERS) currentActiveIndex = -1;
+  radioArray.forEach((check_btn) => (check_btn.checked = false));
+  radioArray[currentActiveIndex + 1].checked = true;
+  labelArray.forEach((label) => (label.style.background = "none"));
+  labelArray[currentActiveIndex + 1].style.background = "#eee";
+}
+
+function previousCarousel() {
+  const currentActive = btnArray.filter((el) => el.checked == true)[0];
+  let currentActiveIndex = btnArray.indexOf(currentActive);
+  if (currentActiveIndex == 0) currentActiveIndex = NUMBER_OF_BANNERS + 1;
+  radioArray.forEach((check_btn) => (check_btn.checked = false));
+  radioArray[currentActiveIndex - 1].checked = true;
+  labelArray.forEach((label) => (label.style.background = "none"));
+  labelArray[currentActiveIndex - 1].style.background = "#eee";
+}
+
 labelArray[0].style.background = "#eee";
 
 radioArray.forEach((btn) => {
@@ -43,12 +65,16 @@ swipeArea.addEventListener("swipeLeft", () => {
       btnArray[btn + 1].checked = true;
       labelArray.forEach((label) => (label.style.background = "none"));
       labelArray[btn + 1].style.background = "#eee";
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
       break;
     } else if (btnArray[btn].checked == true && btn == NUMBER_OF_BANNERS) {
       btnArray[btn].checked = false;
       btnArray[0].checked = true;
       labelArray.forEach((label) => (label.style.background = "none"));
       labelArray[0].style.background = "#eee";
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
     }
   }
 });
@@ -61,40 +87,20 @@ swipeArea.addEventListener("swipeRight", () => {
       btnArray[btn - 1].checked = true;
       labelArray.forEach((label) => (label.style.background = "none"));
       labelArray[btn - 1].style.background = "#eee";
-      console.log(btn);
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
       break;
     } else if (btnArray[btn].checked == true && btn == 0) {
       btnArray[btn].checked = false;
       btnArray[NUMBER_OF_BANNERS].checked = true;
       labelArray.forEach((label) => (label.style.background = "none"));
       labelArray[NUMBER_OF_BANNERS].style.background = "#eee";
-      console.log(btn);
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
       break;
     }
   }
 });
-
-function nextCarousel() {
-  const currentActive = btnArray.filter((el) => el.checked == true)[0];
-  let currentActiveIndex = btnArray.indexOf(currentActive);
-  if (currentActiveIndex == NUMBER_OF_BANNERS) currentActiveIndex = -1;
-  radioArray.forEach((check_btn) => (check_btn.checked = false));
-  radioArray[currentActiveIndex + 1].checked = true;
-  labelArray.forEach((label) => (label.style.background = "none"));
-  labelArray[currentActiveIndex + 1].style.background = "#eee";
-}
-
-let carouselInterval = setInterval(nextCarousel, 5000);
-
-function previousCarousel() {
-  const currentActive = btnArray.filter((el) => el.checked == true)[0];
-  let currentActiveIndex = btnArray.indexOf(currentActive);
-  if (currentActiveIndex == 0) currentActiveIndex = NUMBER_OF_BANNERS + 1;
-  radioArray.forEach((check_btn) => (check_btn.checked = false));
-  radioArray[currentActiveIndex - 1].checked = true;
-  labelArray.forEach((label) => (label.style.background = "none"));
-  labelArray[currentActiveIndex - 1].style.background = "#eee";
-}
 
 arrowArray.forEach((arrow) => {
   arrow.addEventListener("click", () => {
@@ -132,23 +138,6 @@ function addArrowEvents() {
       cardArray[currentCard].style.opacity = "1";
     });
   });
-}
-
-function addCard(imgSource, category, size, name, price) {
-  const card = cardTemplate.content.cloneNode(true).children[0];
-  const cardImg = card.querySelector("[data-item-image]");
-  const cardCategory = card.querySelector("[data-item-category]");
-  const cardSize = card.querySelector("[data-item-size]");
-  const cardName = card.querySelector("[data-item-name]");
-  const cardPrice = card.querySelector("[data-item-price]");
-
-  cardImg.src = imgSource;
-  cardCategory.textContent = category;
-  cardSize.textContent = size;
-  cardName.textContent = name;
-  cardPrice.textContent = price;
-
-  document.querySelector(".grid-container").appendChild(card);
 }
 
 addArrowEvents();
