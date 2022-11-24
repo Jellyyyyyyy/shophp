@@ -8,6 +8,7 @@
   <title>Forget Password</title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/forgot.css">
 </head>
 
 <body>

@@ -53,7 +53,8 @@
         </div>
       </div>
     </section>
-    <div class="fluid-container mb-4 h-100 w-100 cart-container">
+
+    <div class="fluid-container h-100 w-100 cart-container">
       <!--<div class="title-text">
         <h1>Your bag total is $3000</h1>
         <button class="btn btn-dark mt-2">Check out</button>
@@ -63,25 +64,80 @@
           <img src="images/login_page_photo.jpeg" alt="">
           <div class="item-details">
             <div class="item-name">
-              <span>BAG OF AWESOMENESS</span>
+              <span>ULZZANG BAG</span>
             </div>
             <div class="item-quantity">
               <i class='bx bx-sm bx-tada-hover bx-minus-circle'></i>
               1
               <i class='bx bx-sm bx-tada-hover bx-plus-circle'></i>
             </div>
+            <div class="size">
+              <select class="select">
+                <option value="1">XS</option>
+                <option value="2">S</option>
+                <option value="3">M</option>
+                <option value="4">L</option>
+                <option value="5">XL</option>
+              </select>
+            </div>
             <div class="item-price">S$100</div>
           </div>
         </div>
-
         <div class="item">
-          <div class="row">
-            <div class="col-md-5">
+          <img src="images/login_page_photo.jpeg" alt="">
+          <div class="item-details">
+            <div class="item-name">
+              <span>TSUNO BAG</span>
+            </div>
+            <div class="item-quantity">
+              <i class='bx bx-sm bx-tada-hover bx-minus-circle'></i>
+              <span>1</span>
+              <i class='bx bx-sm bx-tada-hover bx-plus-circle'></i>
+            </div>
+            <div class="size">
+              <select class="select">
+                <option value="1">XS</option>
+                <option value="2">S</option>
+                <option value="3">M</option>
+                <option value="4">L</option>
+                <option value="5">XL</option>
+              </select>
+            </div>
+            <div class="item-price">S$100</div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/login_page_photo.jpeg" alt="">
+          <div class="item-details">
+            <div class="item-name">
+              <span>MARGIELA TOTE BAG</span>
+            </div>
+            <div class="item-quantity">
+              <i class='bx bx-sm bx-tada-hover bx-minus-circle'></i>
+              1
+              <i class='bx bx-sm bx-tada-hover bx-plus-circle'></i>
+            </div>
+            <div class="size">
+              <select class="select">
+                <option value="1">XS</option>
+                <option value="2">S</option>
+                <option value="3">M</option>
+                <option value="4">L</option>
+                <option value="5">XL</option>
+              </select>
+            </div>
+            <div class="item-price">S$100</div>
+          </div>
+        </div>
+        <!--
+        <div class="item">
+          <div class="itemRow">
+            <div class="col-md-3">
               <div class="productImg">
                 <img src="images/login_page_photo.jpeg" alt="">
               </div>  
             </div>
-            <div class="col-md-7">
+            <div class="col-md-9">
               <div class="item-details">
                 <div class="item-name">BAG</div>
                 <div class="item-quantity">
@@ -92,7 +148,7 @@
                 <div class="item-price">S$100</div>
               </div>
             </div>
-        </div>
+        </div> -->
 
       </div>
 
