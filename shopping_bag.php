@@ -25,7 +25,7 @@
       </div>
     </section>
      <!-- <div class="fluid-container mb-4 h-100 w-100 cart-container">
-          
+          asd
           <div class="items">
             <div class="item">
               <img src="images/login_page_photo.jpeg" alt="">
