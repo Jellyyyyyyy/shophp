@@ -152,6 +152,14 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^process_adminUserEdit$ process_adminUserEdit.php [NC]
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^process_search$ process_search.php [NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^search$ search.php [NC]
+
 # Redirects .php to without .php
 #RewriteEngine On
 #RewriteBase /

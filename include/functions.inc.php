@@ -134,3 +134,29 @@ function refineSize($stock) {
   if ($stockTest[0] === $stockTest[1]) $stockStr = $stockTest[0];
   return $stockStr;
 }
+
+function getItemsFromSearch() {
+  global $conn;
+  if (!empty(isset($_POST["search-field"]))) {
+    $searchQuery = "%" . strtolower(sanitize_input($_POST["search-field"])) . "%";
+  } else {
+    $searchQuery = "%1234%"; // Empty = No items found
+  }
+
+  if ($conn->connect_error) {
+    return "Connection error. Please try again later";
+  } else {
+    $query = $conn->prepare("SELECT * FROM items WHERE name LIKE ?");
+    $query->bind_param("s", $searchQuery);
+    $query->execute();
+    $result = $query->get_result();
+    $resultArr = array();
+    if ($result->num_rows > 0) {
+      $query->close();
+      while ($row = $result->fetch_assoc()) {
+        $resultArr[] = json_encode($row);
+      }
+      return $resultArr;
+    } else return "No items found";
+  }
+}

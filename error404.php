@@ -17,9 +17,10 @@
     <section>
       <h4>The page you're looking for can't be found.</h4>
     </section>
-    <form class="main-search-container"> 
+    <form action="search" method="post" target="_self" class="main-search-container">
       <i class='bx bx-search-alt-2 search-icon'></i>
-      <input class="search-input" id="search-input" type="text" onchange="move_up()" autocomplete="off" aria-label="search">
+      <input class="search-input" id="search-field" name="search-field" type="text" onchange="move_up()"
+        autocomplete="off" aria-label="search">
       <label class="search-text" id="search-text" for="search">Search shoPHP products...</label>
     </form>
   </main>
