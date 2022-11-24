@@ -8,7 +8,29 @@
   <title></title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/shopping_bag.css">
-  <!-- <script src="js/.js" defer></script> -->
+  <script type="text/javascript">
+  let totalCost = "10.00"
+
+  function onVisaCheckoutReady() {
+    V.init({
+      apikey: "3V3OR5G8DJXTGQ4TQZYI21eZqnsETcg7z-49s08D7UMqfjrvE",
+      encryptionKey: "BOOPY01VJDM2QI4M6B4P13kV-che-E8ZpBFvnM5iGXschQDrM",
+      paymentRequest: {
+        currencyCode: "SGD",
+        subtotal: totalCost,
+      },
+    });
+    V.on("payment.success", function(payment) {
+      console.log(JSON.stringify(payment));
+    });
+    V.on("payment.cancel", function(payment) {
+      console.log(JSON.stringify(payment));
+    });
+    V.on("payment.error", function(payment, error) {
+      console.log(JSON.stringify(payment) + "\n" + JSON.stringify(error));
+    });
+  }
+  </script>
 </head>
 
 <body>
@@ -74,9 +96,12 @@
           <span class="price-info">Includes GST of $0</span>
         </div>
       </div>
-      <div class="checkout-btn">
-        <button class="btn btn-dark mt-2">Check out</button>
-      </div>
+      <img alt="Visa Checkout" class="v-button" role="button"
+        src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png" height="500" width="1000" />
+      <script type="text/javascript"
+        src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js">
+      </script>
+
     </div>
   </main>
   <?php include_once "include/footer.inc.php" ?>
