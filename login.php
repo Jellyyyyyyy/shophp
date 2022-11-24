@@ -21,16 +21,16 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6 text-black">
-            <div
-              class="form-container d-flex align-items-center justify-content-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+            <div class="form-container d-flex align-items-center justify-content-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
               <form action="process_login" method="post" target="_self" style="width: 23rem">
                 <h3 class="fw-bold mb-2 pb-3" style="letter-spacing: 1px">
                   Log in
                 </h3>
                 <?php
+                include_once "include/functions.inc.php";
                 if (isset($_GET['loginSuccess'])) {
-                  $loginSuccess = $_GET['loginSuccess'];
-                  $loginMsg = $_GET['loginMsg'];
+                  $loginSuccess = sanitize_input($_GET['loginSuccess']);
+                  $loginMsg = sanitize_input($_GET['loginMsg']);
                   if ($loginSuccess == 'true') {
                     echo '<p>SUCCESS</p>';
                   } else {
@@ -42,14 +42,12 @@
                 }
                 ?>
                 <div class="form-outline mb-4 login-field">
-                  <input type="text" id="login-email-field" class="form-control form-control-lg"
-                    name="login-email-field" value="<?php echo $_GET["user"] ?? ''; ?>" required>
+                  <input type="text" id="login-email-field" class="form-control form-control-lg" name="login-email-field" value="<?php echo $_GET["user"] ?? ''; ?>" required>
                   <label class="form-label login-email-label" for="login-email-field">Email/Username</label>
                 </div>
 
                 <div class="form-outline mb-3 login-field">
-                  <input type="password" id="login-password-field" class="form-control form-control-lg"
-                    name="login-password-field" required>
+                  <input type="password" id="login-password-field" class="form-control form-control-lg" name="login-password-field" required>
                   <label class="form-label login-password-label" for="login-password-field">Password</label>
                 </div>
 
@@ -75,8 +73,7 @@
           </div>
           <div class="col-sm-6 px-0 d-none d-sm-block">
             <div class="login-img-overlay"></div>
-            <img src="images/login_page_photo.jpeg" alt="Login image" class="w-100 vh-100"
-              style="object-fit: cover; object-position: left">
+            <img src="images/login_page_photo.jpeg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left">
           </div>
         </div>
       </div>
@@ -87,8 +84,8 @@
         <h3 class="fw-bold mb-3 form-header" style="letter-spacing: 1px">Create an account</h3>
         <?php
         if (isset($_GET['registerSuccess'])) {
-          $registerSuccess = $_GET['registerSuccess'];
-          $registerMsg = $_GET['registerMsg'];
+          $registerSuccess = sanitize_input($_GET['registerSuccess']);
+          $registerMsg = sanitize_input($_GET['registerMsg']);
           if ($registerSuccess == 'true') {
             echo '<div class="error-container mt-0 mb-1">';
             echo '<span class="error-text w-100">' . $registerMsg . "</span>";
@@ -103,24 +100,21 @@
         }
         ?>
         <div class="form-outline mb-4">
-          <input type="text" id="username" name="username" class="form-control form-control-lg" autocomplete="off"
-            value="<?php echo $_GET["username"] ?? ''; ?>" required>
+          <input type="text" id="username" name="username" class="form-control form-control-lg" autocomplete="off" value="<?php echo $_GET["username"] ?? ''; ?>" required>
           <label class="form-label" for="username">Username</label>
         </div>
 
         <div class="row">
           <div class="col-md-6 mb-3 pb-2">
             <div class="form-outline">
-              <input type="text" id="fname" name="fname" class="form-control form-control-lg"
-                value="<?php echo $_GET["fname"] ?? ''; ?>" required>
+              <input type="text" id="fname" name="fname" class="form-control form-control-lg" value="<?php echo $_GET["fname"] ?? ''; ?>" required>
               <label class="form-label" for="fname">First
                 name</label>
             </div>
           </div>
           <div class="col-md-6 mb-3 pb-2">
             <div class="form-outline">
-              <input type="text" id="lname" name="lname" class="form-control form-control-lg"
-                value="<?php echo $_GET["lname"] ?? ''; ?>">
+              <input type="text" id="lname" name="lname" class="form-control form-control-lg" value="<?php echo $_GET["lname"] ?? ''; ?>">
               <label class="form-label" for="lname">Last
                 name</label>
             </div>
@@ -128,8 +122,7 @@
         </div>
 
         <div class="form-outline mb-4">
-          <input type="email" id="email" name="email" class="form-control form-control-lg"
-            value="<?php echo $_GET["email"] ?? ''; ?>" required>
+          <input type="email" id="email" name="email" class="form-control form-control-lg" value="<?php echo $_GET["email"] ?? ''; ?>" required>
           <label class="form-label" for="email">Email</label>
         </div>
 
@@ -164,20 +157,17 @@
             <h6 class="mb-2 pb-1">Gender: </h6>
             <div class="d-flex justify-content-between">
               <div class="form-check form-check-inline">
-                <input class="form-check-input gender" type="radio" name="maleGender" id="maleGender" value="option1"
-                  checked>
+                <input class="form-check-input gender" type="radio" name="maleGender" id="maleGender" value="option1" checked>
                 <label class="form-check-label" for="maleGender">Male</label>
               </div>
 
               <div class="form-check form-check-inline">
-                <input class="form-check-input gender" type="radio" name="femaleGender" id="femaleGender"
-                  value="option2">
+                <input class="form-check-input gender" type="radio" name="femaleGender" id="femaleGender" value="option2">
                 <label class="form-check-label" for="femaleGender">Female</label>
               </div>
 
               <div class="form-check form-check-inline">
-                <input class="form-check-input gender" type="radio" name="othersGender" id="othersGender"
-                  value="option3">
+                <input class="form-check-input gender" type="radio" name="othersGender" id="othersGender" value="option3">
                 <label class="form-check-label" for="othersGender">Others</label>
               </div>
             </div>
@@ -190,8 +180,7 @@
         </div>
 
         <div class="form-outline mb-4">
-          <input type="password" id="confirm-pwd" name="confirm-pwd" class="form-control form-control-lg" minlength="8"
-            required>
+          <input type="password" id="confirm-pwd" name="confirm-pwd" class="form-control form-control-lg" minlength="8" required>
           <label class="form-label" for="confirm-pwd">Confirm Password</label>
         </div>
 
