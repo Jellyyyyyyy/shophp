@@ -47,3 +47,17 @@ select option {
   color: #000;
   opacity: 1;
 }
+
+.mng-suspend-duration {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.mng-suspend-duration.hidden {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(-50%);
+  z-index: -10;
+}

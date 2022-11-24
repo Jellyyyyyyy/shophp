@@ -33,7 +33,6 @@
       <li><a href="clothing">Clothing</a></li>
       <li><a href="bags">Bags</a></li>
       <li><a href="accessories">Accessories</a></li>
-      <li><a href="sale">Sale</a></li>
       <li>
         <a class="nav-search-icon"><i class="bx bx-search-alt-2 nav-toggle-menu nav-search-icon"
             style="cursor: pointer;"></i></a>

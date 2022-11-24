@@ -402,12 +402,13 @@ section .descriptionBar .viewAll {
   .main-container .grid-container {
     padding: 15px !important;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: 18rem;
+    height: auto;
   }
 
-  .main-container .grid-container .card {
+  /* .main-container .grid-container .card {
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -464,9 +465,9 @@ section .descriptionBar .viewAll {
     padding: 20px;
     padding-left: 10px;
     padding-right: 0px;
-    padding-top: 30px;
-    /**border-radius: var(--img-border-radius) 0 0 var(--img-border-radius);**/
-  }
+    padding-top: 30px; */
+  /**border-radius: var(--img-border-radius) 0 0 var(--img-border-radius);**/
+  /* }
 
   .card .text-container {
     display: flex;
@@ -482,11 +483,7 @@ section .descriptionBar .viewAll {
 
   .card .text-container .category-container span {
     font-size: 15px !important;
-  }
-
-  #recentProducts {
-    height: 15rem;
-  }
+  } */
 
   .descriptionBar {
     padding-top: 1rem !important;

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_POST)) header("Location /login"); // users should not be able to access this file
+if (empty($_POST)) header("Location /adlogin"); // users should not be able to access this file
 require_once 'include/functions.inc.php';
 turnOnErrorReport();
 
@@ -22,7 +22,7 @@ function checkEmptyAndValidate()
     $uploadSuccess = "false";
     return;
   } else if (empty($_POST["item-details"])) {
-    $_POST["item-details"] = "Nothing to see here :)";
+    $_POST["item-details"] = "Nothing to see here";
   } else if (empty($_POST["item-materials"])) {
     $uploadMsg = "Please indicate the material(s) of the item";
     $uploadSuccess = "false";
@@ -53,19 +53,19 @@ function checkEmptyAndValidate()
     $uploadMsg = "Item name can only contain letters, numbers and spaces";
     $uploadSuccess = "false";
     return;
-  } else if (!ctype_alnum(str_replace(' ', '', $_POST["item-desc"]))) {
-    $uploadMsg = "Item description can only contain letters, numbers and spaces";
+  } else if (strpos($_POST["item-desc"], "'") || strpos($_POST["item-desc"], '"')) {
+    $uploadMsg = "Item description cannot contain apostrophes";
     $uploadSuccess = "false";
     return;
-  } else if (!ctype_alnum(str_replace(' ', '', $_POST["item-details"]))) {
-    $uploadMsg = "Item's more details can only contain letters, numbers and spaces";
+  } else if (strpos($_POST["item-details"], "'") || strpos($_POST["item-details"], '"')) {
+    $uploadMsg = "Item's more details cannot contain apostrophes";
     $uploadSuccess = "false";
     return;
-  } else if (!ctype_alnum(str_replace(' ', '', $_POST["item-materials"]))) {
-    $uploadMsg = "Item materials can only contain letters, numbers and spaces";
+  } else if (strpos($_POST["item-price"], "'") || strpos($_POST["item-price"], '"')) {
+    $uploadMsg = "Item materials not contain apostrophes";
     $uploadSuccess = "false";
     return;
-  } else if (!ctype_digit($_POST["item-price"])) {
+  } else if (!ctype_digit(str_replace('.', '', $_POST["item-price"]))) {
     $uploadMsg = "Item price can only contain numbers";
     $uploadSuccess = "false";
     return;
