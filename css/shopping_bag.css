@@ -67,7 +67,7 @@ body {
 }
 
 .cart-container .items {
-  width: 60%;
+  width: 50rem;
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
@@ -75,17 +75,22 @@ body {
 
 .cart-container .items .item {
   height: 30rem;
-  width: 100%;
+  width: 50rem;
   padding: 5rem 0;
   border-top: 1px solid #aaa;
   display: flex;
   flex-direction: row;
 }
 
+.item .row {
+  display: flex;
+  flex-direction: row;
+}
+
 .cart-container .items .item img {
-  height: 100%;
-  width: 40%;
-  object-fit: contain;
+  height: 15rem;
+  width: 12rem;
+  object-fit: cover;
 }
 
 .cart-container .items .item .item-details {
@@ -141,6 +146,7 @@ body {
   color: #aaa;
 }
 
+/**
 .cart-container .checkout-btn {
   width: 60%;
   display: flex;
@@ -150,4 +156,16 @@ body {
 .cart-container .checkout-btn button {
   height: 3.5rem;
   width: 50%;
+} **/
+
+
+
+
+.visaBtn .v-button {
+  width: 17rem!important;
+}
+
+.visaBtn {
+  display: flex;
+  justify-content: right;
 }
