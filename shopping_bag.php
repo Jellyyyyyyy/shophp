@@ -8,7 +8,7 @@
   <title>CART</title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/shopping_bag.css">
-  <script type="text/javascript">
+  <script>
   let totalCost = "10.00"
 
   function onVisaCheckoutReady() {
@@ -115,18 +115,18 @@
           <span class="price-info">Includes GST of $0</span>
           <div class="visaBtn">
             <img alt="Visa Checkout" class="v-button" role="button"
-              src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png" />
+              src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png">
           </div>
         </div>
       </div>
       
-      <script type="text/javascript" src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js">
+      <script src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js">
 
       </script>
-
     </div>
+    </div>
+    <?php include_once "include/footer.inc.php" ?>
   </main>
-  <?php include_once "include/footer.inc.php" ?>
 </body>
 
 </html>
