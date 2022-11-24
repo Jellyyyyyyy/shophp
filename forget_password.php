@@ -8,6 +8,7 @@
   <title>Forget Password</title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/forgot.css" />
 </head>
 
 <body>
@@ -19,8 +20,8 @@
           <div class="col-sm-6 text-black">
             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
               <form action="process_forget" method="post" target="_self" style="width: 23rem">
-                <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
-                  Forget Password
+                <h3 class="fw-bold mb-3 pb-3" style="letter-spacing: 1px">
+                  Forgot Password
                 </h3>
                 <?php
                 if (isset($_GET['forgetsuccess'])) {
