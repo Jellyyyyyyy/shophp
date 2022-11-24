@@ -1,5 +1,5 @@
 <?php
-if (empty($_POST)) header("Location /login"); // users should not be able to access this file
+if (empty($_POST)) header("Location /adlogin"); // users should not be able to access this file
 require_once 'include/functions.inc.php';
 turnOnErrorReport();
 session_start();
@@ -87,7 +87,6 @@ function registerAdmin() {
         $registerMsg = "That register code is taken. Please use another one";
       } else {
         $registerMsg = "An unexpected error has occured. Please contact server administrator";
-        // $registerMsg = $query->error;
       }
       $registerSuccess = "false";
     }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_POST)) header("Location /login"); // users should not be able to access this file
+if (empty($_POST)) header("Location /adlogin"); // users should not be able to access this file
 require_once 'include/functions.inc.php';
 require_once 'include/dbcon.inc.php';
 turnOnErrorReport();
@@ -83,8 +83,8 @@ function checkEmptyAndValidate()
   }
 
   if (!empty($_POST["manage-item-desc"])) {
-    if (!ctype_alnum(str_replace(' ', '', $_POST["manage-item-desc"]))) {
-      $manageMsg = "Item description can only contain letters, numbers and spaces";
+    if (strpos($_POST["manage-item-desc"], "'") || strpos($_POST["manage-item-desc"], '"')) {
+      $manageMsg = "Item description cannot contain apostrophes";
       $manageSuccess = "false";
       return;
     }
@@ -93,8 +93,8 @@ function checkEmptyAndValidate()
   }
 
   if (!empty($_POST["manage-item-details"])) {
-    if (!ctype_alnum(str_replace(' ', '', $_POST["manage-item-details"]))) {
-      $manageMsg = "Item more details can only contain letters, numbers and spaces";
+    if (strpos($_POST["manage-item-details"], "'") || strpos($_POST["manage-item-details"], '"')) {
+      $manageMsg = "Item's more details cannot contain apostrophes";
       $manageSuccess = "false";
       return;
     }
@@ -103,8 +103,8 @@ function checkEmptyAndValidate()
   }
 
   if (!empty($_POST["manage-item-materials"])) {
-    if (!ctype_alnum(str_replace(' ', '', $_POST["manage-item-materials"]))) {
-      $manageMsg = "Item materials can only contain letters and spaces";
+    if (strpos($_POST["manage-item-materials"], "'") || strpos($_POST["manage-item-materials"], '"')) {
+      $manageMsg = "Item materials cannot contain apostrophes";
       $manageSuccess = "false";
       return;
     }
@@ -113,7 +113,7 @@ function checkEmptyAndValidate()
   }
 
   if (!empty($_POST["manage-item-price"])) {
-    if (!ctype_digit($_POST["manage-item-price"])) {
+    if (!ctype_digit(str_replace('.', '', $_POST["manage-item-price"]))) {
       $manageMsg = "Item price can only contain numbers";
       $manageSuccess = "false";
       return;

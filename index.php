@@ -71,17 +71,15 @@
           if ($cards !== "No items found.") {
             foreach ($cards as $card) {
               $card = json_decode($card, true);
-              $stock = refineSize($card["size"]);
+              $stock = refineSize($card["stock"]);
 
               echo "
               <div class='card col-md-4'>
                 <div class='icons'>
-                  <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' data-mdb-toggle='tooltip'
-                    title='Add to wishlist'></i>
-                  <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart ' data-mdb-toggle='tooltip'
-                    title='Add to cart'></i>
+                  <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' title='Add to wishlist'></i>
+                  <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart' title='Add to cart'></i>
                 </div>
-                <img src='{$card['image']}'>
+                <img src='{$card['image']}' alt='{$card['name']}'>
                 <div class='text-container'>
                   <div class='category-container'>
                     <span>{$card['category']}</span>
@@ -147,17 +145,15 @@
           if ($cards !== "No items found.") {
             foreach ($cards as $card) {
               $card = json_decode($card, true);
-              $stock = refineSize($card["size"]);
+              $stock = refineSize($card["stock"]);
 
               echo "
               <div class='card col-md-4'>
                 <div class='icons'>
-                  <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' data-mdb-toggle='tooltip'
-                    title='Add to wishlist'></i>
-                  <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart ' data-mdb-toggle='tooltip'
-                    title='Add to cart'></i>
+                  <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' title='Add to wishlist'></i>
+                  <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart' title='Add to cart'></i>
                 </div>
-                <img src='{$card['image']}'>
+                <img src='{$card['image']}' alt='{$card['name']}'>
                 <div class='text-container'>
                   <div class='category-container'>
                     <span>{$card['category']}</span>

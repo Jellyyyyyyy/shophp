@@ -31,8 +31,6 @@
             aria-selected="false">Manage listing</a>
           <a class="nav-link" id="v-tabs-users-tab" data-mdb-toggle="tab" href="#v-tabs-users" role="tab"
             aria-controls="v-tabs-users" aria-selected="false">Manage users</a>
-          <a class="nav-link" id="v-tabs-reviews-tab" data-mdb-toggle="tab" href="#v-tabs-reviews" role="tab"
-            aria-controls="v-tabs-reviews" aria-selected="false">Manage reviews</a>
           <a class="nav-link" id="v-tabs-orders-tab" data-mdb-toggle="tab" href="#v-tabs-orders" role="tab"
             aria-controls="v-tabs-orders" aria-selected="false">Manage orders</a>
         </div>
@@ -346,13 +344,14 @@
               </div>
             </form>
           </div>
-          <div class="tab-pane fade" id="v-tabs-users" role="tabpanel" aria-labelledby="v-tabs-users-tab">
+          <div class="tab-pane fade <?= isset($_GET["mngUserSuccess"]) ? 'show active' : '' ?>" id="v-tabs-users"
+            role="tabpanel" aria-labelledby="v-tabs-users-tab">
             <form action="process_adminUserEdit" method="post" target="_self" style="width: 60%;">
               <h2>Manage User</h2>
               <?php
               if (isset($_GET['mngUserSuccess'])) {
-                $mngUserSuccess = $_GET['mngUserSuccess'];
-                $mngUserMsg = $_GET['mngUserMsg'];
+                $mngUserSuccess = sanitize_input($_GET['mngUserSuccess']);
+                $mngUserMsg = sanitize_input($_GET['mngUserMsg']);
                 if ($mngUserSuccess == "true") {
                   echo '<div class="msg-container" style="background: rgba(45, 197, 45, 0.665);border: 2px solid rgb(23, 210, 23);">';
                   echo "<span> {$mngUserMsg} </span>";
@@ -365,16 +364,22 @@
               }
               ?>
               <div class="form-outline mb-3">
-                <input type="text" class="form-control form-control-lg" id="mng-user-name" name="mng-user-name"
+                <input type="text" class="form-control form-control-lg" id="mng-username" name="mng-username"
                   value="<?= $_SESSION["mngUserName"] ?? '' ?>" maxlength="20" required>
-                <label for="mng-user-name" class="form-label">Username/UserID</label>
+                <label for="mng-username" class="form-label">Username/UserID</label>
               </div>
-              <select class="form-select mb-3 manage-user-action" name="manage-user-action"
+              <select class="form-select mb-3 mng-user-action" id="mng-user-action" name="mng-user-action"
                 aria-label="Manage User Action">
-                <option value="Suspend">Suspend</option>
-                <option value="Unsuspend">Unsuspend</option>
-                <option value="Delete">Delete</option>
+                <option value="suspend">Suspend</option>
+                <option value="unsuspend">Unsuspend</option>
+                <option value="delete">Delete</option>
               </select>
+              <div class="form-outline mb-3 item-name mng-suspend-duration">
+                <input type="number" class="form-control form-control-lg" id="mng-suspend-duration"
+                  name="mng-suspend-duration">
+                <label for="mng-suspend-duration" class="form-label">Days of Account Suspension (leave black for
+                  indefinite)</label>
+              </div>
               <div class="form-outline mb-3 item-name">
                 <input type="password" class="form-control form-control-lg" id="user-admin-key" name="user-admin-key"
                   required>
@@ -382,14 +387,12 @@
               </div>
 
               <div class="pt-1 mb-3">
-                <button class="btn btn-dark btn-lg btn-block submit-button manage-user-btn" type="submit">
+                <button class="btn btn-dark btn-lg btn-block submit-button mng-user-btn" id="mng-user-btn"
+                  type="submit">
                   suspend account
                 </button>
               </div>
             </form>
-          </div>
-          <div class="tab-pane fade" id="v-tabs-reviews" role="tabpanel" aria-labelledby="v-tabs-reviews-tab">
-            Manage reviews content
           </div>
           <div class="tab-pane fade" id="v-tabs-orders" role="tabpanel" aria-labelledby="v-tabs-orders-tab">
             Manage orders content

@@ -154,6 +154,10 @@ main .grid-container .card {
   color: #000;
 }
 
+.pre-wrap-text {
+  white-space: pre-wrap;
+}
+
 .item-modal {
   height: 40rem;
   width: 70rem;

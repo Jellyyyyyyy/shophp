@@ -12,9 +12,15 @@ manageActionForm.addEventListener("change", () => {
 });
 
 // Manage user
-const manageUserAction = document.querySelector(".manage-user-action");
-const manageUserBtn = document.querySelector(".manage-user-btn");
+const manageUserAction = document.querySelector(".mng-user-action");
+const manageSuspendDuration = document.querySelector(".mng-suspend-duration");
+const manageUserBtn = document.querySelector(".mng-user-btn");
 
 manageUserAction.addEventListener("change", () => {
   manageUserBtn.textContent = manageUserAction.value + " account";
+  if (manageUserAction.value === "suspend") {
+    manageSuspendDuration.classList.remove("hidden");
+  } else {
+    manageSuspendDuration.classList.add("hidden");
+  }
 });
