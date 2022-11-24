@@ -64,6 +64,36 @@
       </div>
       <div class="main-container">
         <div class="grid-container">
+          <?php 
+          include_once "include/dbcon.inc.php";
+          include_once "include/functions.inc.php";
+          $cards = getItems("new", 4);
+          if ($cards !== "No items found.") {
+            foreach ($cards as $card) {
+              $card = json_decode($card, true);
+              $stock = refineSize($card["size"]);
+
+              echo "
+              <div class='card col-md-4'>
+                <div class='icons'>
+                  <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' data-mdb-toggle='tooltip'
+                    title='Add to wishlist'></i>
+                  <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart ' data-mdb-toggle='tooltip'
+                    title='Add to cart'></i>
+                </div>
+                <img src='{$card['image']}'>
+                <div class='text-container'>
+                  <div class='category-container'>
+                    <span>{$card['category']}</span>
+                    <span>{$stock}</span>
+                  </div>
+                  <span>{$card['name']}</span>
+                  <span>$" . "{$card['price']}</span>
+                </div>
+              </div>";
+              }
+            }
+          ?>
         </div>
       </div>
     </section>
@@ -96,16 +126,7 @@
                     </a>
                   </div>
                 </div>
-                <!--<button class="carousel-control-prev" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" data-mdb-target="#carouselExampleInterval" type="button" data-mdb-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>-->
               </div>
-              <!--<img src="/images/index/handong.jpeg"></img>-->
             </div>
           </div>
         </div>
@@ -118,33 +139,41 @@
         <h2 class="sectionHeader"><a class="viewAll" href="trending">VIEW ALL</a></h2>
       </div>
       <div class="main-container">
-        <div class="grid-container2">
+        <div class="grid-container">
+          <?php 
+          include_once "include/dbcon.inc.php";
+          include_once "include/functions.inc.php";
+          $cards = getItems("trending", 4);
+          if ($cards !== "No items found.") {
+            foreach ($cards as $card) {
+              $card = json_decode($card, true);
+              $stock = refineSize($card["size"]);
+
+              echo "
+              <div class='card col-md-4'>
+                <div class='icons'>
+                  <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' data-mdb-toggle='tooltip'
+                    title='Add to wishlist'></i>
+                  <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart ' data-mdb-toggle='tooltip'
+                    title='Add to cart'></i>
+                </div>
+                <img src='{$card['image']}'>
+                <div class='text-container'>
+                  <div class='category-container'>
+                    <span>{$card['category']}</span>
+                    <span>{$stock}</span>
+                  </div>
+                  <span>{$card['name']}</span>
+                  <span>$" . "{$card['price']}</span>
+                </div>
+              </div>";
+              }
+            }
+          ?>
         </div>
       </div>
     </section>
   </main>
-
-
-  <template class="card-template">
-    <div class="card col-md-4">
-      <div class="arrow-previous arrow">
-        <i class='bx bxs-left-arrow'></i>
-      </div>
-
-      <img data-item-image>
-      <div class="text-container">
-        <div class="category-container">
-          <span data-item-category>UNISEX</span>
-          <span data-item-size>XS-XL</span>
-        </div>
-        <span data-item-name>Pocketable Coat</span>
-        <span data-item-price>$129.90</span>
-      </div>
-      <div class="arrow-next arrow">
-        <i class='bx bxs-right-arrow'></i>
-      </div>
-    </div>
-  </template>
   <?php include_once "include/footer.inc.php" ?>
 </body>
 

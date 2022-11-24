@@ -1,6 +1,9 @@
 RewriteEngine on
 
-# Removes changes /index.php to home
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^legacy$ legacy.php [NC]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^home$ index.php [NC]
@@ -136,6 +139,14 @@ RewriteRule ^process_adminItemEdit$ process_adminItemEdit.php [NC]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^process_adminItemEdit$ process_adminItemEdit.php [NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^process_account$ process_account.php [NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^account$ account.php [NC]
 
 # Redirects .php to without .php
 #RewriteEngine On

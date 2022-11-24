@@ -1,5 +1,5 @@
+<?php session_start()?>
 <!-- Start of nav bar -->
-<?php session_start(); ?>
 <aside class="states" style="display: none" data-login-state="<?php echo isset($_SESSION['user']) ? 'true' : 'false' ?>"
   data-items-state="<?php echo isset($_COOKIE['cartItems']) && !empty($_COOKIE['cartItems']) ? 'true' : 'false' ?>">
 </aside>

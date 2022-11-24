@@ -14,12 +14,36 @@ const SwipeEventListener = window.SwipeEventListener.SwipeEventListener;
 const { swipeArea, updateOptions } = SwipeEventListener({
   swipeArea: document.querySelector(".carousel"),
 });
+const arrows = document.querySelectorAll(".carousel .arrow");
 
 let btnArray = [...radioBtns],
   radioArray = [...radioBtns],
-  labelArray = [...labelBtns];
+  labelArray = [...labelBtns],
+  arrowArray = [...arrows];
 
 const NUMBER_OF_BANNERS = btnArray.length - 1;
+
+let carouselInterval = setInterval(nextCarousel, 5000);
+
+function nextCarousel() {
+  const currentActive = btnArray.filter((el) => el.checked == true)[0];
+  let currentActiveIndex = btnArray.indexOf(currentActive);
+  if (currentActiveIndex == NUMBER_OF_BANNERS) currentActiveIndex = -1;
+  radioArray.forEach((check_btn) => (check_btn.checked = false));
+  radioArray[currentActiveIndex + 1].checked = true;
+  labelArray.forEach((label) => (label.style.background = "none"));
+  labelArray[currentActiveIndex + 1].style.background = "#eee";
+}
+
+function previousCarousel() {
+  const currentActive = btnArray.filter((el) => el.checked == true)[0];
+  let currentActiveIndex = btnArray.indexOf(currentActive);
+  if (currentActiveIndex == 0) currentActiveIndex = NUMBER_OF_BANNERS + 1;
+  radioArray.forEach((check_btn) => (check_btn.checked = false));
+  radioArray[currentActiveIndex - 1].checked = true;
+  labelArray.forEach((label) => (label.style.background = "none"));
+  labelArray[currentActiveIndex - 1].style.background = "#eee";
+}
 
 labelArray[0].style.background = "#eee";
 
@@ -41,12 +65,16 @@ swipeArea.addEventListener("swipeLeft", () => {
       btnArray[btn + 1].checked = true;
       labelArray.forEach((label) => (label.style.background = "none"));
       labelArray[btn + 1].style.background = "#eee";
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
       break;
     } else if (btnArray[btn].checked == true && btn == NUMBER_OF_BANNERS) {
       btnArray[btn].checked = false;
       btnArray[0].checked = true;
       labelArray.forEach((label) => (label.style.background = "none"));
       labelArray[0].style.background = "#eee";
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
     }
   }
 });
@@ -59,17 +87,33 @@ swipeArea.addEventListener("swipeRight", () => {
       btnArray[btn - 1].checked = true;
       labelArray.forEach((label) => (label.style.background = "none"));
       labelArray[btn - 1].style.background = "#eee";
-      console.log(btn);
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
       break;
     } else if (btnArray[btn].checked == true && btn == 0) {
       btnArray[btn].checked = false;
       btnArray[NUMBER_OF_BANNERS].checked = true;
       labelArray.forEach((label) => (label.style.background = "none"));
       labelArray[NUMBER_OF_BANNERS].style.background = "#eee";
-      console.log(btn);
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
       break;
     }
   }
+});
+
+arrowArray.forEach((arrow) => {
+  arrow.addEventListener("click", () => {
+    if (arrow.classList.contains("right-arrow")) {
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
+      nextCarousel();
+    } else if (arrow.classList.contains("left-arrow")) {
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(nextCarousel, 5000);
+      previousCarousel();
+    }
+  });
 });
 
 // Card functions
@@ -96,102 +140,6 @@ function addArrowEvents() {
   });
 }
 
-function addCard(imgSource, category, size, name, price) {
-  const card = cardTemplate.content.cloneNode(true).children[0];
-  const cardImg = card.querySelector("[data-item-image]");
-  const cardCategory = card.querySelector("[data-item-category]");
-  const cardSize = card.querySelector("[data-item-size]");
-  const cardName = card.querySelector("[data-item-name]");
-  const cardPrice = card.querySelector("[data-item-price]");
-
-  cardImg.src = imgSource;
-  cardCategory.textContent = category;
-  cardSize.textContent = size;
-  cardName.textContent = name;
-  cardPrice.textContent = price;
-
-  document.querySelector(".grid-container").appendChild(card);
-}
-
-function addCard2(imgSource, category, size, name, price) {
-  const card = cardTemplate.content.cloneNode(true).children[0];
-  const cardImg = card.querySelector("[data-item-image]");
-  const cardCategory = card.querySelector("[data-item-category]");
-  const cardSize = card.querySelector("[data-item-size]");
-  const cardName = card.querySelector("[data-item-name]");
-  const cardPrice = card.querySelector("[data-item-price]");
-
-  cardImg.src = imgSource;
-  cardCategory.textContent = category;
-  cardSize.textContent = size;
-  cardName.textContent = name;
-  cardPrice.textContent = price;
-
-  document.querySelector(".grid-container2").appendChild(card);
-}
-addCard(
-  "images/index/pocketableLC.png",
-  "unisex".toUpperCase(),
-  "xs-xl".toUpperCase(),
-  "Pocketable Coat",
-  "$129.90"
-);
-addCard(
-  "images/index/PaddedSB.png",
-  "women".toUpperCase(),
-  "xs-xl".toUpperCase(),
-  "Padded Blouson",
-  "$129.90"
-);
-addCard(
-  "images/index/hybridDP.png",
-  "men".toUpperCase(),
-  "xs-xl".toUpperCase(),
-  "Pocketable Coat",
-  "$129.90"
-);
-addCard(
-  "images/index/pocketableLC.png",
-  "unisex".toUpperCase(),
-  "xs-xl".toUpperCase(),
-  "Pocketable Coat",
-  "$129.90"
-);
-
-addCard2(
-  "images/index/hybridDP.png",
-  "men".toUpperCase(),
-  "xs-xl".toUpperCase(),
-  "Pocketable Coat",
-  "$129.90"
-);
-addCard2(
-  "images/index/pocketableLC.png",
-  "unisex".toUpperCase(),
-  "xs-xl".toUpperCase(),
-  "Pocketable Coat",
-  "$129.90"
-);
-addCard2(
-  "images/index/hybridDP.png",
-  "men".toUpperCase(),
-  "xs-xl".toUpperCase(),
-  "Pocketable Coat",
-  "$129.90"
-);
-addCard2(
-  "images/index/pocketableLC.png",
-  "unisex".toUpperCase(),
-  "xs-xl".toUpperCase(),
-  "Pocketable Coat",
-  "$129.90"
-);
-
-
-
 addArrowEvents();
 const allCards = document.querySelectorAll(".grid-container .card");
 [...allCards][0].style.opacity = "1";
-
-const allCards2 = document.querySelectorAll(".grid-container2 .card");
-[...allCards2][0].style.opacity = "1";

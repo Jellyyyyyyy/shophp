@@ -3,7 +3,7 @@ if (empty($_POST)) header("Location /login");
 require_once 'include/functions.inc.php';
 turnOnErrorReport();
 
-$emailOrUser = $pwd = $loginMsg = "";
+$emailOrUser = $userEmail = $pwd = $loginMsg = "";
 $loginSuccess = "true";
 
 // Check email/username and password
@@ -28,7 +28,7 @@ function checkUser()
 // Check if user in database
 function authenticateUser()
 {
-  global $emailOrUser, $pwd, $loginMsg, $loginSuccess;
+  global $userEmail, $emailOrUser, $pwd, $loginMsg, $loginSuccess;
   // Connect to database
   include_once "include/dbcon.inc.php";
 
@@ -45,6 +45,7 @@ function authenticateUser()
 
     if ($result->num_rows > 0) {
       $row = $result->fetch_assoc(); // Get row
+      $userEmail = $row["email"]; // Get email from row
       $verified = $row["verified"]; // Get verified bool from row
       $pwd = $row["password"]; // Get password from row
 
@@ -71,25 +72,29 @@ function authenticateUser()
         ini_set('session.cookie_lifetime', 2592000);
         session_id(md5($emailOrUser . $currentTime));
         session_start();
-        $_SESSION["user"] = $emailOrUser;
+        $_SESSION["user"] = $userEmail;
         session_write_close();
       } else {
         session_set_cookie_params(0);
         session_id(md5($emailOrUser . $currentTime));
         session_start();
-        $_SESSION["user"] = $emailOrUser;
+        $_SESSION["user"] = $userEmail;
         session_write_close();
       }
     }
-
     $query->close();
   }
-  $conn->close();
 }
 
 checkUser();
 if ($loginSuccess == "true") {
   authenticateUser();
-}
+  if ($loginSuccess == "true") {
+    $wishlist = getWishlistFromDB();
+    if ($wishlist !== "No items found") {
+      setcookie("wishlistItems", $wishlist);
+    }
+  }
+} $conn->close();
 
 header('Location: /login?loginSuccess=' . $loginSuccess . '&loginMsg=' . $loginMsg . '&user=' . $emailOrUser);
