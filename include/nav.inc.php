@@ -47,9 +47,9 @@
   <div class=" search-container hide">
     <i class="bx bx-search-alt-2"></i>
     <div class="seach-bar">
-      <form action="#">
+      <form action="search" method="post" target="_self">
         <input autofocus type="text" placeholder="Search shoPHP.shop..." spellcheck="false" autocomplete="off"
-          id="search-field">
+          id="search-field" name="search-field">
       </form>
     </div>
     <i class="bx bx-x nav-toggle-menu"></i>
