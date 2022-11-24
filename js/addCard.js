@@ -33,9 +33,7 @@ function addCard(itemJSON, target) {
   else if (Number(stockArr[0])) stockStr += "-XS";
 
   let stockTest = stockStr.split("-");
-  if (stockTest[0] === stockTest[1]) {
-    stockStr = stockTest[0];
-  }
+  if (stockTest[0] === stockTest[1]) stockStr = stockTest[0];
 
   // Adding content
   cardImg.src = itemJSON.image;
