@@ -1,0 +1,28 @@
+.formTitle {
+    padding-left: 25em!important;
+    padding-right: 25em!important;
+    padding-top: 4em!important;
+}
+
+.formTitle h1 {
+    font-weight: 700;
+    color: black;
+}
+
+.changeDetails {
+    padding-left: 25em!important;
+    padding-right: 25em!important;
+    padding-bottom: 3em!important;
+}
+
+
+.form-group {
+    padding: 0.2em!important;
+}
+
+.form-check {
+    padding-top: 0.9rem!important;
+    padding-bottom: 0.6rem!important;
+    padding-left: 0.5rem!important;
+
+}
