@@ -25,6 +25,10 @@ const NUMBER_OF_BANNERS = btnArray.length - 1;
 
 let carouselInterval = setInterval(nextCarousel, 5000);
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function nextCarousel() {
   const currentActive = btnArray.filter((el) => el.checked == true)[0];
   let currentActiveIndex = btnArray.indexOf(currentActive);
@@ -121,6 +125,8 @@ const cards = [...document.querySelectorAll(".card")];
 cards.forEach((card) => {
   const addToCartBtn = card.querySelector(".add-to-cart");
   const addToWishlistBtn = card.querySelector(".add-to-wishlist");
+  const cardImg = card.querySelector(".card img");
+  const textContainer = card.querySelector(".card .text-container");
   const itemName = card.querySelector("[data-item-name]");
   const loginState = document
     .querySelector("[data-login-state]")
@@ -148,8 +154,6 @@ cards.forEach((card) => {
       alert("Please login to add to wishlist");
     }
   });
-
-  card.addEventListener("click", () => {});
 });
 
 // Cookie functions

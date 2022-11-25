@@ -108,7 +108,7 @@ $priceQuery->close();
                         </div>
                         <div class='item-quantity'>
                           <i class='bx bx-sm bx-tada-hover bx-minus-circle quantity-minus'></i>
-                          {$itemQuantity[$itemDetails['name']]}
+                          <span>{$itemQuantity[$itemDetails['name']]}</span>
                           <i class='bx bx-sm bx-tada-hover bx-plus-circle quantity-add'></i>
                         </div>
                         <div class='size'>
