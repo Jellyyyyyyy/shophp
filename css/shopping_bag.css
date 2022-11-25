@@ -215,13 +215,28 @@ body {
     width: 100%;
     position: absolute;
   }
-  .cart-container .item {
+  .cart-container .items .item {
     display: flex;
-    flex-direction: row!important;
+    flex-direction: column!important;
     width: 100%;
     position: relative;
+    height: 40rem;
+    padding-left: 9em;
+  }
+
+  .cart-container .items .item img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 7em;
+  }
+
+  .cart-container .item .item-details {
+    display: flex;
+    flex-direction: column!important;
   }
   .price-container {
+    width: 100%!important;
     display: flex!important;
     justify-content: center!important;
     align-items: center;

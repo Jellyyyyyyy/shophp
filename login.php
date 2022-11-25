@@ -21,7 +21,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6 text-black">
-            <div class="form-container d-flex align-items-center justify-content-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+            <div class="form-container d-flex align-items-center justify-content-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5 loginBox">
               <form action="process_login" method="post" target="_self" style="width: 23rem">
                 <h3 class="fw-bold mb-2 pb-3" style="letter-spacing: 1px">
                   Log in
