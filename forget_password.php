@@ -12,7 +12,10 @@
 </head>
 
 <body>
-  <?php include_once "include/nav.inc.php" ?>
+  <?php 
+  include_once "include/nav.inc.php";
+  include_once "include/functions.inc.php";
+   ?>
   <main>
     <section class="vh-100">
       <div class="container-fluid">
