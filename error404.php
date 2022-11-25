@@ -19,7 +19,7 @@
     </section>
     <form action="search" method="post" target="_self" class="main-search-container">
       <i class='bx bx-search-alt-2 search-icon'></i>
-      <input class="search-input" id="search-field" name="search-field" type="text" onchange="move_up()"
+      <input class="search-input" id="search" name="search-field" type="text" onchange="move_up()"
         autocomplete="off" aria-label="search">
       <label class="search-text" id="search-text" for="search">Search shoPHP products...</label>
     </form>
