@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>shoPHP</title>
-  <link rel="stylesheet" href=".\css\legacy.css" />
   <?php include_once "include/head.inc.php" ?>
-  <link rel="stylesheet" href="legacy.css">
+  <link rel="stylesheet" href="./css/legacy.css">
 </head>
 
 <body>

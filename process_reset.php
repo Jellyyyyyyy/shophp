@@ -1,4 +1,7 @@
 <?php
+if (empty($_POST)) header("Location /login");
+require_once 'include/functions.inc.php';
+turnOnErrorReport();
 
 $email = $pwd = $errorMsg = $successMsg = $resetToken = "";
 $success = "true";
