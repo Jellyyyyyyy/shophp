@@ -18,52 +18,38 @@ gst.textContent = `Includes GST of $${(
   7
 ).toFixed(2)}`;
 
-const incQuantity = document.querySelectorAll(".quantity-add");
-const decQuantity = document.querySelectorAll(".quantity-minus");
-const incTag =
-  "<i class='bx bx-sm bx-tada-hover bx-minus-circle quantity-minus'></i>";
-const decTag =
-  "<i class='bx bx-sm bx-tada-hover bx-plus-circle quantity-add'></i>";
-[...incQuantity].forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const itemQuantity = btn.parentElement;
-    const itemPrice = btn.parentElement.parentElement.parentElement
-      .querySelector("[data-item-price]")
-      .getAttribute("data-item-price");
-    itemQuantity.innerHTML = `${incTag} ${
-      Number(itemQuantity.textContent) + 1
-    } ${decTag}`;
-    itemPrice.textContent = Number(itemPrice.textContent) + itemPrice;
+cartItems = getCookie("cartItems").split(",");
+const testEmptyString = cartItems.indexOf("");
+if (testEmptyString !== -1) cartItems.splice(testEmptyString, 1); // Removes empty string
+const items = document.querySelectorAll(".item");
+items.forEach((item) => {
+  const incQuantity = item.querySelector(".quantity-add");
+  const decQuantity = item.querySelector(".quantity-minus");
+  const itemQuantity = item.querySelector(".item-quantity span");
+  const itemName = item.querySelector(".item-name span");
+  const individualItemPrice = item
+    .querySelector("[data-item-price]")
+    .getAttribute("data-item-price");
+  const totalItemPrice = item.querySelector(".item-price");
 
-    cartItems = getCookie("cartItems").split(",");
-    const testEmptyString = cartItems.indexOf("");
-    if (testEmptyString !== -1) cartItems.splice(testEmptyString, 1); // Removes empty string
-    cartItems.push(
-      itemQuantity.previousElementSibling.querySelector("span").textContent
+  incQuantity.addEventListener("click", () => {
+    itemQuantity.textContent = Number(itemQuantity.textContent) + 1;
+    totalItemPrice.textContent = "$".concat(
+      Number(totalItemPrice.textContent.substring(1)) +
+        Number(individualItemPrice.textContent)
     );
+    cartItems.push(itemName.textContent);
     setCookie(`cartItems`, cartItems, 30);
   });
-});
-[...decQuantity].forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const itemQuantity = btn.parentElement;
-    const itemPrice = btn.parentElement.parentElement.parentElement
-      .querySelector("[data-item-price]")
-      .getAttribute("data-item-price");
 
-    if (Number(itemQuantity.textContent) > 0) {
-      itemQuantity.innerHTML = `${incTag} ${
-        Number(itemQuantity.textContent) - 1
-      } ${decTag}`;
-      itemPrice.textContent =
-        Number(itemPrice.textContent) - Number(itemPrice.textContent);
-
-      cartItems = getCookie("cartItems").split(",");
-      const testEmptyString = cartItems.indexOf("");
-      if (testEmptyString !== -1) cartItems.splice(testEmptyString, 1); // Removes empty string
-      const index = cartItems.indexOf(
-        itemQuantity.previousElementSibling.querySelector("span").textContent
+  decQuantity.addEventListener("click", () => {
+    if (itemQuantity.textContent > 0) {
+      itemQuantity.textContent = Number(itemQuantity.textContent) - 1;
+      totalItemPrice.textContent = "$".concat(
+        Number(totalItemPrice.textContent.substring(1)) -
+          Number(individualItemPrice.textContent)
       );
+      const index = cartItems.indexOf(itemName.textContent);
       cartItems.pop(index);
       setCookie(`cartItems`, cartItems, 30);
     }

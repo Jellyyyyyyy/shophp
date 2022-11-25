@@ -36,8 +36,6 @@
               aria-selected="false">Manage listing</a>
             <a class="nav-link" id="v-tabs-users-tab" data-mdb-toggle="tab" href="#v-tabs-users" role="tab"
               aria-controls="v-tabs-users" aria-selected="false">Manage users</a>
-            <a class="nav-link" id="v-tabs-orders-tab" data-mdb-toggle="tab" href="#v-tabs-orders" role="tab"
-              aria-controls="v-tabs-orders" aria-selected="false">Manage orders</a>
           </div>
           <!-- Tab navs -->
         </div>
@@ -125,8 +123,8 @@
                 <label class="form-label" for="item-size-XS">Stock</label>
                 <div class="d-flex flex-row justify-content-between">
                   <div class="form-outline mb-4 me-3 item-size">
-                    <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS" min=0
-                      value="<?= $_SESSION["xs"] ?? '' ?>">
+                    <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS"
+                      min=0 value="<?= $_SESSION["xs"] ?? '' ?>">
                     <label for="item-size-XS" class="form-label">XS</label>
                   </div>
                   <div class="form-outline mb-4 me-3 item-size">
@@ -145,8 +143,8 @@
                     <label for="item-size-L" class="form-label">L</label>
                   </div>
                   <div class="form-outline mb-4 item-size">
-                    <input type="number" class="form-control form-control-lg" id="item-size-XL" name="item-size-XL" min=0
-                      value="<?= $_SESSION["xl"] ?? '' ?>">
+                    <input type="number" class="form-control form-control-lg" id="item-size-XL" name="item-size-XL"
+                      min=0 value="<?= $_SESSION["xl"] ?? '' ?>">
                     <label for="item-size-XL" class="form-label">XL</label>
                   </div>
                 </div>
@@ -212,7 +210,7 @@
                 }
                 ?>
                 <select class="form-select mb-3 manage-action" name="manage-action" aria-label="Item category" required>
-                  <option value="" disabled>Select an action</option> 
+                  <option value="" disabled>Select an action</option>
                   <option value="edit">Edit</option>
                   <option value="delete">Delete</option>
                 </select>
@@ -264,8 +262,8 @@
                   <h4 class="mb-2">Edit item</h4>
                   <h6>Leave fields empty to make no changes</h6>
                   <div class="form-outline mb-4">
-                    <input type="text" class="form-control form-control-lg" id="manage-item-name" name="manage-item-name"
-                      maxlength="20" value="<?= $_SESSION["manageItemName"] ?? '' ?>">
+                    <input type="text" class="form-control form-control-lg" id="manage-item-name"
+                      name="manage-item-name" maxlength="20" value="<?= $_SESSION["manageItemName"] ?? '' ?>">
                     <label for="manage-item-name" class="form-label">Change Item name</label>
                   </div>
                   <div class="form-outline mb-4">
@@ -283,8 +281,8 @@
                     <div class="form-helper"></div>
                   </div>
                   <div class="form-outline mb-4">
-                    <textarea class="form-control form-control-lg " data-mdb-showcounter="true" id="manage-item-materials"
-                      name="manage-item-materials" maxlength="200"
+                    <textarea class="form-control form-control-lg " data-mdb-showcounter="true"
+                      id="manage-item-materials" name="manage-item-materials" maxlength="200"
                       style="height: 7rem;"><?= $_SESSION["manageItemMaterials"] ?? '' ?></textarea>
                     <label for="manage-item-materials" class="form-label">Change Materials</label>
                     <div class="form-helper"></div>
@@ -297,8 +295,8 @@
                     <option value="no-change">No change</option>
                   </select>
                   <div class="form-outline mb-3">
-                    <input type="tel" class="form-control form-control-lg" id="manage-item-price" name="manage-item-price"
-                      value="<?= $_SESSION["manageItemPrice"] ?? '' ?>" maxlength="10">
+                    <input type="tel" class="form-control form-control-lg" id="manage-item-price"
+                      name="manage-item-price" value="<?= $_SESSION["manageItemPrice"] ?? '' ?>" maxlength="10">
                     <label for="manage-item-price" class="form-label">Price (S$)</label>
                   </div>
                   <select class="form-select mb-3" name="manage-item-type" aria-label="Item type">
@@ -386,122 +384,24 @@
                   <label for="mng-suspend-duration" class="form-label">Days of Account Suspension (leave black for
                     indefinite)</label>
                 </div>
-                <div class="form-outline mb-3 item-name">
+                <div class="form-outline mb-3">
                   <input type="password" class="form-control form-control-lg" id="user-admin-key" name="user-admin-key"
                     required>
                   <label for="user-admin-key" class="form-label">Admin key</label>
                 </div>
 
-              <div class="pt-1 mb-3">
-                <button class="btn btn-dark btn-lg btn-block submit-button mng-user-btn" id="mng-user-btn"
-                  type="submit">
-                  suspend account
-                </button>
-              </div>
-            </form>
+                <div class="pt-1 mb-3">
+                  <button class="btn btn-dark btn-lg btn-block submit-button mng-user-btn" id="mng-user-btn"
+                    type="submit">
+                    suspend account
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!-- Tab content -->
           </div>
-          <div class="tab-pane fade <?= isset($_GET["mngAdminSuccess"]) ? 'show active' : '' ?>"
-            id="v-tabs-manage-admin" role="tabpanel" aria-labelledby="v-tabs-manage-admin">
-            <form action="process_adminEditAdmin" method="post" target="_self" enctype="multipart/form-data"
-              style="width: 60%;">
-              <h2>Upload item</h2>
-              <?php
-              include_once "include/functions.inc.php";
-              if (isset($_GET['mngAdminSuccess'])) {
-                $mngAdminSuccess = sanitize_input($_GET['mngAdminSuccess']);
-                $mngAdminMsg = sanitize_input($_GET['mngAdminSuccessMsg']);
-                if ($uploadSuccess == "true") {
-                  echo '<div class="msg-container" style="background: rgba(45, 197, 45, 0.665);border: 2px solid rgb(23, 210, 23);">';
-                  echo "<span> {$mngAdminMsg} </span>";
-                  echo '</div>';
-                } else {
-                  echo '<div class="msg-container" style="background: rgba(255, 43, 43, 0.707);border: 1px solid rgb(255, 0, 0);">';
-                  echo "<span> {$mngAdminMsg} </span>";
-                  echo '</div>';
-                }
-              }
-              ?>
-              <div class="form-outline mb-4">
-                <input type="text" class="form-control form-control-lg" id="admin-name" name="admin-name"
-                  value="<?= $_SESSION["adminname"] ?? '' ?>" maxlength="20" required>
-                <label for="admin-name" class="form-label">Admin code/name</label>
-              </div>
-
-              <select class="form-select mb-3" name="mng-admin-action" aria-label="Manage adminn item" required>
-                <option
-                  <?= isset($_SESSION["adminaction"]) && $_SESSION["adminaction"] === "clothing" ? 'selected' : '' ?>
-                  value="clothing">Clothing</option>
-                <option <?= isset($_SESSION["adminaction"]) && $_SESSION["adminaction"] === "bags" ? 'selected' : '' ?>
-                  value="bags">Bags</option>
-                <option
-                  <?= isset($_SESSION["adminaction"]) && $_SESSION["adminaction"] === "accessories" ? 'selected' : '' ?>
-                  value="accessories">Accessories</option>
-              </select>
-
-              <div class="form-outline mb-3">
-                <input type="tel" class="form-control form-control-lg" id="item-price" name="item-price"
-                  value="<?= $_SESSION["itemprice"] ?? '' ?>" maxlength="10" required>
-                <label for="item-price" class="form-label">Price (S$)</label>
-              </div>
-
-              <select class="form-select mb-3" name="item-type" aria-label="Item type" required>
-                <option disabled <?= !isset($_SESSION["itemtype"]) ? 'selected' : '' ?>>Type</option>
-                <option <?= isset($_SESSION["itemtype"]) && $_SESSION["itemtype"] === "unisex" ? 'selected' : '' ?>
-                  value="unisex">Unisex</option>
-                <option <?= isset($_SESSION["itemtype"]) && $_SESSION["itemtype"] === "men" ? 'selected' : '' ?>
-                  value="men">Men</option>
-                <option <?= isset($_SESSION["itemtype"]) && $_SESSION["itemtype"] === "women" ? 'selected' : '' ?>
-                  value="women">Women</option>
-              </select>
-
-              <label class="form-label" for="item-size">Stock</label>
-              <div class="d-flex flex-row justify-content-between">
-                <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS" min=0
-                    value="<?= $_SESSION["xs"] ?? '' ?>">
-                  <label for="item-size-XS" class="form-label">XS</label>
-                </div>
-                <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-S" name="item-size-S" min=0
-                    value="<?= $_SESSION["s"] ?? '' ?>">
-                  <label for="item-size-S" class="form-label">S</label>
-                </div>
-                <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-M" name="item-size-M" min=0
-                    value="<?= $_SESSION["m"] ?? '' ?>">
-                  <label for="item-size-M" class="form-label">M</label>
-                </div>
-                <div class="form-outline mb-4 me-3 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-L" name="item-size-L" min=0
-                    value="<?= $_SESSION["l"] ?? '' ?>">
-                  <label for="item-size-L" class="form-label">L</label>
-                </div>
-                <div class="form-outline mb-4 item-size">
-                  <input type="number" class="form-control form-control-lg" id="item-size-XL" name="item-size-XL" min=0
-                    value="<?= $_SESSION["xl"] ?? '' ?>">
-                  <label for="item-size-XL" class="form-label">XL</label>
-                </div>
-              </div>
-
-              <label for="item-img" class="form-label">msgAdmin image</label>
-              <input cmngAdminSuccessform-control mb-4" type="file" id="item-img" name="item-img" />
-
-              <div class="form-outline mb-4 item-name">
-                <input type="password" class="form-control form-control-lg" id="admin-key" name="admin-key" required>
-                <label for="admin-key" class="form-label">Admin key</label>
-              </div>
-
-              <div class="pt-1 mb-4">
-                <button class="btn btn-dark btn-lg btn-block submit-button" type="submit">
-                  Upload
-                </button>
-              </div>
-            </form>
-          </div>
-          <!-- Tab content -->
         </div>
       </div>
-    </div>
   </main>
   <?php include_once "include/footer.inc.php"; ?>
 </body>
