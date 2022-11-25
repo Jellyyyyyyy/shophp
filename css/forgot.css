@@ -1,0 +1,10 @@
+.ms-xl-4 {
+    margin-left: 8rem!important;
+}
+
+.login-img-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(50, 50, 50, 0.5);
+  }

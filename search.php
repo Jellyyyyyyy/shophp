@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COMING SOON...</title>
+  <title>NEW</title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/pages.css">
   <script src="js/addCard.js" defer></script>
@@ -14,7 +14,6 @@
 <body>
   <?php 
   include_once "include/nav.inc.php";
-  include_once "include/session.inc.php"; // checks if they are logged in
   include_once "include/functions.inc.php";
   include_once "include/dbcon.inc.php";
   
@@ -25,23 +24,44 @@
       setcookie("wishlistItems", $wishlist);
     }
   }
+  
+  if (isset($_POST["search-field"])) $search = getItemsFromSearch();
+  else $search = "No items found";
   ?>
-
-  <main style="height: 50em;">
+  <main>
     <section id="description">
       <div class="jumbotron" id="displayJumbo">
         <div class="row">
           <div class="col-md-4">
-            <h1 class="hugeText">WISHLIST</h1>
-            <p class="paraText">Don't let your wallet stop your desire to look at clothes! Save your favourite items in
-              your personal wishlist!</p>
+            <h1 class="hugeText">SEARCH RESULTS</h1>
+            <p class="paraText">
+              <?php echo isset($search) && $search !== "No items found" ? count($search) . " item(s) found. " : "No items found." ?>
+            </p>
           </div>
         </div>
       </div>
     </section>
-    <div class="comgSoon" style=" display: flex; text-align: center;">
-      <h1 style="font-weight: 700; padding-top: 3em;">FEATURE COMING SOON...</h1>
+    <div class="grid-container">
+      <template class="card-template">
+        <div class="card col-md-4">
+          <div class="icons">
+            <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' data-mdb-toggle="tooltip"
+              title="Add to wishlist"></i>
+            <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart' data-mdb-toggle="tooltip" title="Add to cart"></i>
+          </div>
+          <img data-item-image onerror="this.onerror=null;this.src='images/no_image_found.jpg'">
+          <div class="text-container">
+            <div class="category-container">
+              <span data-item-category></span>
+              <span data-item-size></span>
+            </div>
+            <span data-item-name></span>
+            <span data-item-price></span>
+          </div>
+        </div>
+      </template>
     </div>
+    <div class="modal-overlay hide"></div>
   </main>
   <template data-modal-template>
     <div class="fluid-container item-modal hide">
@@ -95,28 +115,19 @@
   <script>
   <?php
     echo "window.addEventListener('load', () => {";
-      $wishlistItemsArr = explode(",", getWishlistFromDB());
-      $wishlistArr = array();
-      foreach ($wishlistItemsArr as $item){
-        settype($item, "string");
-        $wishlistArr[] = getItemDetails($item);
+    if (!is_array($search)) {
+      echo "let child = document.createElement('h1');";
+      echo "child.textContent = '{$search}';";
+      echo "document.querySelector('main').appendChild(child);";
+      echo "});";
+    } else {
+      foreach ($search as $item) {
+        echo "addCard($item, '.grid-container');";
       }
-
-      if ($wishlistArr[0] == "No items found") {
-        echo "let child = document.createElement('h1');";
-        echo "child.textContent = 'No items found';";
-        echo "document.querySelector('main').appendChild(child);";
-        echo "});";
-      } else {
-        foreach ($wishlistArr as $item) {
-          echo "addCard($item, '.grid-container');";
-        }
-        echo "});";
-      }
-      $conn->close();
-      ?>
+      echo "});";
+    }
+    ?>
   </script>
+
   <?php include_once "include/footer.inc.php" ?>
 </body>
-
-</html>
