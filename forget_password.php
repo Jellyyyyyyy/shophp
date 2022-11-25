@@ -26,17 +26,7 @@
                 <h3 class="fw-bold mb-3 pb-3" style="letter-spacing: 1px">
                   Forgot Password
                 </h3>
-                <?php
-                if (isset($_GET['forgetsuccess'])) {
-                  $success = sanitize_input($_GET['success']);
-                  $errorMsg = sanitize_input($_GET['errorMsg']);
-                  if ($success == 'true') {
-                    echo $errorMsg;
-                  } else {
-                    echo $errorMsg;
-                  }
-                }
-                ?>
+                
                 <div class="form-outline mb-4 login-field">
                   <input type="text" id="forget_pwd" class="form-control form-control-lg" aria-label="send email"
                     name="forget_pwd" value="<?= $_GET["email"] ?? ''; ?>" required>
@@ -47,6 +37,17 @@
                     Send Email
                   </button>
                 </div>
+                <?php
+                if (isset($_GET['forgetsuccess'])) {
+                  $success = sanitize_input($_GET['success']);
+                  $errorMsg = sanitize_input($_GET['errorMsg']);
+                  if ($success == 'true') {
+                    echo "<div class='reset-pw-mail'>". $errorMsg ."</div>";
+                  } else {
+                    echo "<div class='reset-pw-mail'>". $errorMsg ."</div>";
+                  }
+                }
+                ?>
               </form>
             </div>
           </div>
