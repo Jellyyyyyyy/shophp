@@ -85,7 +85,7 @@
                     <span>{$card['category']}</span>
                     <span>{$stock}</span>
                   </div>
-                  <span>{$card['name']}</span>
+                  <span data-item-name>{$card['name']}</span>
                   <span>$" . "{$card['price']}</span>
                 </div>
               </div>";
@@ -159,7 +159,7 @@
                     <span>{$card['category']}</span>
                     <span>{$stock}</span>
                   </div>
-                  <span>{$card['name']}</span>
+                  <span data-item-name>{$card['name']}</span>
                   <span>$" . "{$card['price']}</span>
                 </div>
               </div>";

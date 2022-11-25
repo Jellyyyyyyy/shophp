@@ -117,29 +117,61 @@ arrowArray.forEach((arrow) => {
 });
 
 // Card functions
-function addArrowEvents() {
-  const arrows = document.querySelectorAll(".card .arrow");
-  const cards = document.querySelectorAll(".grid-container .card");
-  let arrowArray = [...arrows],
-    cardArray = [...cards],
-    currentCard = 0;
+const cards = [...document.querySelectorAll(".card")];
+cards.forEach((card) => {
+  const addToCartBtn = card.querySelector(".add-to-cart");
+  const addToWishlistBtn = card.querySelector(".add-to-wishlist");
+  const itemName = card.querySelector("[data-item-name]");
+  const loginState = document
+    .querySelector("[data-login-state]")
+    .getAttribute("data-login-state");
 
-  arrowArray.forEach((arrow) => {
-    arrow.addEventListener("click", () => {
-      cardArray.forEach((card) => (card.style.opacity = "0"));
-
-      if (arrow.classList.contains("arrow-next")) {
-        currentCard++;
-        if (currentCard > cardArray.length - 1) currentCard = 0;
-      } else if (arrow.classList.contains("arrow-previous")) {
-        currentCard--;
-        if (currentCard < 0) currentCard = cardArray.length - 1;
-      }
-      cardArray[currentCard].style.opacity = "1";
-    });
+  let cartItems = getCookie("cartItems").split(",");
+  const testEmptyString = cartItems.indexOf("");
+  if (testEmptyString !== -1) cartItems.splice(testEmptyString, 1); // Removes empty string
+  addToCartBtn.addEventListener("click", () => {
+    cartItems.push(itemName.textContent);
+    setCookie(`cartItems`, cartItems, 30);
+    window.location.reload();
   });
+
+  addToWishlistBtn.addEventListener("click", () => {
+    // Add to wishlist
+    if (loginState == "true") {
+      wishlistItems = getCookie("wishlistItems").split(",");
+      const testEmptyString = wishlistItems.indexOf("");
+      if (testEmptyString !== -1) wishlistItems.splice(testEmptyString, 1); // Removes empty string
+      wishlistItems.push(itemName.textContent);
+      setCookie("wishlistItems", wishlistItems);
+      window.location.reload();
+    } else {
+      alert("Please login to add to wishlist");
+    }
+  });
+
+  card.addEventListener("click", () => {});
+});
+
+// Cookie functions
+function setCookie(name, value, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+  let expiryDate = d.toUTCString();
+  document.cookie = `${name}=${value}; expires=${expiryDate}`;
 }
 
-addArrowEvents();
-const allCards = document.querySelectorAll(".grid-container .card");
-[...allCards][0].style.opacity = "1";
+function getCookie(cookieName) {
+  let name = cookieName + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}

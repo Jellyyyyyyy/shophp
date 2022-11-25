@@ -174,3 +174,16 @@ button.submit-button {
     margin: 0;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .loginBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .form-container form {
+    margin-left: 0%!important;
+  }
+}

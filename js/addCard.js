@@ -60,7 +60,7 @@ function addCard(itemJSON, target) {
   } else {
     // Show toaster popup at top center
     wishlistCardBtn.addEventListener("click", () => {
-      console.log("NOT LOGGED IN!");
+      alert("Please login to add to wishlist");
     });
   }
 
