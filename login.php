@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <?php include_once "include/head.inc.php" ?>
-  <link rel="stylesheet" href="css/login.css">
   <script src="js/login.js" defer></script>
+  <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
@@ -23,51 +23,53 @@
           <div class="col-sm-6 text-black">
             <div class="form-container d-flex align-items-center justify-content-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
               <form action="process_login" method="post" target="_self" style="width: 23rem">
-                <h3 class="fw-bold mb-2 pb-3" style="letter-spacing: 1px">
-                  Log in
-                </h3>
-                <?php
-                include_once "include/functions.inc.php";
-                if (isset($_GET['loginSuccess'])) {
-                  $loginSuccess = sanitize_input($_GET['loginSuccess']);
-                  $loginMsg = sanitize_input($_GET['loginMsg']);
-                  if ($loginSuccess == 'true') {
-                    echo '<p>SUCCESS</p>';
-                  } else {
-                    echo '<div class="fail-message">';
-                    echo '<span class=fail-text>' . $loginMsg . '</span>';
-                    echo '<div class="arrow-down"></div>';
-                    echo '</div>';
+                <div class="loginBox">
+                  <h3 class="fw-bold mb-2 pb-3" style="letter-spacing: 1px">
+                    Log in
+                  </h3>
+                  <?php
+                  include_once "include/functions.inc.php";
+                  if (isset($_GET['loginSuccess'])) {
+                    $loginSuccess = sanitize_input($_GET['loginSuccess']);
+                    $loginMsg = sanitize_input($_GET['loginMsg']);
+                    if ($loginSuccess == 'true') {
+                      echo '<p>SUCCESS</p>';
+                    } else {
+                      echo '<div class="fail-message">';
+                      echo '<span class=fail-text>' . $loginMsg . '</span>';
+                      echo '<div class="arrow-down"></div>';
+                      echo '</div>';
+                    }
                   }
-                }
-                ?>
-                <div class="form-outline mb-4 login-field">
-                  <input type="text" id="login-email-field" class="form-control form-control-lg" name="login-email-field" value="<?php echo $_GET["user"] ?? ''; ?>" required>
-                  <label class="form-label login-email-label" for="login-email-field">Email/Username</label>
-                </div>
+                  ?>
+                  <div class="form-outline mb-4 login-field">
+                    <input type="text" id="login-email-field" class="form-control form-control-lg" name="login-email-field" value="<?php echo $_GET["user"] ?? ''; ?>" required>
+                    <label class="form-label login-email-label" for="login-email-field">Email/Username</label>
+                  </div>
 
-                <div class="form-outline mb-3 login-field">
-                  <input type="password" id="login-password-field" class="form-control form-control-lg" name="login-password-field" required>
-                  <label class="form-label login-password-label" for="login-password-field">Password</label>
-                </div>
+                  <div class="form-outline mb-3 login-field">
+                    <input type="password" id="login-password-field" class="form-control form-control-lg" name="login-password-field" required>
+                    <label class="form-label login-password-label" for="login-password-field">Password</label>
+                  </div>
 
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" value="1" name="rememberme" id="rememberme">
-                  <label class="form-check-label" for="rememberme">Remember me</label>
-                </div>
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" value="1" name="rememberme" id="rememberme">
+                    <label class="form-check-label" for="rememberme">Remember me</label>
+                  </div>
 
-                <div class="pt-1 mb-4">
-                  <button class="btn btn-dark btn-lg btn-block submit-button" type="submit">
-                    Login
-                  </button>
+                  <div class="pt-1 mb-4">
+                    <button class="btn btn-dark btn-lg btn-block submit-button" type="submit">
+                      Login
+                    </button>
+                  </div>
+                  <p class="small mb-5 pb-lg-2">
+                    <a class="text-muted" href="forget">Forgot password?</a>
+                  </p>
+                  <p>
+                    Don't have an account?
+                    <a class="link-info no-acc-btn" style="cursor: pointer;">Register here</a>
+                  </p>
                 </div>
-                <p class="small mb-5 pb-lg-2">
-                  <a class="text-muted" href="forget">Forgot password?</a>
-                </p>
-                <p>
-                  Don't have an account?
-                  <a class="link-info no-acc-btn" style="cursor: pointer;">Register here</a>
-                </p>
               </form>
             </div>
           </div>
@@ -188,7 +190,7 @@
           <input class="form-check-input me-2" type="checkbox" value="" id="terms-of-service" required>
           <label class="form-check-label" for="terms-of-service">
             I agree to the
-            <a href="#!" class="text-body"><u>Terms of service</u></a>
+            <a href="/privacypolicy" class="text-body"><u>Terms of service</u></a>
           </label>
         </div>
 

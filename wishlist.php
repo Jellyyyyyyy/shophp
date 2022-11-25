@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>COMING SOON...</title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/pages.css">
   <script src="js/addCard.js" defer></script>
@@ -26,7 +26,8 @@
     }
   }
   ?>
-  <main>
+
+  <main style="height: 50em;">
     <section id="description">
       <div class="jumbotron" id="displayJumbo">
         <div class="row">
@@ -38,28 +39,9 @@
         </div>
       </div>
     </section>
-    <div class="grid-container">
-      <template class="card-template">
-        <div class="card col-md-4">
-          <div class="icons">
-            <i class='bx bx-sm bx-bookmark bx-tada-hover add-to-wishlist' data-mdb-toggle="tooltip"
-              title="Remove from wishlist"></i>
-            <i class='bx bx-sm bx-cart-add bx-tada-hover add-to-cart ' data-mdb-toggle="tooltip"
-              title="Add to cart"></i>
-          </div>
-          <img data-item-image>
-          <div class="text-container">
-            <div class="category-container">
-              <span data-item-category></span>
-              <span data-item-size></span>
-            </div>
-            <span data-item-name></span>
-            <span data-item-price></span>
-          </div>
-        </div>
-      </template>
+    <div class="comgSoon" style=" display: flex; text-align: center;">
+      <h1 style="font-weight: 700; padding-top: 3em;">FEATURE COMING SOON...</h1>
     </div>
-    <div class="modal-overlay hide"></div>
   </main>
   <template data-modal-template>
     <div class="fluid-container item-modal hide">
