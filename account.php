@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Account</title>
         <?php include_once "include/head.inc.php" ?>
-        <link rel="stylesheet" href="css/admin.css">
+        <link rel="stylesheet" href="css/account.css">
         <script src="js/admin.js" defer></script>
     </head>
 
@@ -19,9 +19,9 @@
         ?>
         <main style="min-height: 85vh; padding-bottom: 7px;">
             <div class="row w-100">
-                <div>
-                    <h1 style="padding: 7px 300px; font-weight: bold;">Profile page</h1>       
-                    <h5 style="padding: 7px 300px;">
+                <div class="text-content">
+                    <h1>Profile page</h1>       
+                    <h5>
                         To change your profile details, please fill in the respective fields below and click on the "Apply Changes" button for the changes to take into effect.
                     </h5>
                 </div>
