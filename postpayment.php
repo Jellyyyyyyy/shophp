@@ -18,7 +18,7 @@
       $postPayment = json_decode($_COOKIE["postpayment"], true);
       echo '<p style="color:#000; font-size:50px">Thank you for shopping with shoPHP</p><br>';
     } else {
-      echo '<p>You shouldn\'t be here</p>';
+      echo '<p style="color:#000; font-size:50px;">You shouldn\'t be here</p>';
     }
     ?>
   </main>

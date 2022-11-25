@@ -100,15 +100,16 @@ $priceQuery->close();
             if ($result->num_rows > 0) {
               $itemDetails = $result->fetch_assoc();
               echo "<div class='item'>
+                      <aside style='display: none;' data-item-price='{$itemDetails['price']}'></aside>
                       <img src='{$itemDetails["image"]}' alt='{$itemDetails["name"]}'>
                       <div class='item-details'>
                         <div class='item-name'>
                           <span>{$itemDetails["name"]}</span>
                         </div>
                         <div class='item-quantity'>
-                          <i class='bx bx-sm bx-tada-hover bx-minus-circle'></i>
+                          <i class='bx bx-sm bx-tada-hover bx-minus-circle quantity-minus'></i>
                           {$itemQuantity[$itemDetails['name']]}
-                          <i class='bx bx-sm bx-tada-hover bx-plus-circle'></i>
+                          <i class='bx bx-sm bx-tada-hover bx-plus-circle quantity-add'></i>
                         </div>
                         <div class='size'>
                           <select class='select'>
