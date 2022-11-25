@@ -8,7 +8,7 @@
   <title>TRENDING</title>
   <?php include_once "include/head.inc.php" ?>
   <link rel="stylesheet" href="css/pages.css">
-  <script src="js/trending.js" defer></script>
+  <script src="js/addCard.js" defer></script>
 </head>
 
 <body>
@@ -125,6 +125,7 @@
         echo "});";
       }
       $conn->close();
+
       ?>
   </script>
   <?php include_once "include/footer.inc.php" ?>

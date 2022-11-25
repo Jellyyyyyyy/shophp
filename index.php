@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/index.css">
   <script src="js/index.js" defer></script>
 </head>
-
+  
 <body>
   <?php include_once "include/nav.inc.php" ?>
   <main>

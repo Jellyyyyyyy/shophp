@@ -34,11 +34,23 @@ function getAndValidateInputs() {
 
 function updateUser() {
   global $conn, $username, $userAction, $suspendDuration, $userMsg, $userUpdateSuccess;
-
+  $pQuery = $conn -> prepare("SELECT * FROM admins WHERE token=?");
+  $pQuery -> bind_param("s", $_SESSION["admin-token"]);
+  $pQuery -> execute();
+  $pResult = $pQuery -> get_result();
+  if ($pResult->num_rows > 0) {
+    $pRow = $pResult -> fetch_assoc();
+    $dbToken = $pRow["privilegelevel"];
+  }
+  if ($dbToken == 1) {
+    $userMsg = "You do not have the privileges required to perform this operation.";
+    $userUpdateSuccess = "false";
+    return;
+  }
   if ($conn->connect_error) {
     $userMsg = "Connection error. Please try again later";
     $userUpdateSuccess = "false";
-  } else {
+  } else {  
     if (ctype_digit($username)) {
       $query = $conn->prepare("SELECT * FROM users WHERE userID=?");
       $query->bind_param("i", $username);
@@ -80,7 +92,7 @@ function updateUser() {
 getAndValidateInputs();
 if ($userUpdateSuccess === "true") {
   updateUser();
-  $userMsg = $username . $userMsg . $userAction . "ed";
+  if ($userUpdateSuccess === "true") $userMsg = $username . $userMsg . $userAction . "ed";
 }
 
 header("Location: /admin?mngUserSuccess={$userUpdateSuccess}&mngUserMsg={$userMsg}");

@@ -108,6 +108,7 @@ function createModal(itemJSON) {
   const modalMaterials = modal.querySelector("[data-modal-materials]");
   const closeModal = modal.querySelector(".close-modal");
   const sizeSelect = modal.querySelector("[data-size-select]");
+  const addToCartBtn = modal.querySelector(".add-to-cart");
 
   modalImg.src = itemJSON.image;
   modalImg.alt = itemJSON.name;
@@ -143,12 +144,18 @@ function createModal(itemJSON) {
   const collapseBtns = modal.querySelectorAll(".more-details");
   const collapseBtnsArr = [...collapseBtns];
   collapseBtnsArr.forEach((btn) => {
-    btn.addEventListener("click", (collapse) => {
+    btn.addEventListener("click", () => {
       collapseBtnsArr.forEach((el) =>
         el.getAttribute("aria-expanded") == "true" ? el.click() : null
       );
       btn.click();
     });
+  });
+
+  addToCartBtn.addEventListener("click", () => {
+    cartItems.push(itemJSON.name);
+    setCookie(`cartItems`, cartItems, 30);
+    window.location.reload();
   });
 
   document.body.insertBefore(modal, document.querySelector("footer"));
