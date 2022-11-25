@@ -160,6 +160,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^search$ search.php [NC]
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^postpayment$ postpayment.php [NC]
+
 # Redirects .php to without .php
 #RewriteEngine On
 #RewriteBase /

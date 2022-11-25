@@ -97,6 +97,16 @@ function getWishlistFromDB() {
   }
 }
 
+function getItemDetails($itemName) {
+  global $conn;
+  settype($itemName, "string");
+  $query = $conn->prepare("SELECT * FROM items WHERE name=?");
+  $query->bind_param("s", $itemName);
+  $result = $query->get_result();
+  $row = $result->fetch_assoc();
+  return json_encode($row);
+}
+
 function addWishlistToDB() {
   global $conn, $cookieWishlist;
   $user = $_SESSION["user"];
