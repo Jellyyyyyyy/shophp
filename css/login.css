@@ -176,8 +176,14 @@ button.submit-button {
 }
 
 @media screen and (max-width: 768px) {
-  .form-container .d-flex .align-items-center .justify-content-center .h-custom-2 .px-5 .ms-xl-4 .mt-5 .pt-5 .pt-xl-0 .mt-xl-n5 .loginBox {
+  .loginBox {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .form-container form {
+    margin-left: 0%!important;
   }
 }
