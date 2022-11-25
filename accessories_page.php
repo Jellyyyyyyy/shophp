@@ -94,7 +94,6 @@
           </div>
         </div>
         <div class="item-actions">
-          <i class='bx bx-sm bx-bookmark add-to-wishlist' style="cursor: pointer;"></i>
           <div class="form-outline w-50 mx-2">
             <input type="number" class="form-control form-control-lg active item-quantity" id="item-quantity"
               name="item-quantity" maxlength="2" value="1" min="0">
