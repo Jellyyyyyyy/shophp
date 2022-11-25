@@ -169,3 +169,31 @@ body {
   display: flex;
   justify-content: right;
 }
+
+
+@media screen and (max-width: 768px) {
+  #displayJumbo {
+    width: 100%;
+    padding-top: 5rem;
+    
+  }
+  .hugeText {
+    font-weight: 700;
+    font-size: 3em;
+    padding-right: 10%;
+  }
+  .fluid-container .mb-4 .h-100 .w-100 .cart-container {
+    width: 100%;
+  }
+  .cart-container .item {
+    display: flex;
+    flex-direction: row!important;
+    width: 100%;
+  }
+  .price-container {
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center;
+    text-align: center;
+  }
+}

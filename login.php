@@ -188,7 +188,7 @@
           <input class="form-check-input me-2" type="checkbox" value="" id="terms-of-service" required>
           <label class="form-check-label" for="terms-of-service">
             I agree to the
-            <a href="#!" class="text-body"><u>Terms of service</u></a>
+            <a href="/privacypolicy" class="text-body"><u>Terms of service</u></a>
           </label>
         </div>
 
