@@ -8,3 +8,14 @@
     width: 100%;
     background: rgba(50, 50, 50, 0.5);
   }
+
+@media screen and (max-width: 768px) {
+    .forgotForm form {
+        display: flex!important;
+        flex-direction: column!important;
+        padding-top: 10vh;
+    }
+    .ms-xl-4 {
+        margin-left: 0rem!important;
+    }
+}
