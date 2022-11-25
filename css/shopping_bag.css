@@ -184,11 +184,13 @@ body {
   }
   .fluid-container .mb-4 .h-100 .w-100 .cart-container {
     width: 100%;
+    position: absolute;
   }
   .cart-container .item {
     display: flex;
     flex-direction: row!important;
     width: 100%;
+    position: relative;
   }
   .price-container {
     display: flex!important;
@@ -196,4 +198,5 @@ body {
     align-items: center;
     text-align: center;
   }
+
 }

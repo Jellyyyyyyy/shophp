@@ -176,5 +176,5 @@ button.submit-button {
 }
 
 @media screen and (max-width: 768px) {
-  
+  .form-container .d-flex .align-items-center
 }
