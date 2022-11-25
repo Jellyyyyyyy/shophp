@@ -12,13 +12,16 @@
 </head>
 
 <body>
-  <?php include_once "include/nav.inc.php" ?>
+  <?php 
+  include_once "include/nav.inc.php";
+  include_once "include/functions.inc.php";
+   ?>
   <main>
     <section class="vh-100">
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6 text-black">
-            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5 forgotForm">
               <form action="process_forget" method="post" target="_self" style="width: 23rem">
                 <h3 class="fw-bold mb-3 pb-3" style="letter-spacing: 1px">
                   Forgot Password
@@ -40,7 +43,7 @@
                 </div>
                 <div class="pt-1 mb-4">
                   <button class="btn btn-dark btn-lg btn-block submit-button" type="submit">
-                    Send Email for Password Reset
+                    Send Email
                   </button>
                 </div>
               </form>
