@@ -9,6 +9,11 @@
     background: rgba(50, 50, 50, 0.5);
   }
 
+.reset-pw-mail {
+    padding: 10%;
+}
+
+
 @media screen and (max-width: 768px) {
     .forgotForm form {
         display: flex!important;
@@ -18,4 +23,5 @@
     .ms-xl-4 {
         margin-left: 0rem!important;
     }
+
 }
