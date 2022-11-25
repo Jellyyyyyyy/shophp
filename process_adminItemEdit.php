@@ -4,7 +4,7 @@ if (empty($_POST)) header("Location /adlogin"); // users should not be able to a
 require_once 'include/functions.inc.php';
 require_once 'include/dbcon.inc.php';
 turnOnErrorReport();
-mysqli_report(MYSQLI_REPORT_ALL);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 $oldItem = $oldItemName = $oldItemCat = $oldItemDesc = $oldItemDetails = $oldItemMaterials = $oldItemPrice = $oldItemType = $oldItemStock = $oldItemImg = ""; // Old item variables
 $newItemName = $newItemCat = $newItemDesc = $newItemDetails = $newItemMaterials = $newItemPrice = $newItemType = $newItemStock = $newItemImg = ""; // New item variables
@@ -299,17 +299,29 @@ function restoreOld()
   $restoreQuery->close();
 }
 
-function deleteItem()
-{
+function deleteItem() {
   global $conn, $formItem, $manageMsg, $manageSuccess;
-
-  $deleteQuery = $conn->prepare("DELETE FROM items WHERE name=?");
-  $deleteQuery->bind_param("s", $formItem);
-  if (!$deleteQuery->execute()) {
-    $manageMsg = "Item could not be deleted. Please try again later.";
+  $pQuery = $conn -> prepare("SELECT * FROM admins WHERE token=?");
+  $pQuery -> bind_param("s", $_SESSION["admin-token"]);
+  $pQuery -> execute();
+  $pResult = $pQuery -> get_result();
+  if ($pResult->num_rows > 0) {
+    $pRow = $pResult -> fetch_assoc();
+    $dbToken = $pRow["privilegelevel"];
+  }
+  if ($dbToken > 1) {
+    $deleteQuery = $conn->prepare("DELETE FROM items WHERE name=?");
+    $deleteQuery->bind_param("s", $formItem);
+    if (!$deleteQuery->execute()) {
+      $manageMsg = "Item could not be deleted. Please try again later.";
+      $manageSuccess = "false";
+    }
+  } else {
+    $manageMsg = "You do not have the privileges required to perform this function.";
     $manageSuccess = "false";
   }
-}
+} 
+
 
 checkRequiredEmpty();
 if ($manageSuccess === "true" && $manageAction === "edit") {
@@ -323,7 +335,7 @@ if ($manageSuccess === "true" && $manageAction === "edit") {
   if ($manageSuccess === "true") $manageMsg = $newItemName . $manageMsg;
 } else if ($manageSuccess === "true" && $manageAction === "delete") {
   deleteItem();
-  $manageMsg = "Item has been deleted successfully.";
+  if ($manageSuccess === "true") $manageMsg = "Item has been deleted successfully.";
 } else {
   $manageMsg = "An Unexpected error has occurred. Please contact a server adminstrator immediately.";
   $manageSuccess = "false";

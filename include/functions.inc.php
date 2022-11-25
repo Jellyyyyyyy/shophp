@@ -58,7 +58,7 @@ function getItems($category, $number=50) {
     if ($category === "new") {
       $result = $conn -> query("SELECT * FROM items ORDER BY itemID DESC LIMIT $number");
     } else if ($category === "trending") {
-      $result = $conn -> query("SELECT * FROM items ORDER by sold DESC LIMIT 4");
+      $result = $conn -> query("SELECT * FROM items ORDER by sold DESC LIMIT $number");
     } else {
       $query = $conn->prepare("SELECT * FROM items WHERE category=?");
       $query->bind_param("s", $category);

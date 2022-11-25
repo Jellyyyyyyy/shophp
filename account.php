@@ -1,4 +1,4 @@
-<?php ?>
+<?php include_once "include/session.inc.php"; // checks if they are logged in ?>
 <!DOCTYPE html>
 <html lang="en">
 
