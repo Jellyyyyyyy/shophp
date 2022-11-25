@@ -121,7 +121,7 @@
                     value="women">Women</option>
                 </select>
 
-                <label class="form-label" for="item-size">Stock</label>
+                <label class="form-label" for="item-size-XS">Stock</label>
                 <div class="d-flex flex-row justify-content-between">
                   <div class="form-outline mb-4 me-3 item-size">
                     <input type="number" class="form-control form-control-lg" id="item-size-XS" name="item-size-XS" min=0
@@ -211,7 +211,8 @@
                 }
                 ?>
                 <select class="form-select mb-3 manage-action" name="manage-action" aria-label="Item category" required>
-                  <option selected value="edit">Edit</option>
+                  <option value="" disabled>Select an action</option> 
+                  <option value="edit">Edit</option>
                   <option value="delete">Delete</option>
                 </select>
 
@@ -305,7 +306,7 @@
                     <option value="Men">Men</option>
                     <option value="Women">Women</option>
                   </select>
-                  <label class="form-label" for="manage-item-size">Change Stock</label>
+                  <label class="form-label" for="manage-item-size-XS">Change Stock</label>
                   <div class="d-flex flex-row justify-content-between">
                     <div class="form-outline mb-4 me-3">
                       <input type="number" class="form-control form-control-lg" id="manage-item-size-XS"
