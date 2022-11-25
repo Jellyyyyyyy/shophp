@@ -35,7 +35,7 @@
           <div class="col-md-4">
             <h1 class="hugeText">SEARCH RESULTS</h1>
             <p class="paraText">
-              <?php echo isset($search) ? count($search) . " item(s) found." : "No items found." ?>
+              <?php echo isset($search) && $search !== "No items found" ? count($search) . " item(s) found. " : "No items found." ?>
             </p>
           </div>
         </div>
