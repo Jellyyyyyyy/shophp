@@ -62,7 +62,7 @@
   <template data-modal-template>
     <div class="fluid-container item-modal hide">
       <i class='bx bx-x bx-lg close-modal' style="cursor: pointer;"></i>
-      <img class="col-6" src="images/index/handong.jpeg" data-modal-img>
+      <img class="col-6 modalPic" src="images/index/handong.jpeg" data-modal-img>
       <div class="col-6 item-content">
         <div class="item-text mb-2">
           <span data-modal-name></span>

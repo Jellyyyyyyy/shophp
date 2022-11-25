@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Account</title>
+        <title>ACCOUNT</title>
         <?php include_once "include/head.inc.php" ?>
         <link rel="stylesheet" href="css/account.css">
         <script src="js/admin.js" defer></script>
@@ -39,18 +39,19 @@
                             <input type="text" id="lname" required maxlength="45" name="lname"
                                 placeholder="Enter new last name" class="form-control">
                         </div>
-                        <div class="form-group" style="padding: 7px 300px;">
-                            <label for="old_email">Current(Old) Email:</label>
-                            <input type="email" id="old_email" required name="email"
-                                placeholder="Enter old email" class="form-control">
-                        </div>
+                    
                         <div class="form-group" style="padding: 7px 300px;">
                             <label for="new_email">New Email:</label>
                             <input type="email" id="new_email" required name="new_email"
                                 placeholder="Enter new email" class="form-control">
                         </div>
                         <div class="form-group" style="padding: 7px 300px;">
-                            <label for="pwd">Password:</label>
+                            <label for="old_pwd">Old Password:</label>
+                            <input type="password" id="old_pwd" required name="old_pwd"
+                                placeholder="Enter password" class="form-control">
+                        </div>
+                        <div class="form-group" style="padding: 7px 300px;">
+                            <label for="pwd">New Password:</label>
                             <input type="password" id="pwd" required name="pwd"
                                 placeholder="Enter password" class="form-control">
                         </div>
